@@ -1,0 +1,31 @@
+- Executable Java file --> class(demo, data type)
+
+- Main method
+
+- Data type
+	. primitive type
+		--> use = operator to assign value(STACK)
+		--> int, double, float
+		
+	. object type
+		--> custom(Item, Store)
+			Item item = new Item(...)
+		
+		--> available(Integer, Double, String)
+			Integer val = 20
+			
+		--> store value at HEAP
+		
+- = operator
+
+- final (for variable at STACK )
+
+- Mutable & Immutable (const for object at HEAP)
+
+- Operator(s)
+
+- I/O Random
+
+- Controlling & Loop
+
+- Array Data Structure
