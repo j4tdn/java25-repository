@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.time.LocalDate"/>
-    <fullyQualifiedTypeName name="java.time.YearMonth"/>
-    <fullyQualifiedTypeName name="java.math.BigDecimal"/>
-    <fullyQualifiedTypeName name="java.math.RoundingMode"/>
-    <fullyQualifiedTypeName name="java.util.Random"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
-</qualifiedTypeNameHistroy>

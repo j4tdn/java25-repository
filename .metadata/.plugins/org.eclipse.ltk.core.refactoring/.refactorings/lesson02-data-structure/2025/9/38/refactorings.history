@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename compilation unit &apos;datastructure.object.Ex01ObjecTypeAvailablet.java&apos; to &apos;Ex02ObjectTypeExercise.java&apos;&#x0D;&#x0A;- Original project: &apos;lesson02-data-structure&apos;&#x0D;&#x0A;- Original element: &apos;datastructure.object.Ex01ObjecTypeAvailablet.java&apos;&#x0D;&#x0A;- Renamed element: &apos;datastructure.object.Ex02ObjectTypeExercise.java&apos;" description="Rename compilation unit &apos;Ex01ObjecTypeAvailablet.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;datastructure.object{Ex01ObjecTypeAvailablet.java" name="Ex02ObjectTypeExercise.java" references="false" stamp="1757922756156" version="1.0"/>
-</session>
