@@ -1,0 +1,83 @@
+package controlling;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.YearMonth;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Ex01IfElse {
+	
+    private static Random rd = new Random();
+	
+	public static void main(String[] args) {
+		
+		System.out.println("\n === bat dau chuong trinh ===");
+		
+		int val = rd.nextInt(5,20);
+		
+		System.out.println("val :" + val);
+		// (val % 2 == 0); la mot bieu thuc
+		if (isOdd(val)) {
+			 int currentYear = YearMonth.now().getYear();
+			System.out.println("\nket qua khi GTNN la so chan: " + (currentYear + val));
+		} else {
+			int currentYears = YearMonth.now().getYear();
+			System.out.println("\nkết quả khi GTNN là số lẻ: " + (currentYears + val) );
+		}
+		
+		System.out.println("===============");
+		
+		Scanner ip = new Scanner(System.in);
+		
+		System.out.println("nhap mat khau :");
+		String pass = ip.nextLine();
+		
+		if (pass.length() >= 8) {
+			System.out.println("mat khau dung");
+		} else {
+			System.out.println("mat khau khong dung, nhap lai mat khau");
+		}
+		
+	    ip.close();
+		
+		
+		double avgPoint = generatePoint();
+		
+		System.out.println("\nDiem trung binh :" + avgPoint);
+		System.out.println("Hoc luc :" + getRank(avgPoint));
+		
+		System.out.println("\n=== ket tuc chuong trinh ===");
+		
+	}
+	
+	private static String getRank(double point) {
+		// String rank;
+		if (point < 5) {
+			return "yeu";
+		}
+		if (point < 6.5) {
+			return "trung binh";
+		}
+		if (point < 8) {
+			return "kha";
+		}
+		return "gioi";
+	}
+	
+	
+	
+	private static double generatePoint() {
+        double avgPoint = rd.nextDouble(11);
+		if (avgPoint > 10f) {
+			avgPoint = 10f;
+		}
+		BigDecimal avgPointbd = BigDecimal.valueOf(avgPoint).setScale(1, RoundingMode.HALF_UP);
+		return avgPointbd.doubleValue();
+	}
+	
+	private static boolean isOdd(int number) {
+		return number % 2 != 0;
+	}
+
+}

@@ -1,0 +1,7 @@
+package datastructure;
+
+public class Ex02Assignments {
+	int a = 5;
+	System.out.println(a);
+
+}

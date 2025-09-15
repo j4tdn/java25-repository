@@ -1,0 +1,22 @@
+package datastructure;
+
+public class Ex04PassVariableViaMethod {
+	public static void main(String[] args) {
+		
+		// Cứ mỗi khi truyền vào 2 số nguyên
+		// Lấy tổng của 2 số đó --> * 2 --> ^2
+		int a1 = 2;
+		int a2 = 3;
+		int a12 = a1 + a2;
+		int da12 = a12 * 2;
+		int pa12 = da12 * da12;
+		System.out.println("pa12: "+ pa12);
+		
+		int b1 = 5;
+		int b2 = 1;
+		int b12 = b1 + b2;
+		int db12 = b12 * 2;
+		int pb12 = db12 * db12;
+	}
+
+}
