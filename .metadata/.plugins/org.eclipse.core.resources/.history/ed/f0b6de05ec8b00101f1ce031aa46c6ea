@@ -1,0 +1,24 @@
+package controlling;
+
+import java.util.Random;
+
+public class Ex02TernaryOperator {
+	public static void main(String[] args) {
+		/*
+		  if ( expression){
+		  statements if exp is true
+		  } else {
+		  statements if exp is false
+		  }
+		  
+		  Toán tử 3 ngôi: (expression) ? statements(1) : statements(2)
+		  			      (expression) ? return_data(1) : return_data(2)
+		 
+		 */
+		Random rd = new Random();
+		int val = rd.nextInt();
+		
+		System.out.println("Giá trị: " + val);
+		}
+
+}

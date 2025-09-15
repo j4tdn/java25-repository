@@ -1,0 +1,37 @@
+package lesson02_TonNuNhi;
+
+import java.util.Scanner;
+
+public class IsMultipleOfTwo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int attempts = 5;
+        int n = 0;
+        boolean ok = false;
+
+        for (int i = 0; i < attempts; i++) {
+            System.out.print("Enter positive integer N: ");
+            String s = sc.nextLine().trim();
+            if (isPositiveInt(s)) {
+                n = Integer.parseInt(s);
+                ok = true;
+                break;
+            }
+            System.out.println("Invalid, try again.");
+        }
+
+        if (ok) {
+            boolean result = (n % 2 == 0);
+            System.out.println(result);
+        } else {
+            System.out.println("Too many invalid attempts.");
+        }
+        sc.close();
+    }
+
+    private static boolean isPositiveInt(String s) {
+        if (s.length() == 0) return false;
+        for (int i = 0; i < s.length(); i++) if (!Character.isDigit(s.charAt(i))) return false;
+        return Integer.parseInt(s) > 0;
+    }
+}

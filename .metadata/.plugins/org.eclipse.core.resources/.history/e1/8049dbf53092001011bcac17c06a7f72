@@ -1,0 +1,33 @@
+package lesson02_TonNuNhi;
+
+import java.util.Scanner;
+
+public class IsMultipleOfTwo {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Integer n = readPositiveInt(sc, 5);
+		if (n == null) {
+			System.out.println("Nhập hợp lệ tối đa 5 lần");
+			return;
+		}
+		boolean result = (n % 2 == 0);
+		System.out.println(result);
+
+	}
+
+	private static Integer readPositiveInt(Scanner sc, int attempts) {
+		for (int i = 0; i < attempts; i++) {
+			System.out.print("Nhập số dương N: ");
+			String s = sc.nextLine().trim();
+			try {
+				int val = Integer.parseInt(s);
+				if (val > 0)
+					return val;
+				System.out.println("Lỗi: N phải > 0.");
+			} catch (NumberFormatException e) {
+				System.out.println("Lỗi: đây không phải là số.");
+			}
+		}
+		return null;
+	}
+}

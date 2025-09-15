@@ -1,0 +1,49 @@
+package lesson02_TonNuNhi;
+
+import java.util.Scanner;
+public class IsPowerOfTwo {
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    int n = readPositiveInt(sc, 5);
+
+    if (n > 0) {
+        System.out.println(n + " → " + isPowerOfTwo(n));
+    } else {
+        System.out.println("Nhập hợp lệ tối đa 5 lần");
+    }
+
+    sc.close();
+}
+
+// Hàm nhập số nguyên dương, cho phép nhập lại tối đa attempts lần
+private static int readPositiveInt(Scanner sc, int attempts) {
+    for (int i = 0; i < attempts; i++) {
+        System.out.print("Nhập số nguyên dương: ");
+        String text = sc.nextLine();
+
+        if (isPositiveInteger(text)) {
+            return Integer.parseInt(text);
+        } else {
+            System.out.println("Không hợp lệ, nhập lại");
+        }
+    }
+    return 0; // nếu nhập sai hết attempts
+}
+
+// Kiểm tra chuỗi có phải số nguyên dương không
+private static boolean isPositiveInteger(String text) {
+    if (text == null || text.isEmpty()) return false;
+    for (int i = 0; i < text.length(); i++) {
+        if (!Character.isDigit(text.charAt(i))) {
+            return false;
+        }
+    }
+    return Integer.parseInt(text) > 0;
+}
+
+// Kiểm tra n có phải lũy thừa của 2 không
+private static boolean isPowerOfTwo(int n) {
+    return (n > 0) && ((n & (n - 1)) == 0);
+}
+}

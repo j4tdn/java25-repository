@@ -1,0 +1,36 @@
+package datastructure;
+
+public class Ex02Assignments {
+	// format code: ctrl shift f
+	// xóa nhanh 1/n dòng: ctrl d
+	
+	public static void main(String[] args) {
+		int n1 = 11;
+		int n2 = 22;
+		int n3 = 33;
+		int n4;
+		
+		float f1 = 88.22f;
+		float f2 = 44.66f;
+		
+		//assignments
+		n4 = 55; // gán giá trị 55 cho biến n4
+		int n5 = n2; //gán giá trị của biến n2 cho biến n5
+		n3 = n1; // gán giá trị của biến n1 cho n3
+		
+		System.out.println(""
+				+ "n4: " + n4
+				+"\nn5: " +n5
+				+"\nn3: " +n3
+				);
+		
+		//gán biến/ giá trị cho biết khác KDL
+		
+		int b1 = 33;
+		long b2 = 77;
+		
+		b2 = b1;
+		// KDL của b2 lớn hơn b1 nên không cho ép
+	}
+
+}

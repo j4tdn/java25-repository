@@ -1,0 +1,21 @@
+package datastructure.object;
+
+import bean.Item;
+
+public class Ex01ObjectTypeDeclaration {
+	public static void main(String[] args) {
+
+		// KDL Nguyên thủy
+		int number = 22;
+		char letter = 'Z';
+		System.out.println("number: " + number);
+		System.out.println("letter: " + letter);
+
+		System.out.println("\n\n");
+
+		// KDL Doi tuong
+		Item i1 = null;
+		Item i2 = new Item();// goi ham khoi tao rong
+		
+	}
+}
