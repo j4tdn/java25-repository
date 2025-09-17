@@ -1,0 +1,2 @@
+Câu hỏi 1: Vì sao các thuộc tính trong class lại dùng private để cấm bên ngoài truy cập thuộc tính, sau đó lại dùng getter/setter để lấy/cập nhật giá trị
+cho thuộc tính mà ko dùng public
