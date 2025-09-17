@@ -1,0 +1,5 @@
+CH1: Vì sao các tt trong class lại dùng private để cấm bên ngoài truy cập vào,
+sau đó lại dùng getter, setter để get/update giá trị cho tt đó MÀ không khai báo
+public để
+- code ngắn gọn hơn
+- dễ hiểu hơn
