@@ -1,39 +1,37 @@
 package view;
 
-import bean.CarAdv;
+import bean.CarAdvance;
 
 public class Ex03StaticAttribute {
-
 	public static void main(String[] args) {
+		// tao 100 mau xe Audi voi cac mau sac khac nhau
+		CarAdvance.setModel("MG");
 		
-		CarAdv.setModel("Audi");
+		CarAdvance c1 = new CarAdvance("Red");
+		CarAdvance c2 = new CarAdvance("Green");
+		CarAdvance c3 = new CarAdvance("Blue");
+		CarAdvance c4 = new CarAdvance("Orange");
+		CarAdvance c5 = new CarAdvance("Purple");
+		CarAdvance ck = new CarAdvance("White");
+		//...
+		CarAdvance c99 = new CarAdvance("Black");
+		CarAdvance c100 = new CarAdvance("Pink");
 		
-		CarAdv c1 = new CarAdv("Red");
-		CarAdv c2 = new CarAdv("Green");
-		CarAdv c3 = new CarAdv("Blue");
-		CarAdv c4 = new CarAdv("Orange");
-		CarAdv c5 = new CarAdv("Purple");
-		CarAdv ck = new CarAdv("While");
-		//..........
-		CarAdv c99 = new CarAdv("Black");
-		CarAdv c100 = new CarAdv("Pink");
+		// Chu so huu doi ten hang xe. Khong phai Audi ma sang ten khac MG
 		
+		// Neu model la nonstatic thi moi doi tuong se quan ly rieng thuoc tinh cua doi tuong do
+		//
 		
-		// Chủ sở hữu đổi tên hãng xe. Không phải Audi mà sang tên khác là MG.
-	
-		// nếu model là non-static thì mỗi đối tượng sẽ quản lí riêng tt của đối tượng đó
-		// nên mình đổi model của c2 thì chỉ tt của c2 thay đổi còn lại giữ nguyên
+		//c2.setModel("MG"); // de nham lan, khong nen dung cach nay
 		
-		CarAdv.setModel("Audi");
-		
-		System.out.println("c1: "+ c1);
-		System.out.println("c2: "+ c2);
-		System.out.println("c3: "+ c3);
-		System.out.println("c4: "+ c4);
-		System.out.println("c5: "+ c5);
-		System.out.println("ck: "+ ck);
-		System.out.println("c99: "+ c99);
-		System.out.println("c100: "+ c100);
-		
+		System.out.println("c1: " + c1);
+		System.out.println("c2: " + c2);
+		System.out.println("c3: " + c3);
+		System.out.println("c4: " + c4);
+		System.out.println("c5: " + c5);
+		System.out.println("ck: " + ck);
+		System.out.println("c99: " + c99);
+		System.out.println("c100: " + c100);
 	}
+
 }

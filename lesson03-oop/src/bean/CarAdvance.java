@@ -1,44 +1,43 @@
 package bean;
 
-public class CarAdv {
-	
-	// attributes
-	// static: class's scope
+public class CarAdvance {
+	// attribute
+	//static: class scope
 	private static String model;
 	
-	//non-static: object's scope
+	//non-static: object scope
 	private String color;
-	public CarAdv() {
+
+    //constructor
+	public CarAdvance() {
+
 	}
-	
-	// constructor
-	public CarAdv( String color) {
+
+	public CarAdvance( String color) {
 		this.color = color;
 	}
 	
-	//getter ,  setter
+	//getter setter
 	public String getModel() {
 		return model;
 	}
 
 	public static void setModel(String model) {
-		CarAdv.model = model;
+		CarAdvance.model = model;
 	}
 
 	public String getColor() {
 		return color;
 	}
-	
-	//tostring
+
 	public void setColor(String color) {
 		this.color = color;
 	}
-
+	
+	// ToString
 	@Override
 	public String toString() {
-		return "CarAdv [model=" + model + ", color=" + color + "]";
+		return "CarAdvance [model=" + model + ", color=" + color + "]";
 	}
-	
-	
-	
+
 }
