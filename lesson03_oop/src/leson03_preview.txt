@@ -1,2 +1,42 @@
 câu hỏi 1: vì sao các thuộc tính trong class lại dùng private để cấm bên ngoài truy cập thuộc tính, sau đó 
 lại dùng getter/setter dể lấy/truy cập giá trị cho thuộc tính đó mà không khai báo public
+
+W1. để gọi 1 thuộc tính, hàm non-static trong class, thì mình phỉa tạo biến đối tượng từ class đó, dùng biến đó gọi 
+thuộc tính, hàm
+  VD: classA ca = new classA(); ca.nonStaticAttibute ca.nonStaticMethod()
+  
+W2. Để gọi 1 thuộc tính, hàm static trong class
+--> lấy tên class gọi trực tiếp đến thuộc tính, hàm đó
+--> vd: ClassA.staticAttribute ClassA.staticMethod
+
+phía trên là điều kiện cần để gọi tt, hàm
+- trong chính class đó --> 100% ok
+- bên ngoài class đó --> gọi được hay ko phụ thuộc vào access modifier  
+
+A. từ khóa static cho thuộc tính của class
+- thuộc tính staic: lưu trữ ở một ô nhớ riêng, ko lưu trữ/phụ thuộc vào bất kì đối tượng nào
+- để gọi thuộc tính static có 2 cách: 
+   c1: lấy class gọi thuộc tính đó
+   c2: lấy biến đối tượng gọi thuộc tính đó 
+   VD: carAdv#model
+
+- thuộc tinh non-static
+- lưu trữ trên từng đối tượng, giá trị của nó sẽ phụ thuôc vào đối tượng đang gọi
+- để gọi thuộc tính non-static:
+  c1: lấy biến đối tượng gọi thuộc tính đó(...setter)
+  
+  
+  B. từ khóa static cho một phương thức/hàm
+    1. nếu hàm đó phụ thuộc vào biến đối tượng đang gọi
+       nghĩa là: cùng 1 hàm nhưng khi dùng biến đối tượng này gọi ra kết quả này
+                                                          #                   #
+       --> cho hàm đó là non-static
+       --> ví dụ: hàm getter/setter
+       
+    2. nếu hàm ko phụ thuộc vào đối tượng đang gọi
+       --> cho hàm đó là static
+       --> Cụ thể hơn
+             hàm chỉ phụ thuộc vào tham số truyền vào
+             hàm chỉ phụ thuộc vào logic của body
+             hàm ko phụ thuộc gì cả
+       --> VD: sum(a, b)  loggin()  

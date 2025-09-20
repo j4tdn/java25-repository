@@ -91,6 +91,28 @@ public class Car {
 	}
 	
 	@Override
+	public boolean equals(Object o) {
+		// nếu 2 đối tượng cùng trỏ đến 1 ô nhớ tại heap
+		// --> 2 biến đối tượng bằng nhau, khỏi so sánh
+		if (this == o) {
+			return true;
+		}
+		
+		// 2 biến trỏ đến 2 ô nhớ khác nhau tại heap
+		// để gọi được hàm equals trong class car thì chắc chắn là biến đối tượng car mới gọi được --> this là car
+		// trước khi so sánh id của mỗi Cả --> phải kiểm tra o có phải là Car luc runtiem hay ko
+		
+		// nếu o ko phải là Car thì return false
+		// nếu o là Car thì ép kiểu o từ object sang Car lưu vào biến that(mục đích là để có Car gọi hàm getIn())
+		if (!(o instanceof Car that)) {
+			return false;
+		}
+		
+		// so sánh id của 2 biến đối tượng
+		return getId() == that.getId();
+	}
+	
+	@Override
 	public String toString() {
 		return "Car [id=" + id + ", model=" + model + ", name=" + name + ", salesPrice=" + salesPrice + ", amount="
 				+ amount + "]";
