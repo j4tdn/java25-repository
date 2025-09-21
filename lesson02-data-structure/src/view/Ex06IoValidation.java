@@ -3,44 +3,52 @@ package view;
 import java.util.Scanner;
 
 public class Ex06IoValidation {
+	
 	public static void main(String[] args) {
-		
 		/*
-		 Enter and validate a valid number?
-		 -------------------
-		 e.g: + Enter number: abc
+		 Enter and validate a valid number ?
+		 -----------------------------------------------------------------
+		 E.g:+ Enter number: abc
+		 + Enter number: 123
+		 ==> Value: 123 
+		 -----------------------------------------------------------------
+		 Exit system if wrong number count exceed 3 times
 		 */
 		
 		Scanner ip = new Scanner(System.in);
-		
-		System.out.println("Nhập vào một số nguyên: ");
-		
-		//ip.nextLine() phải nhập kí tự số cho đúng
-		
 		String text;
-		do{
-			System.out.println("Nhập vào một số nguyên: ");
+		int wrongTimes = 0;
+		do {
+			System.out.print("Nhập vào một số nguyên: ");
 			text = ip.nextLine();
-		}while(true);
-			
-		
-		
+			if (isValidText(text)) {
+				break;
+			}
+			if (++wrongTimes == 4) {
+				System.out.println("Số lần nhập sai vượt quá 3 lần, thoát");
+				ip.close();
+				return;
+			}
+			System.out.printf("Chưa phải là số hợp lệ(lần %s)\n\n", wrongTimes);
+		} while(true);
+
 		int number = Integer.parseInt(text);
 		
 		System.out.println("Giá trị hợp lệ: " + number);
 		
 		ip.close();
 		
-		/*
-		 * Exception in thread "main" java.lang.NumberFormatException: For input string:
-		 * "a" at java.base/java.lang.NumberFormatException.forInputString(
-		 * NumberFormatException.java:67) at
-		 * java.base/java.lang.Integer.parseInt(Integer.java:662) at
-		 * java.base/java.lang.Integer.parseInt(Integer.java:778) at
-		 * view.Ex06IoValidation.main(Ex06IoValidation.java:17)
-		 */
-		
+		// Về nhà: toán tử && || làm các bài ++ -- trong slide
+		//       : xem video mảng, enum
 	}
 	
-
+	private static boolean isValidText(String text) {
+		for (int i = 0; i < text.length(); i++) {
+			if (!Character.isDigit(text.charAt(i))) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 }

@@ -1,49 +1,90 @@
 package datastructure.primitive;
 
 public class Ex04PassVariablesViaMethod {
-
+	
 	public static void main(String[] args) {
 		
-		// Truyền tham số qua hàm
-	
-		// KDL Nguyên Thủy
-		// Khi truyền tham số qua hàm, nếu tham số là KDL NT thì 100% khi ra khỏi hàm, biến truyền vào ban đầu không thay đổi giá trị
-		int a1 = 5;
-		System.out.println("a1 before: " + a1);
-		update(a1);
-		System.out.println("a1 after: " + a1);
+		// Cứ mỗi khi truyền vào 2 số nguyên
+		// Lấy tổng của 2 số đó --> * 2 --> ^2
+		int a1 = 2;
+		int a2 = 3;
+		int a12 = a1 + a2;
+		int da12 = a12 * 2;
+		int pa12 = da12 * da12;
+		System.out.println("pa12: " + pa12);
 		
 		
-		// KDL Đối Tượng
-		// Nếu tham số truyền vào là KDL ĐT, có thêr cập nhật giá trị biến đó khi ra khỏi hàm, bằng cách cập nhật giá trị tại HEAP
+		int b1 = 5;
+		int b2 = 1;
+		int b12 = b1 + b2;
+		int db12 = b12 * 2;
+		int pb12 = db12 * db12;
+		System.out.println("pb12: " + pb12);
 		
-		// Khi truyền tham số qua hàm, ra khỏi hàm biến truyền vào cập nhật được giá trị, có 2 yêu cầu:
-		// - biến KDL ĐT
-		// -  cho phép cập nhật giá trị của các thuộc tính tại HEAP
+		int c1 = 3;
+		int c2 = 2;
+		int c12 = doCalc(c1, c2);
+		System.out.println("c12: " + c12);
 		
-		// Có 2 cách để cập nhật giá trị biến đối tượng
-		// - dùng toán tử = để cập nhật địa chỉ tại stack
-		// - gọi và cập nhật thuộc tính của ô nhớ tại heap mà biến đó đang trỏ đến
+		int d12 = doCalc(1, 5);
+		System.out.println("d12: " + d12);
 		
-		Item item1 = new Item(1, "A", 11);
-		System.out.println("item1 before: " + item1);
-		modify(item1);
-		System.out.println("item1 after: " + item1);
+		int e1 = 5;
+		int e2 = 7;
 		
-		Item item2 = new Item(2, "B", 22);
-		System.out.println("item2 before: " +);
+		System.out.println("e1: " + e1); // 5
+		System.out.println("e2: " + e2); // 7
+		
+		modify(e1);
+		
+		// sau khi gọi modify e1
+		System.out.println("e1: " + e1); // 28 5
+		System.out.println("e2: " + e2); // 7  7
+		
+		modify(e2);
+		
+		// sau khi gọi modify e2
+		System.out.println("e1: " + e1); // 28 5
+		System.out.println("e2: " + e2); // 77 7
 	}
 	
-	// Item item = item1;
-	private static void modify(Item item) {
-		item.name = "W";
-		item.salesPrice = 99;
+	/*
+	 * Khi truyền giá trị cho tham số qua hàm
+	 * 
+	 * Tham số chỉ nhận giá trị của ô nhớ {ở STACK}, sao chép giá trị của biến truyền vào qua tham số
+	 * Còn tham số và biến bên ngoài hoạt động độc lập
+	 * 
+	 * --> Khi truyền giá trị cho tham số, là KDL nguyên thủy --> sau khi gọi hàm xong nếu ko có return hay gán lại
+	 * --> 100% biến truyền vào đó sẽ ko thay đổi
+	 */
+	
+	// modify(e1); int e1 = e1;
+	private static void modify(int e1) {
+		int e2 = 77;
+		e1 = 28;
 	}
 	
-	// int source = a1;
-	private static int update(int source) {
-		source = 999;
-		return source;
+	/*
+	 * Khi tạo hàm cần biến
+	 * - Hàm đó có thể dùng ở đâu
+	 * - [static] để lấy class gọi
+	 * - KDL trả về: logic của hàm này xử lý xong thì sẽ trả về kết quả hay là ko trả về(void)
+	 * - Tên hàm
+	 * - Tham số truyền vào(KDL tên biến): arguments
+	 */
+	
+	// Khai báo hàm doCalc, nhận vào 2 tham số arg1, arg2
+	// Chỗ nào gọi hàm doCalc thì phải truyền giá trị cho 2 tham số đó
+	// doCalc(c1, c2)
+	// int arg1 = c1; int arg2 = c2;
+	
+	// doCalc(1, 5);
+	// int arg1 = 1; int arg2 = 5;
+	private static int doCalc(int arg1, int arg2) {
+		int arg12 = arg1 + arg2;
+		int darg = arg12 * 2;
+		int parg = darg * darg;
+		return parg;
 	}
-
+	
 }
