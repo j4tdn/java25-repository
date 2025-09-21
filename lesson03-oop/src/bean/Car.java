@@ -81,6 +81,23 @@ public class Car {
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		// 2 car bằng nhau khi giống id
+		
+		if(this == o) {
+			return true;
+		}
+		
+		if(!(o instanceof Car)) {
+			return false;
+		}
+		
+		Car that = (Car)o;
+		
+		return this.getId() == that.getId();
+	}
 
 	@Override
 	public String toString() {

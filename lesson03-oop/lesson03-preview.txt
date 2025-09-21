@@ -3,3 +3,44 @@ sau đó lại dùng getter, setter để get/update giá trị cho tt đó MÀ 
 public để
 - code ngắn gọn hơn
 - dễ hiểu hơn
+
+W1. Để gọi 1 thuộc tính, hàm non-static của class
+--> Tạo biến đối tượng từ class đó, dùng object đó gọi thuộc tính/hàm
+--> VD: ClassA ca = new ClassA(); ca.nonStaticMethod ca.nonStaticAttribute
+
+W2. Để gọi 1 thuộc tính, hàm static của class
+--> Lấy tên class gọi trực tiếp thuộc tính/hàm
+--> VD: ClassA.staticAttribute; ClassA.staticMethod;
+
+Phía trên là điều kiện để gọi tt, hàm
+- Trong chính class đó --> 100% ok
+- Ngoài class --> phụ thuộc vào access modifier
+
+A. Từ khóa static cho thuộc tính của class
+1 Thuộc tính static: lưu trữ ở ô nhớ riêng, ko lưu trữ/phụ thuộc vào bất kì object nào
+- Để gọi thuộc tính static
+	C1: lấy class gọi
+	C2: lấy object gọi(bị warning)
+	--> VD: CarAdv#model
+	
+2 Thuộc tính non-static
+- lưu trữ trên từng đối  tượng, giá trị phụ thuộc vào object đang gọi
+- để gọi thuộc tính static
+	C1: lấy biến đối tượng gọi(...setter)
+	--> VD: CarAdv#color
+	
+B. Từ khóa static cho 1 method/hàm
+1. Nếu hàm phụ thuộc vào biến đối tượng đang gọi
+	Nghĩa là: cũng là 1 hàm nhưng khi dùng biến đối  tượng gọi ra kq này
+	
+	--> cho hàm đó là non-static
+	--> VD: hàm getter/setter
+	
+2. Nếu hàm ko phụ thuộc vào object đang gọi
+	--> cho hàm đó là static
+	--> cụ thể hơn
+		hàm chỉ phụ thuộc vào tham số truyền vào
+		hàm chỉ phụ thuộc vào logic của body
+		hàm ko phụ thuộc vào gì cả
+		
+		
