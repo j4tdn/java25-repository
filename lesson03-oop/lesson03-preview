@@ -1,0 +1,45 @@
+Câu 1: Vì sao các thuộc tính trong class lại dùng private để cấm
+bên ngoài truy cập thuộc tính, sau đó lại dùng getter/setter để lấy/cập nhật
+gia trị cho thuộc tính mà k khia báo public để code ngắn, dễ hiểu
+
+==> 
+
+W1. De goi 1 tt, ham non static trong class
+--> Tao bien doi tuong tu class do, dung bien do goi tt, ham
+--> VD: ClassA ca = new Class(); ca.nonStaticAttribute ca.nonStaticMethod()
+
+W2. De goi 1 tt, ham static trong class
+--> Lay ten class goi truc tiep den tt, ham do(co the lay bien doi tuong goi nhung de nham lan ket qua)
+--> VD: ClassA ca = new Class(); ca.staticAttribute ca.staticMethod()
+
+Phia tren la dieu kien can de goi tt, ham
+- Trong chinh class do --> 100% ok
+- Ben ngoai class do --> goi dc hay k phu thuoc vao access modifier
+
+A. Tu khoa static cho tt cua class
+Khai niem:
+- Thuoc tinh static: luu tru o nho rieng, k luu tru hay phu thuoc vao bat ki doi tuong nao
+	+ De goi thuoc tinh static co 2 cach:
+	C1: lay class goi thuoc tinh do
+	C2: lay bien doi tuong goi tt do(bi warning vi de nham lan chi cap nhat cho rieng doi tuong do)
+	--> VD: CarAdv#model
+
+- Thuoc tinh non static: luu tru tren tung doi tuong, gia tri cua no se phu thuoc vao doi tuong dang goi
+	+ De goi thuoc tinh static:
+	C1: lay bien doi tuong goi tt do(...setter)
+	--> VD: CarAdv#color
+	
+	
+B. Tu khoa static cho phuong thuc/ ham
+- Neu ham do phu thuoc vao bien doi tuong dang goi
+	Nghia la: cung 1 ham nhung khi dung bien doi tuong nay goi ra ket qua nay
+	--> cho ham do la non static
+	--> VD: ham getter, setter
+	
+- Neu ham k phu thuoc vao doi tuong dang goi
+	--> cho ham do la static 
+	--> cu the hon
+		ham chi phu thuoc vao tham so truyen vao
+		ham chi phu thuoc vao logic trong ham body
+		ham k phu thuoc vao gi ca 
+	--> VD: sum(a, b) logging()
