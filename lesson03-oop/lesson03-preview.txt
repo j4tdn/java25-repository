@@ -2,3 +2,43 @@ Câu hỏi 1: Vì sao các thuộc tính trong class lại dùng private để c
 đó lại dùng getter/setter để lấy/cập nhật giá trị cho thuộc tính đó MÀ không khai báo public để
 - code ngắn gọn hơn
 - dễ hiểu hơn
+
+W1. Để gọi 1 thuộc tính, hàm non-static trong class
+--> Tạo biến đối tượng từ class đó, dùng biến đó gọi thuộc tính, hàm
+--> Vd classA ca = new ClassA(); ca.attribite ca.method()
+
+W1. Để gọi 1 thuộc tính, hàm static trong class
+--> Lấy tên class gọi trực tiếp thuộc tính, hàm đó(có thể lấy biến đối tượng gọi nhungw dễ nhầm lẫn)
+-->> VD: ClassA.attribute ClassA.staticMethod
+
+Phía trên là điều kiện cần để gọi tt,hàm
+- TRong chím class đó --> 100% ok
+- Bên ngoài class đó --> gọi được hay khô\ng phụ thuộc vào access modifier
+
+A. Từ khóa static cho thuộc tính của class
+ 1.Thuộc tính static: lưu trữ ở một ô nhớ riêng, không lưu trữ/phụ thuộc vao fbaats kì đối tượng nào
+- để gọi thuộc tính static có 2 cách
+ c1: lấy class gọi thuộc tính đó
+ c2: lấy biến đối tượng gọi thuộc tính đó(bị warning vì dễ nhầm lẫn chỉ cập nhập riêng cho đối tượng đó)
+ -->Vd: CarAdv#model
+ 
+ 2.Thuộc tính non-static
+ - Lưu trữ trên từng đối tượng, giá trị của nó sẽ phụ thuộc vào đối tượng đang gọi
+ - Để gọi thuộc tính static
+ c1: LẤy biến đối tượng gọi thuuocj tính đó(..setter)
+ -->Vd: CarAdv#color
+ 
+ B.Từ hóa static cho một phương thức/hàm
+ 1. Nếu hàm đó phụ thuộc vào biến đối tượng đang gọi
+ 	Nghĩa là: cùng 1 hàm nhưng khi dùng biến Đối tượng này gọi ra kết quả này
+ 	
+ 	--> Cho hàm đó là non-static
+ 	--> vd: getter, setter
+ 
+ 2. Nếu hàm không phụ thuộc vào đối tượng đang gọi
+ 	--> cho hàm đó là static
+ 	--> cụ thể hơn
+ 		hàm chỉ phụ thuộc vào tham số truyền vào
+ 		hàm chỉ phụ thuộc vào logic của body
+ 		hàm không phụ thuộc gì cả
+ 	--> VD: sum(a,b), logging()
