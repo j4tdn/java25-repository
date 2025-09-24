@@ -1,0 +1,44 @@
+Câu hỏi 1: Vì sao các thuộc tính trong class lai dùng private để cấm bên ngoài truy cập thuộc tính, sau
+đó lại dùng getter/setter để lãy/cập nhật giá trị cho thuộc tinh đó MÀ không khai báo publíc để
+- code ngăn gon hơn
+- dê hiểu hơn
+
+W1.Để gọi 1 thuộc tính, hàm non-static trong class
+--> Tao biến đối tượng từ class đó, dùng biến đó gọi thuộc tính, hàm
+- -> VD: ClassA ca = new ClassA(); ca.nonStaticAttribite ca.nonStaticMethod()
+
+W2. Để gọi 1 thuộc tính, hàm static trong class
+--> Lây tên class gọi trực tiếp đến thuộc tính, hàm đó(có thể lấy biến đối tượng gọi nhưng dễ nhãm lẫn kết quá xem A1 c2)
+--> VD: ClassA.staticAttribute ClassA.staticMethod
+
+Phía trên là điều kiện cân để gọi tt, hàm
+- Trong chính class đó --> 100% ok
+- Bên ngoài class đó --> goi được hay ko phụ thuộc vào access modifier
+
+
+A. Từ khóa static cho thuộc tính của class
+1. Thuộc tinh static
+- lựu trữ ở một ô nhớ riêng, ko lưu trữ/phụ thuộc vào bất kỳ đối tượng nào
+- để goi thuộc tính static có 2 cách
+
+C1: Lãy class goi thuộc tính đó
+
+
+C2: lấy biến đối tượng gọi thuộc tính đó(bị warning vì dễ nhằm lẫn chi cập nhật cho riêng đối tượng đó)
+2. Thuộc tinh non-static
+- Lưu trữ trên từng đổi tượng, giá trị của nó sẽ phụ thuộc vào đổi tượng đang gọi
+- để gọi thuộc tính static
+
+C1: lấy biến đối tượng gọi thuộc tính đó(...setter)
+--> VD: CarAdv#color
+B. Từ khóa static cho một phương thức/hàm
+1. Nếu hàm đó phụ thuộc vào biến đối tượng đang gọi
+Nghĩa là: cùng 1 hàm nhưng khi dùng biến đối tượng này gọi ra kết quả náy
+--> cho hàm đỏ là non-static
+--› VD: ham getter, setter
+2. Nếu hàm không phụ thuộc vào đối tượng đang gọi
+--› cho hàm đó là static
+--> cụ thể hơn
+	hàm chỉ phụ thuộc vào tham số truyền vào 
+	hàm chi phụ thuộc vào logic của body 
+	hàm không phụ thuộc gì cả
