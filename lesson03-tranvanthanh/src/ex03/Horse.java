@@ -6,7 +6,6 @@ public class Horse {
     public static void main(String[] args) {
         Scanner ip = new Scanner(System.in);
 
-        // Nhập kích thước
         System.out.print("Nhập số hàng (M): ");
         int m = ip.nextInt();
         System.out.print("Nhập số cột (N): ");
@@ -21,7 +20,6 @@ public class Horse {
             }
         }
 
-        // In lại ma trận
         System.out.println("Ma trận vừa nhập:");
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
