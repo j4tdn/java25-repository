@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="lesson03-danghoanghuy/src"/>
+	<classpathentry kind="src" path="lesson03-ngochaunhatlinh/src"/>
+	<classpathentry kind="src" path="lesson03nguyenminhduy/src"/>
+	<classpathentry kind="src" path="lesson03-nguyenthanhanh/src"/>
+	<classpathentry kind="src" path="lesson03-phungvantiendat/src"/>
+	<classpathentry kind="src" path="lesson03-tranvanthanh/src"/>
+	<classpathentry kind="output" path="lesson03-oop/bin"/>
+</classpath>
