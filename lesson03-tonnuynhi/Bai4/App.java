@@ -43,8 +43,8 @@ public class App {
 			return List.of();
 		}
 
-		// Nếu tất cả thỏa mãn, trả về danh sách sở thích chung chuẩn hóa
-		System.out.println("✅ Thỏa mãn tất cả 3 điều kiện.");
+		// Nếu tất cả thỏa mãn, trả về danh sách sở thích chung 
+		System.out.println(" Thỏa mãn tất cả 3 điều kiện.");
 		return commonHobbies;
 	}
 
@@ -64,7 +64,7 @@ public class App {
 		List<String> resultHobbies = checkCompatibility(z1, z2);
 
 		if (!resultHobbies.isEmpty()) {
-			System.out.println("\n✅ CHÚC MỪNG! 2 BẠN RẤT HỢP VỚI NHAU!");
+			System.out.println("\n CHÚC MỪNG! 2 BẠN RẤT HỢP VỚI NHAU!");
 			System.out.println("=============================================");
 			System.out.println(z1);
 			System.out.println(z2);
@@ -76,7 +76,7 @@ public class App {
 			}
 
 		} else {
-			System.out.println("\n❌ Rất tiếc 2 bạn không hợp với nhau !");
+			System.out.println("\n Rất tiếc 2 bạn không hợp với nhau !");
 		}
 	}
 }
