@@ -1,4 +1,4 @@
-package shopping;
+package Bai1;
 
 public class Item {
 	private String id;
