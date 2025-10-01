@@ -108,7 +108,7 @@ public class Car {
 		
 		// nếu o ko phải là car thì return false
 		// nếu o là cả thì ép kiểu o từ object sang cả lưu và biến that(mục đích là để có car gọi hàm getID())
-		if(!(o utof Car that)) {
+		if(!(o instanceof Car that)) {
 			return false;
 		}
 		// so sánh id của 2 biến đối tượng

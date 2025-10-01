@@ -9,5 +9,6 @@ public class Application {
 		System.out.println("Welcome to Eclipse 2024-R9");
 		System.out.println("Today: " + DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDate.now()));
 	}
+
 	
 }
