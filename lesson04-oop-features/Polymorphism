@@ -1,0 +1,22 @@
+Tính chất da hình: Polymorphism
+********************
+Tính chất da hình có 2 loại : phương thức và đối tượng
+
+Đa hình trong phương thức
+- Overloading 
+	2/N hàm được gọi là overloading nếu
+	 	-thuộc trong cùng 1 class
+	 	- tên hàm giống nhau
+	 	- và thoả mãn 1 trong các dk sau
+	 	. Khác só lượng tham số truyền vào
+	 	. Khách KDL truyền vào của tham số 
+	 	
+	 	-> giúp có thể tạo các method cùng tên trong 1 dự án
+	 	
+- Overriding
+ 	sẽ hoạt động khi có KDL cha có hàm cho phép kế thừa và override lại trong KDL con
+ 	--> Khi các KDL con có chung chức năng , đưa chức năng đó vào KDL cha giups code đồng bộ , sạch sẽ
+ 	--> các KDL con có thể kế thừa sử dụng mặc định từ KDL cha hoặc override nếu muốn
+ VD: Hàm toString
+ 
+ Đa hình trong đối tượng 

@@ -1,0 +1,16 @@
+1. Tính chất đóng gói 
+English: Encapsultion
+
++Định nghĩa: Tính Chất đóng gói được thể hiện qua các 'access modifier'
+	+private: đóng gói trong phạm vi class
+	+ _ | protected: đóng gói trong phạm vi pacgake
+	  -: 
+	  protected: package and external package(sub classes of current class)
+	+ public : được sử dụng ở bất kỳ đâu trong dự án 
+	
+Ví dụ:
+1. Các class đóng vai trò là KDL --> cho các thuộc tính là private rồi dùng getter/setter để truy cập
+2. Các hàm bên trong KDL cha nếu muốn cho KDL con trong package kế thừa --> default
+												  ở bên ngoài package kế thừa --> protected
+
+ 
