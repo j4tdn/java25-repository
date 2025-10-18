@@ -37,6 +37,8 @@ public class Ex01PolyObjectDemo {
 		s1.calcS(); // Square#calcS .... formula
 		s2.calcS(); // Rectangle#calcS .... formula
 		
+		s2 = s1; // collection list set
+		
 		/*
 		 Giải thích: đa hình trong đối tượng
 		 Biến KDL cha có thể trỏ đến các đối tượng KDL con của nó
@@ -46,9 +48,46 @@ public class Ex01PolyObjectDemo {
 		                       
 		 1. Tại sao không lấy biến KDL đối tượng khởi tạo cho chính KDL class của nó mà 
 		 phải lấy biến cha trỏ đến đối tượng con ?
+		 - Dễ dàng, linh hoạt ép KDL qua về trong phạm vi cha con tại thời điểm compile
+		 - Lúc compile các biến đều là KDL cha:
+		   --> Tạo mảng, danh sách nhận các phần tử là chính nó hoặc KDL con
+		   --> Biến KDL cha có thể nhận chính nó hoặc KDL con, linh hoạt khi truyền tham số qua hàm
 		 
-		 2. ĐHTĐT, biến KDL cha có thể trỏ/gán đến KDL con, ngược lại có được không. Vì sao ?                  
+		 2. Đa hình trong đối tượng, biến KDL cha có thể được gán từ KDL con trỏ đến KDL con, 
+		    ngược lại có được không. Vì sao ?
+		   --> không, lúc compile KDL con có thể gọi đến hàm của riêng nó nhưng lúc runtime ko thể
+		   tìm thấy hàm đó trong đối tượng của KDL cha
 		 */
+		
+		Shape[] shapes = {s1, s2, shape1, square1, rectangle1};
+		
+		// Đếm số phần tử trong mảng là Square
+		// Nếu là Square --> gọi hàm setBackground của nó
+		// shape instanceof Square sq
+		int squareCounter = 0;
+		for (Shape shape: shapes) {
+			if (shape != null && shape.getClass() == Square.class) {
+				Square sq = (Square)shape;
+				sq.setBackground();
+				squareCounter++;
+			}
+		}
+		System.out.println("Số lượng hình vuông: " + squareCounter);
+		
+		doCalculation(s1);
+		doCalculation(s2);
+		doCalculation(square1);
+		doCalculation(rectangle1);
+		
+		System.out.println("\n\n==============\n");
+		
+		Square sq1 = (Square) new Shape(); // lỗi
+		sq1.calcS();
+		sq1.setBackground();
+	}
+	
+	private static void doCalculation(Shape shape) {
+		shape.calcS();
 	}
 	
 }
