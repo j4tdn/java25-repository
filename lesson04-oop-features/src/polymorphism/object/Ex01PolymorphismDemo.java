@@ -12,7 +12,7 @@ public class Ex01PolymorphismDemo {
 		 	==> cùng 1 chức năng , code không đồng bộ - nhớp 
 		 	==> xử lý
 		 	
-		 	1. Tạo ta 1 class là cha của các class trên
+		 	1. Tạo ra 1 class là cha của các class trên
 		 	-shape
 		 	-Tạo ra hàm chung --> calcS(tổng quản, chưa biết công thức cụ thể)
 		 	
@@ -50,12 +50,48 @@ public class Ex01PolymorphismDemo {
 				 			   		  --> chạy in kết quả gọi hàm calcS trong Square 
 				
 				 1. Tại sao ko lấy biến KDL đối tượng khởi tạo chính class của nó mà phảil ấy biến cha trỏ đến đối tượng con 
-				 2. ĐHTĐT, biến KDL cha có thể trỏ/gán đến KDL con , ngược lại có được ko? vì sao
+				 	- Dễ dàng linh hoạt ép KDL qua về trong phạm vi cha con tại thời điểm compile
+				 	- Lúc  compile các biến đều là KDL cha :
+				 		--> Tạo mảng, danh sách nhận các phần tử là chính nó hoăc KDL con 
 				 
+				 
+				 2. Đa hình trong đối tượng , biến KDL cha có thể trỏ/gán đến KDL con , ngược lại có được ko? vì sao
+				 --> Không , lúc compile KDL con có thể gọi đến hàm của riêng nó nhưng lúc run time không thể tìm thấy hàm đó 
+				 trong đối tượng của KDL cha
 				 
 				 
 				 */
 				
+				Shape[] shapes = {s1, s2, shape1, square1, rectangle1 };
 				
+				// Đếm số phần tử trong mảng là Square
+				// Nếu là Square --> gọi hàm setBackground của nó
+				// shape instanceof Square sq
+				int squareCounter = 0;
+				for(Shape shape:shapes) {
+					if(shape instanceof Square ) {
+						if(shape !=null && shape.getClass() == Square.class) {
+						Square sq = (Square)shape;
+						sq.setBackground();
+						squareCounter++;
+					}
+				}
+				System.out.println("Số lượng hình vuông : "+ squareCounter);
+				
+				doCalculation(s1);
+				doCalculation(s2);
+				doCalculation(square1);
+				doCalculation(rectangle1);
+				
+				System.out.println("\n\n===================\n");
+				
+				Square sq1 = (Square) new Shape(); // lỗi
+				sq1.calcS();
+				sq1.setBackground();
+				}
+		}
+
+		private static void doCalculation(Shape shape) {
+			shape.calcS();
 		}
 }
