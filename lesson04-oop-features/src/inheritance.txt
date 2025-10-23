@@ -1,0 +1,10 @@
+Khái niệm:
+Khi có 2/N KDL có chung tt, method
+Để tăng khả năng tái sử dụng cũng như code đồng nhất
+
+KDL con              KDL cha
+class     extends    Class		 		: ko bắt buộc override normal method
+Class	  extends	 Abstract class	    : yêu cầu override abstract method
+Class	  implements Interface	    	: yêu cầu override abstract method
+
+- Vì sao 1 class ko thể extend nhiều class, nhưng có thể implement 2

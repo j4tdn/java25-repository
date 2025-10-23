@@ -2,6 +2,9 @@ package polymorphism.object;
 
 public class Shape {
 
+	// Hàm trong KDL cha --> chưa biết phần thực thi cụ thể
+	// Yêu cầu các KDL khi implement phải override
+	
 	void calcS() {
 		// dummy text
 		// unknow formula for calculating area
