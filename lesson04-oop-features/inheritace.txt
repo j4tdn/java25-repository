@@ -1,0 +1,18 @@
+Tinh chat thua ke - Inheritance
+********************
+
+Khai niem: 
+- Khi co 2/N KDL co chung thuoc tinh, phuong thuc
+- De tang kha nang tai su dung code cung nhu code dong nhat,
+ngan gon khi khai bao cac tt, ham chun o KDL cha roi KDL con
+co the ke thua va mo rong
+
+	KDL con					KDL cha
+	Class		extends 	Class			: k bat buoc override cac normal method
+	Class		extends 	Abstract Class	: yeu cau override cac abstract method
+	Class		implements 	Interface(s)	: yeu cau override cac abstract method
+	
+- Java co ho tro da thua ke k: khong
+- Vi sao 1 class k the extends cung luc 2/N class(s), nhung co the implements 2/N interface(s)
+vi class trong java k bat buoc override tu class cha
+

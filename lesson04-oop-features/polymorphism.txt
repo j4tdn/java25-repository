@@ -1,0 +1,23 @@
+Tinh chat da hinh - Polymorphism
+********
+Tinh chat da hinh co 2 loai: phuong thuc va doi tuong
+
+Da hinh trong phuong thuc:
+
+- Overloading:
+ 2/N ham dc goi la overloading neu:
+	 - thuoc trong cung class
+	 - ten ham giong nhau
+	 - va thoa man 1 trong cac dieu kien:
+	 	+ khac so luong tham so truyen vao
+	 	+ khac  KDL truyen vao cua  tham so
+	 	--> giup co the tao cac method trung ten trong cung class
+	 	
+- Overriding:
+  se hoat dong khi co KDL cha co ham cho phep ke thua va override lai trong KDL con
+  --> khi cac KDL con co chung chuc nang, dua chuc nang do vao KDL cha giup code dong bo, sach se
+  --> cac KDL con co the ke thua su dung mac dinh tu KDL cha hoac override neu muon
+  - VD: Ham toString 
+  
+  
+  Da hinh trong doi tuong
