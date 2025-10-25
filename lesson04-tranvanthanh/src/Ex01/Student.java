@@ -65,5 +65,13 @@ public class Student {
 		return (theoreticalpoint + practicepoints) / 2;
 	}
 	
+	public boolean avg() {
+		return mediumscore()>8.5d;
+	}
+	public boolean getTheoreticalpointthanPracticepoints () {
+		return theoreticalpoint > practicepoints ;
+	}
+	
+	
 
 }
