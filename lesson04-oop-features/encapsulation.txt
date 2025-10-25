@@ -1,0 +1,13 @@
+Tinh chat dong goi - Encapsulation
+***********
+Tinh chat dong goi dc the hien trong java qua cac access modifier
+Neu thuoc tinh, phuong thuc co access modifier la
+- private: class
+-public: project
+- protected: current package and external package(sub classes of current class)
+- _________: package
+
+Vi du: 
+1. Cac class dong vai tro la KDL --> cho cac thuoc tinh la private roi dung getter/setter de truy cap
+2. Cac ham ben trong KDL cha neu muon cho KDL con trong package ke thua --> default
+													o ben ngoai package ke thua --> protected
