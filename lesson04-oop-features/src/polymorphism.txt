@@ -1,0 +1,21 @@
+Tính chất đa hình - Polymorphism
+---
+Tính chất đa hình có 2 loại: phương thức và đối tượng
+
+Đa hình trong phuong thức:
+- Overloading
+2/N hàm được gọi là overloading nếu:
+ - thuộc trong cùng 1 class
+ - tên hàm giống nhau và thỏa mãn trong các ĐK sau:
+   . khác số lượng tham số truyền vào
+   . khác KDL truyền vào của tham số 
+   --> giúp tạo các method trùng tên trong cùng 1 class
+ 
+- Overiding
+ Sẽ hoạt động khi có KDL cha có hàm cho phpes kế thừa và overide lại trong KDL con
+ --> khi các KDL con có chung chức năng, đưa chức năng đó vào KDL cha giúp code đồng bộ, sạch sẽ
+ --> các KDL con có thể kế thừa sử dụng mặc định từ KDL cha hoặc overide nếu muốn
+VD: Hàm toString
+
+
+Đa hình trong đối tượng:
