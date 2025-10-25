@@ -5,9 +5,20 @@ Khái niệm: khi có 2/N KDL có chung thuộc tính, phương thức
 KDL con có thẻ kế thừa và mở rộng
 
 	KDL con 					KDL cha
-	Class 		extends		Class			:Không bắt buộc overrice các normal method
-	Class 		extends		Abstract Class	:yêu cầu override các abstract method
-	Class 		implements	Interface(s)		:yêu cầu override các abstract method
+	Class 			extends		Class			:Không bắt buộc overrice các normal method
+	Class 			extends		Abstract Class	:yêu cầu override các abstract method
+	Class 			implements	Interface(s)	:yêu cầu override các abstract method
+	-----------------------------------------
+	Interface		extends 	Interface 		:khi các interface có chung hàm, đưa hàm đó vào interface cha để ngắn
+	Abstract Class implements 	Interface 		:không bắt buộc override các hàm trừu tượng từ interface 
+												 đưa các hàm trừu tượng trong interface qua abstract class
+	
+	
+	
+-Sử dụng KDL cha là Class khi có các KDL con chung thuộc tính (gom các tt đó bỏ vào class cha)
+-Sử dụng KDL cha là Abstract Class khi có các KDL con chung tt đồng thời chung hàm trừu tượng (bắt buộc o
+-Sử dụng KDL cha là Interface khi có các KDL con chung phương thức, bắt buộc override tại KDL con
+	
 	
 -Java có hỗ trơ đa thừa kế: không	
 -Vì sao một class không thể extands cùng lúc 2/N class(s) nhưng có thể implements 2/N interface(s)
