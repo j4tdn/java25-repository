@@ -64,5 +64,6 @@ public class Student {
 	public float mediumscore() {
 		return (theoreticalpoint + practicepoints) / 2;
 	}
+	
 
 }
