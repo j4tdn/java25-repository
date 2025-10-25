@@ -1,0 +1,13 @@
+Tính chất thừa kế - Inheritance
+
+Khái niệm
+khi có 2/n KDL có chung thuộc tính, phương thức
+để tăng khả năng tái sử dụng code cũng như code đồng nhất, ngắn gọn hơn khi báo các tt, hàm chung ở KDl cha rồi KDl con có thể kế thừa và mở rộng
+
+KDL con            KDL Cha
+Class	 extends   Class 		        :Không bắt buộc override các normal method
+Class	 extends   abstract class       : yêu cầu override các abstract method
+Class	 implements Interface(s)        : yêu cầu override các abstract method
+
+-Vì sao một class không thể extends cùng lúc 2/N class cha, nhưng có thể implements 2/N interface(s)
+- Java có hỗ trợ đa thừa kế k? K
