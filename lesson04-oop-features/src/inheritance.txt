@@ -6,9 +6,28 @@ Khi có 2/N KDL có chung thuộc tính , phuogư thức
 KDL con có thể kế thừa và mở rộng 
 
 KDL con 				KDL cha
-Class		extends		Class			:	Không bắt buộc override các normal method
-Class		extends		Abstract Class	: 	Yêu cầu override các abstract method
-Class		implêmnts 	Interface		:	Yêu cầu override các abstract method
+Class				extends			Class			:	Không bắt buộc override các normal method
+Class				extends			Abstract Class	: 	Yêu cầu override các abstract method
+Class				implêments	 	Interface		:	Yêu cầu override các abstract method
+======================================================
+Interface			extends			Interface		: Khi các interface có chung hàm , đưa hàm đó vào interface cha để ngắn gọn 
+Abstract Class		implêments		Interface		: Không bắt buộc override các hàm trừu tượng từ interface đưa các hàm trừu
+														tượng trong interface qua abstract class
+														 
+
+Sử dụng con chuột bắt sự kiện khi ' thao tác ' với nút trên màn hình 
+	-interface: MouseEvent(mouseClick, mouseOver, mouseOut)
+	Nếu bài toán cần dùng cả 3 Events trên thì ok
+	có nhiều element là chỉ dùng mouseClick thôi , override  mouseCLick với nội dung , còn 2 hàm còn lại override với Empty
+	--> Dùng Abstract Class để xử lí 
+	
+
+
+- Sử dụng KDL cha là Class khi có các KDL con chung thuộc tính (gom các tt đó bỏ vào class cha )
+- Sử dụng KDL cha là Abstract class khi các KDL con có chung tt đồng thời có chung hàm trừu tượng ( bắt buộc phải override lại trong KDL con)
+- SỬ dụng KDL cha là interface khi khi các KDL con có chung phương thức , bắt buộc override tại KDL con  
+
+
 
 -Java có hỗ trợ đa thừa kế : Không 
 - Vì sao 1 class ko thể extends cùng lúc 2/N class cha , nhưng có thể implements 2/N interface(s)
