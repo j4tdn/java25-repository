@@ -4,13 +4,30 @@ Tinh chat thua ke - Inheritance
 Khai niem: 
 - Khi co 2/N KDL co chung thuoc tinh, phuong thuc
 - De tang kha nang tai su dung code cung nhu code dong nhat,
-ngan gon khi khai bao cac tt, ham chun o KDL cha roi KDL con
+ngan gon khi khai bao cac tt, ham chung o KDL cha roi KDL con
 co the ke thua va mo rong
 
-	KDL con					KDL cha
-	Class		extends 	Class			: k bat buoc override cac normal method
-	Class		extends 	Abstract Class	: yeu cau override cac abstract method
-	Class		implements 	Interface(s)	: yeu cau override cac abstract method
+	KDL con						KDL cha
+	Class			extends 	Class			: k bat buoc override cac normal method
+	Class			extends 	Abstract Class	: yeu cau override cac abstract method
+	Class			implements 	Interface(s)	: yeu cau override cac abstract method
+	--------------------------------------------------------------------
+	Interface 		extends 	Interface		: khi cac interface co chung ham, dua ham do vao interface cha de ngan gon
+	Abstract Class	implements	Interface		: k bat buoc override cac ham truu tuong tu interface
+												  dua cac ham truu tuong trong interface qua abstract class
+	
+	Su dung con chuot bat su kien khi 'thao tac' voi nut tren man hinh
+	- interface: MouseEvent --> abstract method (mouseClick, mouseOver, mouseOut)
+	
+	Cu bat su kien voi chuot(goi MouseEvent) --> luon phai override ca 3 ham tren
+	Neu bai toan can dung ca 3 event tren thi OK
+	Co nhieu elements la chi dung mouseClick thoi, override mouseClick voi noi dung, con 2 ham con lai de empty
+	
+	--> Dung abstrct class de xu ly
+	
+- Su dung KDL cha la Class khi co cac KDL con chung tt(gom cac tt do bo vao class cha)
+- Su dung KDL cha la Abstrct Class chung tt dong thoi chung ham truu tuong(bat buoc override lai trong KDL con)
+- Su dung KDL cha la Interface khi co cac KDL con chung phuong thuc, bat buoc override tai KDL con
 	
 - Java co ho tro da thua ke k: khong
 - Vi sao 1 class k the extends cung luc 2/N class(s), nhung co the implements 2/N interface(s)
