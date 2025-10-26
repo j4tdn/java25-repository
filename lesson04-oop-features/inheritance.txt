@@ -1,0 +1,23 @@
+Tính chất đóng gói - Inheritance
+---
+khái niệm: khi có 2/N KDL có chung thuộc tính, phương thức
+Để tăng khả năng tái sử dụng code cũng như code đồng nhất, ngắn gọn hơn khi khai báo các tt, hàm chung ở KDL cha rồi
+KDL con có thể kế thừa và mở rộng
+
+  KDL con          KDL cha
+  Class           extends    class          : ko bắt buộc override các normal method
+  class           extends    Abstract class : yêu cầu override các abstract method
+  class           implements Interface(s)   : yêu cầu override các abstract method
+  -------------------------------------------
+  Interface       extends    Interface      : khi các interface có chung hàm, đưa hàm đó vào interface cha để ngắn gon code
+  Abstract Class  Implements Interface      : nó không bắt buộc override các hàm trừu tượng từ interface
+                                              đưa các hàm trừu tượng trong interface qua abstract class
+  
+- Sử dụng KDL cha là class  khi có các KDL con chung thuộc tính(gom các tt đó bỏ vào class cha)
+- Sử dụng KDL cha là AbStract class khi có các KDL con chung tt, đồng thời có chung hàm trừu tượng(bắc buộc override lại trong KDL con)
+- Sử dụng KDL cha là Interface class khi có các KDl con chung phương thức, bắc buộc override tại KDL con
+
+- java có hổ trợ đa thừa kế: không  vì kế thừa có thể dẫn đến các vấn đề về xung đột thuộc tính và phương thức
+- Implements (thực thi) có thể thực hiện với nhiều giao diện vì giao diện chỉ cung cấp các phương thức 
+trừu tượng mà không có bất kỳ logic hay trạng thái cụ thể nào
+- vì sao 1 class ko thể extend cùng lúc 2/N class(s) cha, nhưng có thể implements 2/N interface(s)  
