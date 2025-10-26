@@ -1,0 +1,7 @@
+Tính chất trừu tượng - Abstraction
+----------------------------------
+Tính chất trừu tượng được thể hiện qua
+
+- Class, Object: khái niệm trừu tượng dùng để chỉ các đối tượng có chung
+thuộc tihs, phương thức (data)
+- Abstract Class, Interface: chứa hàm trừu tượng có khai báo chưa có định nghĩa(method)
