@@ -1,0 +1,17 @@
+Tính chất đa hình có 2 loai :hươgng thức và đối tượng 
+Đa hình trong phương thức 
+- Overloading:
+2 hay nhiều hàm được gọi là overloading nếu
+	 * - Thuộc trong cùng 1 class
+	 * - tên hàm giống nhua 
+	 * - và thoả mãn 1 trong các điều kiện sau 
+	 * . Khác số lượng tham số truyền vào 
+	 * . Khád kdl truyền vào của tham số 
+	 * --> Giúp minh có thể tạo các method cùng tên trong cùng 
+	 
+	 
+-OVerrriding
+ Sẽ hoạt động khi có 1 hàm cho phépkế thừa và override lại trong KDL con 
+ --> Khi các KDL con có chung chức năng đưa chức năng vào kdl cha giúp code đồng bộ sạch sẽ
+ --> Các kdl con có thể kế thùa sử dụng mặc đih từ kdl cha hoặc override nếu muốn
+ vd : hàm 

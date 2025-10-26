@@ -1,0 +1,1 @@
+package inhertance.abtractclass;

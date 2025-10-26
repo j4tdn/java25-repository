@@ -1,0 +1,1 @@
+package inheritance.multiple.afterjava8;
