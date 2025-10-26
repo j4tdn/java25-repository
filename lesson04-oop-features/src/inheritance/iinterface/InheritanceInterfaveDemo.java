@@ -25,6 +25,7 @@ public class InheritanceInterfaveDemo {
 		Square sq = new Square();
 		Rectangle rec = new Rectangle();
 		
+		sq.clear();
 		sq.calcS();
 		rec.calcS();
 		
