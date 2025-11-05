@@ -1,0 +1,6 @@
+Tinh chat truu tuong - Abstraction
+---------------------------
+
+Tinh chat truu tuong dc the hien qua
+- Class, Object: khai niem truu tuong dung de chi cac doi tuong co chung tt, phuong thuc(data)
+- Abstract Class, Interface: chua ham truu tuong co khi bao chua co dinh nghia(method)
