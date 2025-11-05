@@ -1,0 +1,31 @@
+Tính chất thừa kế - Inheritance
+***********
+Khái niệm: khi có 2/N có chung thuộc tính, phương thức
+Để tăng khả năng sử dụng code cũng như coede dồng nhất, ngắn gọn hơn khi báo các tt, hàm chung ở kdl cha
+rồi KDL con có thể kế thừa và mở rộng
+
+KDL con						KDL cha
+class			extends		Class			: không bắt buộc override các normal method
+class			extends		Abstract class	: yêu cầu override các abstract method
+class 			implements	InterFace(s)		: yêu cầu override các abstract method
+------------------------------------------
+Interface 		extends 		Interface       : Khi các interface có chung hàm, đưa hàm đó vào interface cha để ngắn gọn
+Abstract Class	implement	Interface	    : Không bắt buộc override các hàm trừu tượng từ intèace
+												đưa các hàm trừu tượng trong interface qua abstract class
+
+Sử dụng con chuột bắt sự kiện khi 'thao tác' với nút trên màn hình
+- interface: MouseEvent --> abstract method [mouseClick, mouseOver, mousOut]
+
+Cứ bắt sự kiện với chuột(gọi MouseEvent) --> luôn phải override cả 3 hàm trên
+Nếu bài toán cần dùng cả 3 event trên thì OK
+Có nhiều element chỉ dùng mouseClick thôi, override mouseClick với nội dung, còn 2 hàm còn lại override với empty
+
+--> dùng abstract class để xử lý
+
+- Sử dụng KDl cha là Class khi có các KDL con chung thuộc tính(gom các tt đó bỏ vào class cha)
+- Sử dụng KDL cha là Abstract Class Chung tt đồng thời có chung hàm trừu tượng(Bắt buộc override lại trong KDL con)
+- Sử dụng KDL cha là Interface  khi có các KDL con chung phương thức, bắt buộc override tại KDl con
+
+
+- Java có hỗ trợ đa thừa kế hay không: KHÔNG
+- Vì sao 1 class không thể extends cùng lúc 2/N class(s) cha, nhưng có thể implements 2/N interface(s)

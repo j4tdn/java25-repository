@@ -1,0 +1,13 @@
+Tính chất đóng gói - Encapsulation
+---
+Tính chất đóng gói được thể hiện qua các access modifier
+Nêu thuộc tính, phương thức có acccess modifier là
+- private: phạm vi truy cập trong class
+- public: phạm vi truy cập trong  project
+- protected: current package and external package(sub classes of current class)
+-defaul: package
+
+ví dụ:
+1. các class đóng vai trò là KDL --> cho các thuộc tính là private rôi dùng getter setter để truy cập
+2. Các hàm bên trong KDL cha nếu muốn cho KDL con trong package kế thừa --> defaul
+	______________________________________________ ở bên ngoài package kế thừa --> protected

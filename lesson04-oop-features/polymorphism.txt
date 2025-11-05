@@ -1,0 +1,24 @@
+Tính chất đa hình - polymorphism
+**********
+Tính chất đa hinh có hia loại: phương thức và đối tượng
+
+-Đa hình trong phương thức:
+
++ Overloading:
+	       I) hai hay nhiều hàm được gọi là overloading nếu
+		 	1. thuộc cùng 1 class
+		 	2. có tên hàm giống nhau
+		 	3. thỏa mãn 1 trong các điều kiện bên dưới:
+		 		+ khác số lượng tham số truyền vào
+		 		+ khác kiểu dữ liệu truyền vào của tham số
+		 	--> giúp chung ta có thể tạo method trùng tên trong cùng 1 class
+		 	VD: Hàm sum, sub ...
++Overriding:
+			Sẽ hoạt động khi có KDL cha có hàm cho phép kế thừa và oveerride lại trong KDL con
+			--> Khi các KDL con có chung chức năng, đưa chức năng đó vào KDL cha giúp code đồng bộ, sạch sẽ
+			--> các KDL con có thể kế thừa sử dụng mặc định từ KDL cha hoặc override nếu muốn
+			VD: Hàm toString
+
+
+-Đa hình trong đối tượng:
+			
