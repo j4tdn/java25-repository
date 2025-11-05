@@ -6,7 +6,7 @@ import static java.lang.Math.*;
 public class Ex02Power {
 	
 	public static void main(String[] args) {
-		Integer n = inputNumberWithMin(0, 5);
+		Integer n = inputNumber("Enter N(N > 0): ", val -> val > 0, 5);
 		if (n != null) {
 			System.out.printf("isPoweOf(%s, 2) --> %s", n, isPowerOf(n, 2));
 		}

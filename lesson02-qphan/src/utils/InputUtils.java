@@ -2,6 +2,8 @@ package utils;
 
 import java.util.Scanner;
 
+import funtional.Condition;
+
 /**
  * Utility class(lớp tiện ích) hỗ trợ các hàm cho việc nhập xuất
  * 
@@ -21,26 +23,17 @@ public class InputUtils {
 	private InputUtils() {
 	}
 	
-	public static Integer inputNumberWithMin(int minValueExcl, int maxFailedTime) {
-		return inputNumber(minValueExcl, Integer.MAX_VALUE, maxFailedTime);
-	}
-	
-	public static Integer inputNumberWithMax(int maxValueExcl, int maxFailedTime) {
-		return inputNumber(Integer.MIN_VALUE, maxValueExcl, maxFailedTime);
-	}
-
-	// Xong lesson04 --> sử dụng strategy design pattern
-	public static Integer inputNumber(int minValueExcl, int maxValueExcl, int maxFailedTime) {
+	public static Integer inputNumber(String statement, Condition con, int maxFailedTime) {
 		Integer n = null;
 		String text = null;
 
 		int wrongTimes = 0;
 		do {
-			System.out.printf("Enter N(N > %s): ", minValueExcl);
+			System.out.print(statement);
 			text = ip.nextLine();
 			if (isNumber(text)) {
 				n = Integer.parseInt(text);
-				if (n > minValueExcl && n < maxValueExcl) {
+				if (con.match(n)) {
 					break;
 				}
 			}

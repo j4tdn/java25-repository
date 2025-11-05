@@ -6,7 +6,7 @@ public class Ex05Symectric {
 	
 	public static void main(String[] args) {
 		
-		int number = InputUtils.inputNumberWithMin(9, 5);
+		int number = InputUtils.inputNumber("Enter N(N > 9): ", val -> val > 9, 5);
 		System.out.println("\n==================\n");
 		System.out.println("Symectric A1 --> " + isSymetricNumber(number));
 		System.out.println("Symectric A2 --> " + isSymectric(number));

@@ -6,10 +6,9 @@ import static java.lang.Math.*;
 public class Ex06MaxMinFinder {
 
 	public static void main(String[] args) {
-
-		int a = InputUtils.inputNumber(-1, 20, 5);
-		int b = InputUtils.inputNumber(-1, 20, 5);
-		int c = InputUtils.inputNumber(-1, 20, 5);
+		int a = InputUtils.inputNumber("Enter a(a in [-1, 20]): ", val -> val > -1 && val < 20, 5);
+		int b = InputUtils.inputNumber("Enter b(a in [-1, 20]): ", val -> val > -1 && val < 20, 5);
+		int c = InputUtils.inputNumber("Enter c(a in [-1, 20]): ", val -> val > -1 && val < 20, 5);
 
 		System.out.println("min A1 = " + min(a, min(b, c)));
 		System.out.println("max A1 = " + max(a, max(b, c)));
