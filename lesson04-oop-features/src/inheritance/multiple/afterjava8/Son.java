@@ -25,6 +25,8 @@ public class Son implements Father, Mother {
 		s1.frontend();
 		s1.backend();
 		
+		System.out.println("Father#gender: " + Father.GENDER);
+		
 	}
 	
 }
