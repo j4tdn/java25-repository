@@ -4,7 +4,7 @@ public class ReferBook extends Book{
 	private double tax;
 	
 
-	public ReferBook(long bookId, int price, String publish, double tax) {
+	public ReferBook(String bookId, int price, String publish, double tax) {
 		super(bookId, price, publish);
 		this.tax = tax;
 	}

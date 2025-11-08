@@ -2,7 +2,7 @@ package lesson05.exam.bean;
 
 public abstract class Book {
 
-	protected long bookId;
+	protected String bookId;
 	protected int price;
 	protected String publish;
 	
@@ -11,7 +11,7 @@ public abstract class Book {
 	
 	
 	
-	public Book(long bookId, int price, String publish) {
+	public Book(String bookId, int price, String publish) {
 		super();
 		this.bookId = bookId;
 		this.price = price;
@@ -29,10 +29,10 @@ public abstract class Book {
 	public abstract double getTotalPrice();
 
 
-	public long getBookId() {
+	public String getBookId() {
 		return bookId;
 	}
-	public void setBookId(long bookId) {
+	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}
 	public int getPrice() {
