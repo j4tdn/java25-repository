@@ -1,16 +1,13 @@
 package polymorphism.object;
 
 public class Shape {
-
-	// Hàm trong KDL cha --> chưa biết phần thực thi cụ thể
-	// Yêu cầu các KDL con khi thừa kế 
-	void calcS() {
-		// dummy text
-		// unknow formula for calculating area
-		System.out.println("Shape#calS unknow");
-	}
 	
-	void setColor() {
-		System.out.println("Shape#Color unknow");
+	// Hàm trong KDL cha --> chưa biết phần thực thi cụ thể(body rỗng)
+	// Yêu cầu các KDL con khi thừa kế từ KDL cha thì bắt buộc phải override lại
+	
+	void calcS() {}
+	
+	private void setColor() {
+		System.out.println("Shape#setColor unknown");
 	}
 }

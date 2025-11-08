@@ -4,12 +4,9 @@ public abstract class MouseClickedEvent implements MouseEvent {
 
 	@Override
 	public void mouseOver() {
-		
-	}
-
-	@Override
-	public void mouseOut() {
-		
 	}
 	
+	@Override
+	public void mouseOut() {
+	}
 }
