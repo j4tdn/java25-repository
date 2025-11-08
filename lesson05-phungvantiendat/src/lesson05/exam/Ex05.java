@@ -55,16 +55,16 @@ public class Ex05 {
 	
 	private static Book[] mockData() {
 		Book[] books = new Book[] {
-				new TextBook(1, 50, "Nhi Đồng", Status.NEW),
-				new TextBook(2, 80, "Kim Đồng", Status.OLD),
-				new TextBook(3, 200, "Nhà xuất bản trẻ", Status.NEW),
-				new TextBook(4, 130, "Nhi Đồng", Status.NEW),
-				new TextBook(5, 180, "Thanh niên", Status.OLD),
-				new ReferBook(6, 280, "Nhi Đồng", 0.2),
-				new ReferBook(7, 350, "Thanh niên", 0.15),
-				new ReferBook(8, 320, "Kim Đồng", 0.3),
-				new ReferBook(9, 400, "Nhi Đồng", 0.25),
-				new ReferBook(10, 500, "Nhà xuất bản trẻ", 0.1),
+				new TextBook("SGK01", 50, "Nhi Đồng", Status.NEW),
+				new TextBook("SGK02", 80, "Kim Đồng", Status.OLD),
+				new TextBook("SGK03", 200, "Nhà xuất bản trẻ", Status.NEW),
+				new TextBook("SGK04", 130, "Nhi Đồng", Status.NEW),
+				new TextBook("SGK05", 180, "Thanh niên", Status.OLD),
+				new ReferBook("SGK06", 280, "Nhi Đồng", 0.2),
+				new ReferBook("SGK07", 350, "Thanh niên", 0.15),
+				new ReferBook("SGK08", 320, "Kim Đồng", 0.3),
+				new ReferBook("SGK09", 400, "Nhi Đồng", 0.25),
+				new ReferBook("SGK10", 500, "Nhà xuất bản trẻ", 0.1),
 		};
 		return books;
 	}

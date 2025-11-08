@@ -5,7 +5,7 @@ public class TextBook extends Book{
 	
 	
 
-	public TextBook(long bookId, int price, String publish, Status status) {
+	public TextBook(String bookId, int price, String publish, Status status) {
 		super(bookId, price, publish);
 		this.status = status;
 	}
