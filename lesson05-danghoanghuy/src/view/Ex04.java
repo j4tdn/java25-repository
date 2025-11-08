@@ -20,11 +20,17 @@ public class Ex04 {
 			a[i] = sc.nextInt();
 		}
 
-		sum(a);
+		System.out.println(sum(a));
 		sc.close();
 	}
+	
+	private static int sum(int[] a) {
+		int[] a1 = uniqueNumbers(a);
+		
+		return maxMin(a1);
+	}
 
-	private static int[] sum(int[] a) {
+	private static int[] uniqueNumbers(int[] a) {
 		int n = a.length;	
 		int[] temp = new int[n];
 		int count = 0;
@@ -33,7 +39,7 @@ public class Ex04 {
 			int current = a[i];
 			boolean flag = false;
 			
-			for(int j = i + 1; j < n; j++) {
+			for(int j = 0; j <= count; j++) {
 				if(temp[j] == current) {
 					flag = true;
 					break;
@@ -50,5 +56,31 @@ public class Ex04 {
 			output[i] = temp[i];
 		}
 		return output;
+	}
+	
+	private static int maxMin(int[] output) {
+		int max = output[0];
+		int min = output[0];
+		
+		for(int i = 0; i < output.length; i++) {
+			if(output[i] < min) {
+				min = output[i];
+			}
+			
+			if(output[i] > max) {
+				max = output[i];
+			}
+		}
+		
+		int total = 0;
+		for(int i = 0; i < output.length; i++) {
+			int current = output[i];
+			
+			if(current != min && current != max) {
+				total += current;
+			}
+		}
+		
+		return total;
 	}
 }
