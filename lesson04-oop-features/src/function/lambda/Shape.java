@@ -8,7 +8,7 @@ public interface Shape {
 	//Để khởi tạo 1 đối tượng từ @FI
 	// - Tạo implementation class, trong impl class override lại hàm trừu tượng  --> interface new sub class
 	// - New trực tiếp interface tại vị trí khai báo --> anonymous class(I)
-	// - Sử dụng anonymous function --> lambda expression (@FI)
+	// - Sử dụng anonymous function(lambda) để khởi tạo đối tượng cho functional interface giúp code ngắn gọn hơn
 	
 	//Có annotation @FunctionalInterface: bắt lỗi tại compile néu interface có nhiều hơn 1 hàm trừu tương
 	void calcS();
