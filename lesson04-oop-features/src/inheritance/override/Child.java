@@ -1,12 +1,14 @@
 package inheritance.override;
 
-public class Child extends Parent{
+// Khi KDL con(class) thừa kế từ KDL cha(class)
+// --> KHÔNG bắt buộc KDL con phải override tt, hàm từ cha
+public class Child extends Parent {
 	
 	int number = 100;
 	
 	@Override
 	String log() {
-		return "Longging --> Parent class";
+		return "Logging --> Child class";
 	}
-
+	
 }

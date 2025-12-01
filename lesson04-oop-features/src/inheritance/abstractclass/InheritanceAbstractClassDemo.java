@@ -1,24 +1,24 @@
 package inheritance.abstractclass;
 
 public class InheritanceAbstractClassDemo {
+	
 	public static void main(String[] args) {
 		
-		
-		EmailService se0 = new EmailService() {
+		EmailService es0 = new EmailService() {
 			
 			@Override
 			void login() {
 				System.out.println("ES0 --> login ...");
 			}
 		};
-		EmailService se1 = new StandardEmailServiceImpl();
 		
-		EmailService se2 = new BusinessEmailServiceImpl();
+		EmailService es1 = new StandardEmailServiceImpl();
 		
-		se0.login();
-		se1.login();
-		se2.login();
-	
+		EmailService es2 = new BusinessEmailServiceImpl();
 		
+		es0.login();
+		es1.login();
+		es2.login();
 	}
+	
 }

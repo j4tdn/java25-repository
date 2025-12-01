@@ -2,11 +2,12 @@ package inheritance.multiple;
 
 public class Father {
 	
-	void runsning() {
+	void running() {
 		System.out.println("Father: running");
 	}
 	
 	void cooking() {
-		System.out.println("Mother: cooking bad");
+		System.out.println("Father: cooking bad");
 	}
+	
 }

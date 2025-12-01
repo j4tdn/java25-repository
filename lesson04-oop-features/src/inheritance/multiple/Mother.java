@@ -9,4 +9,5 @@ public class Mother {
 	void cooking() {
 		System.out.println("Mother: cooking well");
 	}
+	
 }
