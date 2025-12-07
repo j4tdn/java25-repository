@@ -17,7 +17,7 @@ public class FirstDegreeEquation {
 				b = Double.parseDouble(sc.nextLine());
 
 				if (a == 0) {
-					System.out.println("Hệ số a = 0 → phương trình vô nghiệm hoặc vô số nghiệm. Vui lòng nhập lại!");
+					System.out.println("Hệ số a = 0 phương trình vô nghiệm hoặc vô số nghiệm. Vui lòng nhập lại!");
 					continue;
 				}
 
