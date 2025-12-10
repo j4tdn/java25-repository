@@ -1,0 +1,28 @@
+Tính chất đa hình - Polymorphis
+-----------------------
+Tính chất đa hình có 2 loại: phương thức và đối tượng
+
+Đa hình trong phương thức
+- Overloading
+	Hai hay nhiều hàm được gòi là overloading nếu
+		thuộc cùng 1 class
+		tên hàm giống nhau
+		và thỏa mãn 1 trong các điều kiện bên dưới
+		- khác số lượng tham số truyền vào
+		- khác kiểu dữ liệu truyền vào của tham số
+		--> giúp có thể tạo các method trùng tên trong 1 class
+		VD: hàm sum
+	
+
+
+- Overriding
+	sẽ hoạt động khi có KDL cha có hàm cho phép kế thừa
+	và override lại trong KDL con
+	--> khi các KDL con có chung chức năng, đưa chức năng đó 
+	vào KDL cha giúp code đồng bộ, sạch sẽ
+	--> các KDL con có thê rkees thừa sử dụng mặc định từKDL cha hoặc override nếu muốn
+	
+	VD: hàm toString
+
+Đa hình trong đối tượng
+	
