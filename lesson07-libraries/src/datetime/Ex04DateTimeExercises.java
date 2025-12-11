@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 
 public class Ex04DateTimeExercises {
 
+	private static SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	
 	public static void main(String[] args) {
 		
@@ -22,26 +23,62 @@ public class Ex04DateTimeExercises {
 				" không phải": "") + "là năm nhuận");
 		
 		// Dương lịch
-		GregorianCalendar gc = new GregorianCalendar();
-		System.out.println("Kiểm tra năm nhuận --> " + gc.isLeapYear(now.get(Calendar.YEAR)));
+		System.out.println("Kiểm tra năm nhuận --> " + isLeapYear(now.get(Calendar.YEAR)));
 		
-		String[] dayOfWeeks = {"Chủ Nhật", "Thứ Hai", "Thứ Ba", 
-				"Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"};
 		System.out.println("4. Ngày thứ --> " +  
-				dayOfWeeks[now.get(Calendar.DAY_OF_WEEK) - 1]);
+				getDayOfWeeksInVietnamese(now.get(Calendar.DAY_OF_WEEK)));
 		
 		System.out.println("5. Các ngày trong tháng(dd/MM/yyyy week_day)");
+		printDaysInMonth(now);
+		
+		int firstDayOfWeek = now.getFirstDayOfWeek();
+		System.out.println("Ngày đầu tuần: " + firstDayOfWeek);
+		
+	}
+	
+	private static Calendar cloneAndSet(Calendar source, int field, int value) {
+		Calendar target = clone(source);
+		
+		target.setTimeInMillis(source.getTimeInMillis());
+		target.set(field, value);
+		
+		return target;
+	}
+	
+	private static Calendar clone(Calendar source) {
+		Calendar target = Calendar.getInstance();
+		target.setTimeInMillis(source.getTimeInMillis());
+		return target;
+	}
+	
+	// 19/08/2025 -> 01/08/2025 : 31/08/2025
+	private static void printDaysInMonth(Calendar c) {
 		Calendar startDayOfMonth = Calendar.getInstance();
 		startDayOfMonth.set(Calendar.DAY_OF_MONTH, 1);
 		
-		Calendar endDayOfMonth = Calendar.getInstance();
-		endDayOfMonth.set(Calendar.DAY_OF_MONTH, now.getActualMaximum(Calendar.DAY_OF_YEAR));
+		Calendar endDayOfMonth = cloneAndSet(c, Calendar.DAY_OF_MONTH, 
+				c.getActualMaximum(Calendar.DAY_OF_MONTH));
+		endDayOfMonth.add(Calendar.DAY_OF_MONTH, 1);
 		
-		format = new SimpleDateFormat("dd/MM/yyyy EEEE");
 		for(Calendar cal = startDayOfMonth; cal.before(endDayOfMonth); cal.add(Calendar.DAY_OF_MONTH, 01)) {
-			System.out.println(format.format(cal.getTime()));
+			System.out.println(df.format(cal.getTime()) + "		");
+			if(cal.get(Calendar.DAY_OF_MONTH) % 5 == 0) {
+				System.out.println();
+			}
 		}
-		
+	}
+	
+	private static String getDayOfWeeksInVietnamese(int dayOfWeek) {
+		String[] dayOfWeeks = {
+			"Chủ Nhật", "Thứ Hai", "Thứ Ba", 
+			"Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"
+		};
+		return dayOfWeeks[dayOfWeek - 1];
+	}
+	
+	private static boolean isLeapYear(int year) {
+		GregorianCalendar gc = new GregorianCalendar();
+		return gc.isLeapYear(year);
 	}
 	
 }
