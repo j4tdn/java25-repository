@@ -57,6 +57,8 @@ public class Ex08Finally {
 			 // TH2: Nếu dòng nào lỗi, ko ghi
 			 //          dòng nào ok ghi vào
 			 
+			 // tuning
+			 
 			 
 		} catch (IOException | InvalidAgeException e) {
 			e.printStackTrace();
