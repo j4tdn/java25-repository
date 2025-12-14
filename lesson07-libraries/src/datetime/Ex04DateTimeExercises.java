@@ -43,8 +43,20 @@ public class Ex04DateTimeExercises {
 		System.out.println("5. Cac ngay trong thang(dd/MM/yyyy week_day)");
 		Calendar startDayOfMonth = Calendar.getInstance();
 		startDayOfMonth.set(Calendar.DAY_OF_MONTH, 1);
-		
-		
+
+		Calendar endDayOfMonth = Calendar.getInstance();
+		endDayOfMonth.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
+		endDayOfMonth.add(Calendar.DAY_OF_MONTH, 1);
+
+		df = new SimpleDateFormat("dd/MM/yyy EEEE");
+		for (Calendar cal = startDayOfMonth; cal.before(endDayOfMonth); cal.add(Calendar.DAY_OF_MONTH, 1)) {
+			System.out.println(df.format(cal.getTime()));
+		}
+
 	}
 
+	private static boolean isLeapYear (int year) {
+			GregorianCalendar gc = new GregorianCalendar ();
+			return gc.isLeapYear(year);
+			}
 }
