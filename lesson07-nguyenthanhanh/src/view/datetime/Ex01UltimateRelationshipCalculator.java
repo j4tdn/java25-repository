@@ -1,4 +1,4 @@
-package datetime;
+package view.datetime;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -37,7 +37,8 @@ public class Ex01UltimateRelationshipCalculator {
 	            Calendar next = clone(cur);
 	            next.add(Calendar.YEAR, 1);
 	            if (next.compareTo(target) <= 0) { 
-	            	cur = next; years++; 
+	            	cur = next; 
+	            	years++; 
 	            } else { 
 	            	break; 
 	            }
@@ -47,7 +48,8 @@ public class Ex01UltimateRelationshipCalculator {
 	            Calendar next = clone(cur);
 	            next.add(Calendar.MONTH, 1);
 	            if (next.compareTo(target) <= 0) { 
-	            	cur = next; months++; 
+	            	cur = next; 
+	            	months++; 
 	            } else { 
 	            	break; 
 	            }
@@ -57,7 +59,8 @@ public class Ex01UltimateRelationshipCalculator {
 	            Calendar next = clone(cur);
 	            next.add(Calendar.DAY_OF_MONTH, 1);
 	            if (next.compareTo(target) <= 0) { 
-	            	cur = next; days++; 
+	            	cur = next; 
+	            	days++; 
 	            } else { 
 	            	break; 
 	            }
@@ -67,7 +70,8 @@ public class Ex01UltimateRelationshipCalculator {
 	            Calendar next = clone(cur);
 	            next.add(Calendar.HOUR_OF_DAY, 1);
 	            if (next.compareTo(target) <= 0) { 
-	            	cur = next; hours++; 
+	            	cur = next; 
+	            	hours++; 
 	            } else { 
 	            	break; 
 	            }
@@ -77,7 +81,8 @@ public class Ex01UltimateRelationshipCalculator {
 	        	Calendar next = clone(cur);
 	            next.add(Calendar.MINUTE, 1);
 	            if (next.compareTo(target) <= 0) { 
-	            	cur = next; minutes++; 
+	            	cur = next; 
+	            	minutes++; 
 	            } else { 
 	            	break; 
 	            }
@@ -87,7 +92,8 @@ public class Ex01UltimateRelationshipCalculator {
 	        	Calendar next = clone(cur);
 	            next.add(Calendar.SECOND, 1);
 	            if (next.compareTo(target) <= 0) { 
-	            	cur = next; seconds++; 
+	            	cur = next; 
+	            	seconds++; 
 	            } else { 
 	            	break; 
 	            }
