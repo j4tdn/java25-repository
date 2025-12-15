@@ -138,7 +138,6 @@ public class Ex01UltimateRelationshipCalculator {
 	private static String getDayOfWeeksInVnmese(int dayOfWeek) {
 		String[] dayOfWeeks = {"Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"};
 		return  dayOfWeeks[dayOfWeek-1];
-		
 	}
 	
 	
