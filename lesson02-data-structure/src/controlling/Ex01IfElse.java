@@ -13,84 +13,79 @@ public class Ex01IfElse {
 	public static void main(String[] args) {
 		System.out.println("=== Bắt đầu chương trình ===");
 		
-		Random rd = new Random();
 		int val = rd.nextInt(5, 20);
 		System.out.println("val = " + val);
 		
+		// val % 2 == 0 true/false expression		
+		// boolean isEven = (val % 2 == 0);
+		// if(isEven)  --> if(isEven == true)
+		// if(!isEven) --> if(isEven == false) 
 		
-		//val % 2 == 0 true/false expression
-		
-		if (val % 2 == 0) {
+		if (isOdd(val)) {
 			int currentYear = YearMonth.now().getYear();
-			System.out.println("\nKết quả khi giá trị ngẫu nhiên là số chẵn: " + (currentYear + val));
+			System.out.println("\nKết quả khi GTNN là số lẻ: " + (currentYear + val));
 		}
 		
-		//Câu 2: nhập mk, kiểm tra độ dài >=8 và if else in ra hợp lệ hoặc không
+		/*
+		Câu 2
+		------
+		Nhập vào mật khẩu, kiểm tra độ dài của mật khẩu có hợp lệ hay không
+		Nếu độ dài của mật khẩu >= 8 --> in ra mật khẩu hợp lệ
+		Ngược lại --> in ra mật khẩu ko hợp lệ, vui lòng nhập lại
+		*/
 		
 		Scanner ip = new Scanner(System.in);
-
-		// nhập mật khẩu
-		System.out.println("Nhập mật khẩu: ");
+		
+		System.out.print("Nhập mật khẩu: ");
 		String password = ip.nextLine();
-
-		// kiểm tra độ dài mật khẩu
+		
 		if (password.length() >= 8) {
-			System.out.println("mật khẩu hợp lệ");
+			System.out.println("Mật khẩu hợp lệ");
 		} else {
-			System.out.println("mật khẩu không hợp lệ");
+			System.out.println("Mật khẩu không hợp lệ");
 		}
 		
 		ip.close();
 		
-		
-		//Câu 3: Rd điểm trung bình số thực của học sinh [0.0, 10.0], làm tròn lấy 1 chữ số thập phân
-		//KQ: xếp loại khá trung bình giỏi
+		/*
+		 Câu 3
+		 ------
+		 Random điểm trung bình(số thực) của học sinh [0.0, 10.0] phần thập phân có 1 chữ số
+		 Nếu điểm mà
+		 + [0, 5)   : Yếu
+		 + [5, 6.5) : Trung Bình
+		 + [6.5, 8) : Khá
+		 + [8, 10]  : Giỏi
+		 */
 		
 		double avgPoint = generatePoint();
 		System.out.println("\nĐiểm trung bình: " + avgPoint);
-		String rank;
-		if (avgPoint < 5) {
-			rank = "Yếu";
-		} else if (avgPoint < 6.5) {
-			rank = "Trung bình";
-		} else if (avgPoint < 8) {
-			rank = "Khá";
-		} else {
-			rank = "Giỏi";
-		}
-		System.out.println("Học lực " + rank);
-
-		System.out.println("\n === Kết thúc chương trình === ");
-			
-		}
+		System.out.println("Học lực: " + getRank(avgPoint));
 		
-	    //Code 1 hàm với yêu cầu Câu 3 để giảm tải cho hàm Main
-		
-		private static String getRank(double avgPoint) { 
-			String rank;
-			if (avgPoint < 5) {
-				rank = "Yếu";
-			} else if (avgPoint < 6.5) {
-				rank = "Trung bình";
-			} else if (avgPoint < 8) {
-				rank = "Khá";
-			} else {
-				rank = "Giỏi";
-			}
+		System.out.println("\n=== Kết thúc chương trình ===");
+	}
+	
+	private static String getRank(double point) {
+		if (point < 5) {
+			return "Yếu";
 		}
-		
-		// Ngoài ra để ngắn gọn hơn có thể tận dụng re
-
-		private static double generatePoint() {
-		float avgPoint = rd.nextFloat(11);
-		if(avgPoint > 10) {
-			avgPoint = 10f;
+		if (point < 6.5) {
+			return "Trung Bình";
+		}
+		if (point < 8) {
+			return "Khá";
+		}
+		return "Giỏi";
+	}
+	
+	private static double generatePoint() {
+		double avgPoint = rd.nextDouble(11);
+		if (avgPoint > 10) {
+			avgPoint = 10;
 		}
 		BigDecimal avgPointBd = BigDecimal.valueOf(avgPoint).setScale(1, RoundingMode.HALF_UP);
 		return avgPointBd.doubleValue();
-		
-		}
-	
+	}
 	
 	private static boolean isOdd(int number) {
 		return number % 2 != 0;

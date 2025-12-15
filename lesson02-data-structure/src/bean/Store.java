@@ -1,28 +1,26 @@
 package bean;
 
+// KDL Store
 public class Store {
 	
+	// Attributes
 	public char name;
-	public int checkin;
-	public int checkout;
+	public int checkInTime;
+	public int checkOutTime;
 	
-	public Store() {	
+	// Default constructor
+	public Store() {
 	}
 
-	public Store(char name, int checkin, int checkout) {
+	// Constructor with full parameter
+	public Store(char name, int checkInTime, int checkOutTime) {
 		this.name = name;
-		this.checkin = checkin;
-		this.checkout = checkout;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
 	}
-	
+
 	@Override
 	public String toString() {
-		return name + "," + checkin + "," + checkout;
-	
+		return name + ", " + checkInTime + ", " + checkOutTime;
 	}
-	
-	
-
-	
-
 }
