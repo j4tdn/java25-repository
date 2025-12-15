@@ -1,5 +1,8 @@
+
 package inheritance.multiple;
 
-public class GrandMother {
-
+public interface GrandMother {
+	
+	void gaming();
+	
 }

@@ -1,5 +1,9 @@
+
 package function.lambda;
 
-public class NumberTest {
-
+@FunctionalInterface
+public interface NumberTest {
+	
+	boolean testing(int number);
+	
 }

@@ -1,5 +1,13 @@
+
 package inheritance;
 
-public class MouseClickedEvent {
+public abstract class MouseClickedEvent implements MouseEvent {
 
+	@Override
+	public void mouseOver() {
+	}
+	
+	@Override
+	public void mouseOut() {
+	}
 }

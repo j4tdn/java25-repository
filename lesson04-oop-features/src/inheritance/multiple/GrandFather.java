@@ -1,5 +1,9 @@
+
 package inheritance.multiple;
 
-public class GrandFather {
-
+public interface GrandFather {
+	
+	void gaming();
+	
+	void building();
 }

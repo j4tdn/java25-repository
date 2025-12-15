@@ -1,5 +1,9 @@
+
 package function.lambda;
 
-public class Operator {
-
+@FunctionalInterface
+public interface Operator {
+	
+	int operate(int a, int b);
+	
 }

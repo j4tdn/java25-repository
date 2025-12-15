@@ -1,5 +1,11 @@
+
 package inheritance.iinterface;
 
-public class Circle {
-
+public class Circle implements Shape {
+	
+	@Override
+	public void calcS() {
+		System.out.println("Circle --> calcS ...");
+	}
+	
 }
