@@ -1,5 +1,7 @@
+
 package s17p;
 
-public class Shape {
-
+public interface Shape {
+	void draw();
+	void clear();
 }

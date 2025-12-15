@@ -1,5 +1,6 @@
+
 package s17p;
 
-public class Predicate {
-
+public interface Predicate {
+	boolean test(int val);
 }
