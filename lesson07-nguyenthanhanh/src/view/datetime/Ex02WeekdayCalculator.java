@@ -5,6 +5,8 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static utils.DateTimeUtils.*;
+
 public class Ex02WeekdayCalculator {
 	
 	private static Scanner ip = new Scanner(System.in);
@@ -31,7 +33,7 @@ public class Ex02WeekdayCalculator {
             gc.set(Calendar.MONTH, month);
             gc.set(Calendar.DAY_OF_MONTH, day);
             
-            String weekdayName = getDayOfWeeksInVnmese(gc.get(Calendar.DAY_OF_WEEK));
+            String weekdayName = getDayOfWeeksInVietnamese(gc.get(Calendar.DAY_OF_WEEK));
             System.out.println(day + "/" + month + "/" + year + " là " + weekdayName);
             
 		} catch (Exception ex) {
@@ -66,12 +68,5 @@ public class Ex02WeekdayCalculator {
 		
 		return true;
 	}
-	
-	private static String getDayOfWeeksInVnmese(int dayOfWeek) {
-		String[] dayOfWeeks = {"Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"};
-		return  dayOfWeeks[dayOfWeek-1];
-		
-	}
-	
 	
 }
