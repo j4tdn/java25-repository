@@ -15,7 +15,7 @@ public class Ex06Throws {
 	public static void main(String[] args) {
 		Scanner ip = new Scanner(System.in);
 		
-		System.out.println("Nhap ten file: ");
+		System.out.print("Nhap ten file: ");
 		String filename = ip.nextLine();
 		
 		try {
