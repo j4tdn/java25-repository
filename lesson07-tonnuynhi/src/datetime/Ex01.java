@@ -1,101 +1,145 @@
-
 package datetime;
 
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Scanner;
 
-public class Ex01 {
-	private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+public class Ex01{
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+    private static final Locale VI = new Locale("vi", "VN");
+    private static final SimpleDateFormat DTF = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", VI);
 
-		System.out.println("=== The Ultimate Relationship Calculator ===");
-		System.out.println("Format thời gian: dd/MM/yyyy HH:mm:ss (VD: 14/12/2025 09:00:00)");
-		System.out.println();
+    public static void main(String[] args) {
+        Locale.setDefault(VI);
+        DTF.setLenient(false);
 
-		LocalDateTime start = readDateTime(sc, "Nhập thời gian bắt đầu hẹn hò: ");
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.println("=== The Ultimate Relationship Calculator (Legacy) ===");
+            System.out.println("Format: dd/MM/yyyy HH:mm:ss (VD: 14/12/2025 09:00:00)");
+            System.out.println();
 
-		boolean brokeUp = readYesNo(sc, "Đã chia tay chưa? (y/n): ");
+            Calendar start = readDateTime(sc, "Nhập thời gian bắt đầu hẹn hò: ");
 
-		LocalDateTime end;
-		if (brokeUp) {
-			while (true) {
-				end = readDateTime(sc, "Nhập thời gian chia tay (dd/MM/yyyy HH:mm:ss): ");
-				if (!end.isBefore(start))
-					break;
-				System.out.println("❌ Thời gian chia tay không được trước thời gian bắt đầu. Nhập lại!");
-			}
-		} else {
-			end = LocalDateTime.now();
-		}
+            boolean brokeUp = readYesNo(sc, "Đã chia tay chưa? (y/n): ");
 
-		System.out.println();
-		System.out.print("Nhấn Enter để thực hiện tính toán...");
-		sc.nextLine();
+            Calendar end;
+            if (brokeUp) {
+                while (true) {
+                    end = readDateTime(sc, "Nhập thời gian chia tay: ");
+                    if (!end.before(start)) break;
+                    System.out.println("❌ Thời gian chia tay không được trước thời gian bắt đầu. Nhập lại!");
+                }
+            } else {
+                end = Calendar.getInstance();
+            }
 
-		System.out.println();
-		System.out.println("----- KẾT QUẢ / RESULT -----");
+            System.out.println();
+            System.out.println("----- KẾT QUẢ / RESULT -----");
 
-		DayOfWeek dow = start.getDayOfWeek();
-		System.out.println("Ngày bắt đầu (VN): " + toVietnameseDayOfWeek(dow));
-		System.out.println("Start day (EN): " + dow);
+            int dow = start.get(Calendar.DAY_OF_WEEK);
+            System.out.println("Ngày bắt đầu (VN): " + toVietnameseDayOfWeek(dow));
+            System.out.println("Start day (EN): " + toEnglishDayOfWeek(dow));
 
-		Period p = Period.between(start.toLocalDate(), end.toLocalDate());
-		System.out.println("Mối tình đã bắt đầu được: " + p.getYears() + " năm, " + p.getMonths() + " tháng, "
-				+ p.getDays() + " ngày");
+            Calendar startDateOnly = cloneCal(start);
+            Calendar endDateOnly = cloneCal(end);
+            zeroTime(startDateOnly);
+            zeroTime(endDateOnly);
 
-		long hours = ChronoUnit.HOURS.between(start, end);
-		long minutes = ChronoUnit.MINUTES.between(start, end);
-		long seconds = ChronoUnit.SECONDS.between(start, end);
+            int years = 0, months = 0, days = 0;
+            Calendar cursor = cloneCal(startDateOnly);
 
-		System.out.println("Giờ (total hours): " + hours);
-		System.out.println("Phút (total minutes): " + minutes);
-		System.out.println("Giây (total seconds): " + seconds);
+            while (true) {
+                Calendar next = cloneCal(cursor);
+                next.add(Calendar.YEAR, 1);
+                if (next.compareTo(endDateOnly) <= 0) {
+                    cursor = next;
+                    years++;
+                } else break;
+            }
 
-		System.out.println("----------------------------");
+            while (true) {
+                Calendar next = cloneCal(cursor);
+                next.add(Calendar.MONTH, 1);
+                if (next.compareTo(endDateOnly) <= 0) {
+                    cursor = next;
+                    months++;
+                } else break;
+            }
 
-		sc.close();
-	}
+            while (true) {
+                Calendar next = cloneCal(cursor);
+                next.add(Calendar.DAY_OF_MONTH, 1);
+                if (next.compareTo(endDateOnly) <= 0) {
+                    cursor = next;
+                    days++;
+                } else break;
+            }
 
-	private static LocalDateTime readDateTime(Scanner sc, String prompt) {
-		while (true) {
-			System.out.print(prompt);
-			String input = sc.nextLine().trim();
-			try {
-				return LocalDateTime.parse(input, DTF);
-			} catch (DateTimeParseException e) {
-				System.out.println("❌ Sai format. Hãy nhập theo dd/MM/yyyy HH:mm:ss (VD: 14/12/2025 09:00:00)");
-			}
-		}
-	}
+            System.out.println("Mối tình đã bắt đầu được: " + years + " năm, " + months + " tháng, " + days + " ngày");
 
-	private static boolean readYesNo(Scanner sc, String prompt) {
-		while (true) {
-			System.out.print(prompt);
-			String ans = sc.nextLine().trim();
-			if (ans.equalsIgnoreCase("y"))
-				return true;
-			if (ans.equalsIgnoreCase("n"))
-				return false;
-			System.out.println("❌ Chỉ nhập 'y' hoặc 'n'.");
-		}
-	}
+            long diffMillis = end.getTimeInMillis() - start.getTimeInMillis();
+            long totalSeconds = diffMillis / 1000;
+            long totalMinutes = diffMillis / (60 * 1000);
+            long totalHours = diffMillis / (60 * 60 * 1000);
 
-	private static String toVietnameseDayOfWeek(DayOfWeek dow) {
-		return switch (dow) {
-		case MONDAY -> "Thứ Hai";
-		case TUESDAY -> "Thứ Ba";
-		case WEDNESDAY -> "Thứ Tư";
-		case THURSDAY -> "Thứ Năm";
-		case FRIDAY -> "Thứ Sáu";
-		case SATURDAY -> "Thứ Bảy";
-		case SUNDAY -> "Chủ Nhật";
-		};
-	}
+            System.out.println("Giờ (total hours): " + totalHours);
+            System.out.println("Phút (total minutes): " + totalMinutes);
+            System.out.println("Giây (total seconds): " + totalSeconds);
+
+            System.out.println("----------------------------");
+
+        } finally {
+            sc.close();
+        }
+    }
+
+    private static Calendar readDateTime(Scanner sc, String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            String input = sc.nextLine().trim();
+            try {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(DTF.parse(input));
+                return cal;
+            } catch (ParseException e) {
+                System.out.println("❌ Sai format. VD đúng: 14/12/2025 09:00:00");
+            }
+        }
+    }
+
+    private static boolean readYesNo(Scanner sc, String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            String ans = sc.nextLine().trim();
+            if ("y".equalsIgnoreCase(ans)) return true;
+            if ("n".equalsIgnoreCase(ans)) return false;
+            System.out.println("❌ Chỉ nhập 'y' hoặc 'n'.");
+        }
+    }
+
+    private static void zeroTime(Calendar cal) {
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+    }
+
+    private static Calendar cloneCal(Calendar src) {
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(src.getTimeInMillis());
+        return c;
+    }
+
+    private static String toVietnameseDayOfWeek(int dayOfWeek) {
+        String[] vn = {"Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"};
+        return vn[dayOfWeek - 1];
+    }
+
+    private static String toEnglishDayOfWeek(int dayOfWeek) {
+        String[] en = {"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"};
+        return en[dayOfWeek - 1];
+    }
 }
