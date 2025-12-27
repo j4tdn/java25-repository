@@ -31,4 +31,10 @@ A. Nhắc lại khái niệm
               Order order = item.getOrder();
               order.setTotalOfMoney(125);
               
+- mutable
+
+B. String StringBuider StrinBuffer
+
+C. Functions
+              
                 

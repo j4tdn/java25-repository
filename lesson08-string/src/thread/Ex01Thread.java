@@ -4,21 +4,19 @@ import java.util.concurrent.TimeUnit;
 
 public class Ex01Thread {
 	
+	private static long start = System.currentTimeMillis(); 
+	
 	public static void main(String[] args) {
-		long start = System.currentTimeMillis();
 		System.out.println("--- Bắt đầu chương trình ---\n");
 		
-		Thread th1 = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				doTask4(); // được thực thi bởi th1
-				System.out.println("TH1 finished after: " + (System.currentTimeMillis() - start) + "(ms)");
-			}
-		}, "Thread TH1");
+		// thread --> thread#start --> thread#run --> trực tiếp
+		//                                        --> runnable#run
+		
+		Thread th1 = new Thread(new Task(), "Thread TH1");
 		th1.start();
 		
-		
+		Thread th2 = new Thread(() -> doTask2(), "Thread TH2"); // ExecutorService(ThreadPool)
+		th2.start();
 		
 		System.out.println("=============");
 		
@@ -26,6 +24,16 @@ public class Ex01Thread {
 		
 		System.out.println("\n--- Kết thúc chương trình ---");
 		System.out.println("Main finished after: " + (System.currentTimeMillis() - start) + "(ms)");
+	}
+	
+	static class Task implements Runnable {
+
+		@Override
+		public void run() {
+			doTask4(); // được thực thi bởi th1
+			System.out.println("TH1 finished after: " + (System.currentTimeMillis() - start) + "(ms)");
+		}
+		
 	}
 	
 	// Giải lập xử lý công việc gì đó mất 2s

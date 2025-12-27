@@ -21,6 +21,14 @@ public class Ex04StringOperations {
 		
 		// 5. Xác định chuỗi s2 có tồn tại trong chuỗi s1 hay không
 		System.out.println("5. Xác định tồn tại: " + s.contains("is"));
+		
+		System.out.println("\n========================================\n");
+		
+		String s1 = "hello"; // heap -> constant pool
+		String s2 = new String("hello").intern(); // -> heap -> constant pool
+		
+		System.out.println("s1 --> " + System.identityHashCode(s1));
+		System.out.println("s2 --> " + System.identityHashCode(s2));
 	}
 	
 }
