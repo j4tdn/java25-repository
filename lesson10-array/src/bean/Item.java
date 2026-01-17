@@ -1,0 +1,67 @@
+package bean;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public class Item {
+
+	private Integer id;
+	private String name;
+	private BigDecimal salesPrice;
+	private LocalDate expireDate;
+	private Integer storeId;
+	
+	public Item() {
+		
+	}
+
+	public Item(Integer id, String name, BigDecimal salesPrice, LocalDate expireDate, Integer storeId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.salesPrice = salesPrice;
+		this.expireDate = expireDate;
+		this.storeId = storeId;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public BigDecimal getSalesPrice() {
+		return salesPrice;
+	}
+
+	public void setSalesPrice(BigDecimal salesPrice) {
+		this.salesPrice = salesPrice;
+	}
+
+	public LocalDate getExpireDate() {
+		return expireDate;
+	}
+
+	public void setExpireDate(LocalDate expireDate) {
+		this.expireDate = expireDate;
+	}
+
+	public Integer getStoreId() {
+		return storeId;
+	}
+
+	public void setStoreId(Integer storeId) {
+		this.storeId = storeId;
+	}
+	
+}

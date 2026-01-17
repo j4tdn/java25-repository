@@ -1,0 +1,11 @@
+- final: final cho biến
+	--> biến có từ khóa final thì không thể gán lại giá trị (tại STACK)
+	--> final tại STACK
+	
+- immutable: immutable cho object
+	--> object được gọi là immutable khi object đó đc tạo ra và lưu trữ tại
+		vùng nhớ HEAP sau đó kh thể update được --> immutable object
+	--> để object đó có thể là immutable thì
+		- class của nó phải có private attribute(s) và final cho attribute
+		- nâng cao: private và final cho các attribute thì các attribute 
+			đó vẫn cập nhật được.
