@@ -1,0 +1,13 @@
+Thao tac voi KDL mang, su dung tap hop cho KDL
+- nguyen thuy: int, double, long, char
+- doi tuong: 
+	--> don(KDL co san cua java): Integer, Ddouble, String,...
+	--> da(KDL do minh ta, co 1 hoac N thuoc tinh): Item, Employee, Person
+	
+Mang
+- so phan tu co dinh
+- thuc te: 
+	+ luu danh sach cac phan tu thay doi --> so luong vuot qua kich thuoc mang
+	+ tao mang moi co kich thuoc nhieu hon mang cu, copy mang cu qua kem theo cac phan tu moi
+	
+	+ muon xoa 1 phan tu trong mang
