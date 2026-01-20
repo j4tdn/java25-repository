@@ -1,0 +1,32 @@
+A. Nhac lai khai niem
+- final: final cho bien
+	--> bien co tu khoa final thi minh se k the dung toan tu = de gan lai gia tri (tai STACK)
+	--> final o Stack
+	
+- immutable: immutable cho object
+	--> object ddc goi la immutable khi object do dc tao ra va luu tru tai vung nho heap sau o
+		k the cap nhat dc gia tri --> immutable object
+	--> e object co the la immuutable thi
+		- class cua no phai la private attribute va final attribute
+		- nang cao: private va final cho cac attribute thi cac attribute do van co the cap nhat dc
+		
+		Item
+			private final Integer id;
+			private final String name;
+			private final Order order;
+			
+			private Integer getId(){
+				return id;
+			}
+			
+			private String getName(){
+				return name;
+			}
+			
+			private Order getOrder(){
+				return order;
+			}
+			
+			App --> Item item = new Item()
+					Order order = item.getOrder();
+					order.setTotalOfMooney(125); 
