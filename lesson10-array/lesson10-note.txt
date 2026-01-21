@@ -1,0 +1,14 @@
+Thao tác với KDL mảng, sử dụng tập hợp cho KDL
+- nguyên thuỷ: int , double , long , char
+-đối tượng
+--> Đơn (KDL có sẳn của Java) : Integer, Double, String , Character ,...
+-- đa(KDL do mình tự tạo ra , có 1 | N thuộc tính ) : Item, Employee, Person
+
+Mảng
+- Số phần tử cố định
+* thực tế: lưu danh sach các phần tử thay đổi --> số lượng phần tử vượt qua kích thước mảng
+* tạp mảng mới có kích thước nhiều hơn mảnh cũ , copy mảng cũ qua kèm theo các phần tử mới 
+
+* muốn xoá 1 phần tử trong mảng 
+
+
