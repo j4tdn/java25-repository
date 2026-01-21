@@ -1,0 +1,10 @@
+Thao tác với KDL mảng, sử dụng tập hợp cho KDL
+- Nguyên thủy: int, double, long, char
+- Đối tượng 
+	--> đơn(KDL có sẵn của java) : Integer, Double, String, Character...
+	--> đa(KDL do mình tự tạo ra, có 1| N thuộc tính): Item, Employee, Person
+	
+Mảng
+- Số ptu cố định
+- Thực tế:
+	* Lưu danh sách các ptu thay đổi --> số lượng 
