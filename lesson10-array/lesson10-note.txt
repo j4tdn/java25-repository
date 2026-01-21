@@ -1,0 +1,11 @@
+Thao tác với KDl mảng, sử dụng tập hợp cho kDL
+-nguyên thủy: int, double, long, char
+- đối tượng:
+	--> đơn(KDL có sẵn của java): Interger, Double, STring, Character....
+	--> đa(KDL do mình tự tạo ra, có 1 | N thuộc tính): Item, Emplooyee, Person
+	
+	Mảng
+	- số phần tử cố định
+	- thực tế: lưu danh scash các ptu thay đổi --> số lượng vượt qua kích thướt mảng
+	*Tạo mnagr mơí có kíchh thước nhiều hơn cmnagr cũ, copy mnagr cũ qua kèm theo các ptu mới
+	*muón xóa 1 phần tử trong mảng
