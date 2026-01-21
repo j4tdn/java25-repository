@@ -16,7 +16,7 @@ public class Ex05Test02 {
 	 */
 	
 	 public static void main(String[] args) {
-	        int[] a = { 2, 5, -3, 10, 7 };
+	        int[] a = { -2, -1, 1, 2, 3, 4, 5 };
 
 	       
 	        System.out.println("Tổng: " + sum(a));
