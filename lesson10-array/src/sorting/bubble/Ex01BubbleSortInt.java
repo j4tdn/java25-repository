@@ -1,6 +1,7 @@
 package sorting.bubble;
 
 import static utils.PrintUtils.*;
+import static utils.ArrayUtils.*;
 
 import functional.IntComp;
 
@@ -40,12 +41,6 @@ public class Ex01BubbleSortInt {
 				}
 			}
 		}
-	}
-	
-	private static void swap(int[] elements, int i, int j) {
-		int temp = elements[i];
-		elements[i] = elements[j];
-		elements[j] = temp;
 	}
 	
 }
