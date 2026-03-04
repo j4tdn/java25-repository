@@ -1,6 +1,6 @@
 package view;
 
-import function.lambda.NumberTest;
+import function.NumberTest;
 
 public class Ex04Test01 {
 

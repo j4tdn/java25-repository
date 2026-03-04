@@ -11,3 +11,32 @@ Mang
 	+ tao mang moi co kich thuoc nhieu hon mang cu, copy mang cu qua kem theo cac phan tu moi
 	
 	+ muon xoa 1 phan tu trong mang
+	
+Sap xep
+- Dau vao la 1 danh sach cac phan tu
+	+ KDL nguyen thuy
+	+ KDL doi tuong
+- Su dung thuat toan sap xep de xu ly
+	+ Duyet qua cac phan tu trong danh sach
+	+ Hoan vi cac phan tu de nam dung vi tri theo yeu cau: tang dan / giam dan
+	+ Thuat toan sap xep
+	--> Sx noi bot: bubble sort
+	--> 	chon: selection sort
+	-->		chen: insert sort
+	-->			: heap sort
+	-->			: quick sort
+	+ Hoc cach su dung ham sx co san trong java
+	
+- Cac bai toan co the gap
+	+ KDL nguyen thuy
+	--> Tang dan theo gia tri
+	--> Giam...
+	
+	+ KDL ddoi tuong
+	--> Tang/giam dan theo gia tri
+	--> NULL first/last
+	
+	--> Bai toan sx tang/giam cho nhieu thuoc tinh
+	
+Trong cac KDL doi tuong co san cua Java: Integer, Double, String, Long,...
+De so sanh lon, be hon --> su dung ham ...compareTo(...)

@@ -3,7 +3,7 @@ package bean;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Item {
+public class Item implements Comparable<Item> {
 
 	private Integer id;
 	private String name;
@@ -80,4 +80,15 @@ public class Item {
 				+ ", storeId=" + storeId + "]";
 	}
 	
+	@Override
+	public int compareTo(Item o) {
+		Item item1 = this; // this, item1 phan tu dung truoc
+		Item item2 = o; // this, item2 phan tu dung sau
+		
+//		// SX tang dan theo gia ban
+//		return item1.getSalesPrice().compareTo(item2.getSalesPrice());
+		
+		// SX giam dan theo ten mat hang
+		return item2.getName().compareTo(item1.getName());
+	}
 }
