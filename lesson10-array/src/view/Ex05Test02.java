@@ -1,45 +1,47 @@
 package view;
 
+import static utils.PrintUtils.generate;
+
+import functional.LongOperation;
+
 public class Ex05Test02 {
-
-    // Hàm tính tổng
-    public static int sumArray(int[] arr) {
-        int sum = 0;
-        for (int x : arr) sum += x;
-        return sum;
-    }
-
-    // Hàm tính tích
-    public static int productArray(int[] arr) {
-        int product = 1;
-        for (int x : arr) product *= x;
-        return product;
-    }
-
-    // Hàm tìm giá trị lớn nhất
-    public static int maxArray(int[] arr) {
-        int max = arr[0];
-        for (int x : arr) {
-            if (x > max) max = x;
-        }
-        return max;
-    }
-
-    // Hàm tìm giá trị nhỏ nhất
-    public static int minArray(int[] arr) {
-        int min = arr[0];
-        for (int x : arr) {
-            if (x < min) min = x;
-        }
-        return min;
-    }
-
-    public static void main(String[] args) {
-        int[] arr = {2, 3, 5, -1, 10};
-
-        System.out.println("Tổng = " + sumArray(arr));
-        System.out.println("Tích = " + productArray(arr));
-        System.out.println("Max = " + maxArray(arr));
-        System.out.println("Min = " + minArray(arr));
-    }
+	
+	/*
+	 Cho một mảng số nguyên gồm N phần tử
+	 Viết chương trình
+	 + Tìm tổng các phần tử trong mảng
+	 + Tìm tích các phần tử trong mảng
+	 + Tìm giá trị lớn nhất trong mảng
+	 + Tìm giá trị nhỏ nhất trong mảng
+	 
+	 1: Mỗi yêu cầu viết 1 hàm để xử lý
+	 2: Viết duy nhất 1 hàm để xử lý cho 4 yêu cầu trên
+	 
+	 Functional --> ... 
+	 	- initial value
+	 	- numbers
+	 	- long ...(long result, long number) 
+	 */
+	
+	public static void main(String[] args) {
+		int[] numbers = {11, 22, 15, 40, 66, 128};
+		
+		generate("Danh sách các phần tử", numbers);
+		
+		System.out.printf("Tổng các phần tử trong mảng --> %s\n", process(numbers, 0, (n1, n2) -> n1 + n2));
+		
+		System.out.printf("Tích các phần tử trong mảng --> %s\n", process(numbers, 1, (n1, n2) -> n1 * n2));
+		
+		System.out.printf("Tích giá trị lớn nhất trong mảng --> %s\n", process(numbers, Long.MIN_VALUE, (n1, n2) -> Math.max(n1, n2)));
+		
+		System.out.printf("Tích giá trị nhỏ trong mảng --> %s\n", process(numbers, Long.MAX_VALUE, (n1, n2) -> Math.min(n1, n2)));
+	}
+	
+	private static long process(int[] numbers, long initial, LongOperation operation) {
+		long result = initial;
+		for (int number: numbers) {
+			result = operation.operate(result, number);
+		}
+		return result;
+	}
 }

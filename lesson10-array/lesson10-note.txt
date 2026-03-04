@@ -1,10 +1,43 @@
 Thao tác với KDL mảng, sử dụng tập hợp cho KDL
-- Nguyên thủy: int, double, long, char
-- Đối tượng 
-	--> đơn(KDL có sẵn của java) : Integer, Double, String, Character...
-	--> đa(KDL do mình tự tạo ra, có 1| N thuộc tính): Item, Employee, Person
-	
+- nguyên thủy: int, double, long, char
+- đối tượng
+  --> đơn(KDL có sẵn của Java, có 1 thuộc tính duy nhất): Integer, Double, String, Character ...
+  --> đa(KDL do mình tự tạo ra, có 1 | N thuộc tính): Item, Employee, Person
+
 Mảng
-- Số ptu cố định
-- Thực tế:
-	* Lưu danh sách các ptu thay đổi --> số lượng 
+- số phần tử cố định
+- thực tế: 
+  * lưu danh sách các phần tử thay đổi --> số lượng vượt qua kích thước mảng
+  * tạo mảng mới có kích thước nhiều hơn mảng cũ, copy mảng cũ quả kèm theo các ptu mới
+  
+  * muốn xóa 1 phần tử trong mảng
+  
+Sắp xếp
+- Đầu vào: danh sách các phần tử
+  . KDL nguyên thủy: int, char, float
+  . KDL đối tượng: Integer, String, Item, Student ...
+  
+- Sử dụng thuật toán sắp xếp để xử lý
+  . Duyệt qua tất cả các phần tử trong danh sách
+  . Hoán vị các phần tử để nằm đúng vị trí theo yêu cầu: tăng dần / giảm dần
+  . Thuật toán sắp xếp
+    --> Sx nổi bọt: bubble sort
+    -->    chọn   : selection sort
+    -->    chèn   : insertion sort
+    -->           : heap sort
+    -->           : quick sort
+  . Học cách sử dụng hàm sắp xếp có sẵn trong Java ...
+  
+- Các bài toán có thể gặp
+  . KDL nguyên thủy
+    --> Tăng dần theo giá trị
+    --> Giảm dần theo giá trị
+    
+  . KDL đối tượng
+    --> Tăng/giảm dần theo giá trị
+    --> NULL first/last
+    
+    --> Bài toán sắp xếp tăng/giảm cho nhiều thuộc tính
+    
+Trong các KDL đối tượng có sẵn của Java: Integer, Double, String, Long, LocalDate, BigDecimal ....
+Để so sánh lớn, bé hơn --> sử dụng hàm ...compareTo(...) từ interface cha là Comparable<...>
