@@ -11,4 +11,36 @@ Mảng
 
 * muốn xoá 1 phần tử trong mảng 
 
+Sắp xếp 
+- Đầu vào : danh sách các phần từ 
+. KDL nguyên thuỷ int , char, float
+. KDL đối tượng : Integer , String , Student,...
+
+- Sử dụng thuật toán sắp xếp để xử lí
+. Duyêt qua tất cả các phần tử trong danh sách 
+. Hoán vị để các phần tử nằm đúng vị trí theo yêu cầu : tăng dần/ giảm dần
+. Thuật toán sắp xếp
+	--> Sx nổi bọt: bubble sort
+	--> 	chọn: selection sort
+	--> 	chèn: insert sort
+	--> 		: heap sort
+	--> 		: quick sort
+	. Học cách sử dụng hàm sắp xếp có sẳn trong java ....
+	
+	
+- Các bài toán có thể gặp 
+	.KDL nguên thuỷ
+	--> Tăng dần theo giá trị 
+	--> Giảm dần theo giá trị
+	
+	.KDL đối tượng 
+	--> Tăng dần/ giảm dần theo giá trị 
+	--> null first/last
+	
+	    --> Bài toán sắp xếp tăng/giảm cho nhiều thuộc tính
+    
+Trong các KDL đối tượng có sẵn của Java: Integer, Double, String, Long, LocalDate, BigDecimal ....
+Để so sánh lớn, bé hơn --> sử dụng hàm ...compareTo(...) từ interface cha là Comparable<...>
+
+
 

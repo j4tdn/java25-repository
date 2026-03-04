@@ -1,7 +1,10 @@
 package view;
 
+import static utils.PrintUtils.generate;
+
+import functional.LongOperation;
+
 public class Ex05Test02 {
-	
 	
 	/*
 	 Cho một mảng số nguyên gồm N phần tử
@@ -13,94 +16,32 @@ public class Ex05Test02 {
 	 
 	 1: Mỗi yêu cầu viết 1 hàm để xử lý
 	 2: Viết duy nhất 1 hàm để xử lý cho 4 yêu cầu trên
+	 
+	 Functional --> ... 
+	 	- initial value
+	 	- numbers
+	 	- long ...(long result, long number) 
 	 */
 	
-	 public static void main(String[] args) {
-	        int[] a = { -2, -1, 1, 2, 3, 4, 5 };
-
-	       
-	        System.out.println("Tổng: " + sum(a));
-	        System.out.println("Tích:  " + mul(a));
-	        System.out.println("Max: " + max(a));
-	        System.out.println("Min: " + min(a));
-
-	        
-	        System.out.println("\n===============================\n");
-	        
-	        System.out.println("Tổng: " + oneForAll(a, 1));
-	        System.out.println("Tích: " + oneForAll(a, 2));
-	        System.out.println("Max:" + oneForAll(a, 3));
-	        System.out.println("Min: " + oneForAll(a, 4));
-	    }
-
-    public static int sum(int[] arr) {
-        int s = 0;
-        for (int i = 0; i < arr.length; i++) {
-            s += arr[i];
-        }
-        return s;
-    }
-
-    public static long mul(int[] arr) {
-        long p = 1;
-        for (int i = 0; i < arr.length; i++) {
-            p *= arr[i];
-        }
-        return p;
-    }
-
-    public static int max(int[] arr) {
-        int max = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] > max) max = arr[i];
-        }
-        return max;
-    }
-
-    public static int min(int[] arr) {
-        int min = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] < min) min = arr[i];
-        }
-        return min;
-    }
-
-   
-    public static long oneForAll(int[] arr, int type) {
-        if (arr == null || arr.length == 0) return 0;
-
-        if (type == 1) { 
-            long s = 0;
-            for (int i = 0; i < arr.length; i++) s += arr[i];
-            return s;
-        }
-
-        if (type == 2) { 
-            long p = 1;
-            for (int i = 0; i < arr.length; i++) 
-            	p *= arr[i];
-            return p;
-        }
-
-        if (type == 3) { // max
-            long max = arr[0];
-            for (int i = 1; i < arr.length; i++) {
-                if (arr[i] > max) max = arr[i];
-            }
-            return max;
-        }
-
-        if (type == 4) { // min
-            long min = arr[0];
-            for (int i = 1; i < arr.length; i++) {
-                if (arr[i] < min) min = arr[i];
-            }
-            return min;
-        }
-
-        return 0; 
-    }
-
-    
-   
+	public static void main(String[] args) {
+		int[] numbers = {11, 22, 15, 40, 66, 128};
+		
+		generate("Danh sách các phần tử", numbers);
+		
+		System.out.printf("Tổng các phần tử trong mảng --> %s\n", process(numbers, 0, (n1, n2) -> n1 + n2));
+		
+		System.out.printf("Tích các phần tử trong mảng --> %s\n", process(numbers, 1, (n1, n2) -> n1 * n2));
+		
+		System.out.printf("Tích giá trị lớn nhất trong mảng --> %s\n", process(numbers, Long.MIN_VALUE, (n1, n2) -> Math.max(n1, n2)));
+		
+		System.out.printf("Tích giá trị nhỏ trong mảng --> %s\n", process(numbers, Long.MAX_VALUE, (n1, n2) -> Math.min(n1, n2)));
+	}
+	
+	private static long process(int[] numbers, long initial, LongOperation operation) {
+		long result = initial;
+		for (int number: numbers) {
+			result = operation.operate(result, number);
+		}
+		return result;
+	}
 }

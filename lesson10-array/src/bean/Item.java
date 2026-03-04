@@ -3,7 +3,7 @@ package bean;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Item {
+public class Item implements Comparable<T>  {
 
 	private Integer id;
 	private String name;
