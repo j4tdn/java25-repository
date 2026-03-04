@@ -9,3 +9,14 @@ Mảng
 - thực tế:
 	* lưu danh sách các phần tử thay đổi --> số lượng vượt qua kích thước mảng
 	* tạo mảng mới rồi copy mảng cũ kèm các ptu mới
+	
+Sắp xếp
+- Đầu vào: danh sách các phần tử
+- Sử dụng thuật toán để sx các phần tử:
+	. Duyệt qua các phần tử trong danh sách
+	. Hoán vị các phần tử để nằm đúng vị trí yêu: asc/desc
+	. Thuật toán sắp xếp:
+		--> bubble sort
+		--> selection sort
+		--> insert sort
+		--> heap sort
