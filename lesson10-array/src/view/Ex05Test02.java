@@ -1,6 +1,9 @@
 package view;
 
-import function.lambda.NumberTest;
+import function.LongOperation;
+import function.NumberTest;
+
+import util.*;
 
 public class Ex05Test02 {
 
@@ -28,7 +31,7 @@ public static void main(String[] args) {
 
 		System.out.println("=====================================");
 		
-		//1 hàm để xử lý cho 3 yêu cầu
+		//1 hàm để xử lý cho 3 yêu cầu phake
 		
 		System.out.println("Tổng các phần tử trong mảng: ");
 
@@ -39,17 +42,33 @@ public static void main(String[] args) {
 		
 		System.out.println("Giá trị nhỏ nhất trong mảng: ");
 		findNumbers(numbers, nb -> nb < numbers[0]);
+		
+		//1 hàm để xử lý cho 3 yêu cầu 
+		
+		PrintUtils.generate("DS phan tu", numbers);
+		
+		System.out.printf("Tong cac phan tu --> %s\n", process(numbers, 0, (n1, n2) -> n1 + n2));
+		
+		System.out.printf("Tich cac phan tu --> %s\n", process(numbers, 1, (n1, n2) -> n1 * n2));
+	
+		System.out.printf("GTLN trong mang --> %s\n", process(numbers, numbers[0], (n1, n2) -> Math.max(n1, n2)));
+		
+		System.out.printf("GTNN trong mang--> %s", process(numbers, numbers[0], (n1, n2) -> Math.min(n1, n2)));
+}
+
+//=====================================================
+
+
+	private static long process(int[] numbers, long init, LongOperation operation) {
+		long rs = init;
+		for(int number: numbers) {
+			rs = operation.operate(rs, number);
+		}
+		return rs;
 	}
 
-//	private static void calculationNumbers(int[] numbers, int n, NumberTest nTest) {
-//		for(int number: numbers) {
-//			int rs = nTest.testing(number);
-//		}
-//		System.out.println(rs);
-//		
-//		System.out.println();
-//	}
-	
+//=====================================================
+
 	private static void findNumbers(int[] numbers, NumberTest nTest) {
 		int max = numbers[0];
 		for(int number: numbers) {
