@@ -1,7 +1,5 @@
 package utils;
 
-import bean.Item;
-
 public class PrintUtils {
 	
 	private PrintUtils() {
