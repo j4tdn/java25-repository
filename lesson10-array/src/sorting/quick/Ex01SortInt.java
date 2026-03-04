@@ -5,7 +5,7 @@ import static utils.PrintUtils.generate;
 import bean.SortOrder;
 import utils.ArrayUtils;
 
-public class Ex01SelectionSortInt {
+public class Ex01SortInt {
 
 	public static void main(String[] args) {
 		// Sử dụng hàm sort có sẵn của Java --> DualPivotQuickSort.class
