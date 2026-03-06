@@ -24,10 +24,19 @@ public class Ex02 {
 			}
 		}
 		
-		for(int i = rowIndex;i<4;++i) {
-			for(int j = colIndex;j<4;++j) {
-				
+		for(int i = 0;i<arr.length;++i) {
+			arr[i][colIndex] = 0;
+		}
+		
+		for(int i = 0;i<arr[rowIndex].length;++i) {
+			arr[rowIndex][i] = 0;
+		}
+
+		for(int i = 0;i<arr.length;++i) {
+			for(int j = 0;j<arr[i].length;++j) {
+				System.out.print(arr[i][j]+" ");
 			}
+			System.out.println();
 		}
 		
 	}
