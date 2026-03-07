@@ -79,21 +79,17 @@ public class Ex04 {
         System.out.println("Tang dan:");
         System.out.println(resultAsc);
 
-        // ================= GIẢM DẦN =================
         List<String> resultDesc = new ArrayList<>();
 
         for (int i = 0; i < nullCount; i++)
             resultDesc.add(null);
 
-        // chuỗi giảm
         for (int i = words.size() - 1; i >= 0; i--)
             resultDesc.add(words.get(i));
 
-        // dương giảm
         for (int i = positive.size() - 1; i >= 0; i--)
             resultDesc.add(String.valueOf(positive.get(i)));
 
-        // âm giảm
         for (int i = negative.size() - 1; i >= 0; i--)
             resultDesc.add(String.valueOf(negative.get(i)));
 
