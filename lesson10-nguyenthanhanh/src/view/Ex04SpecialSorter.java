@@ -1,6 +1,6 @@
 package view;
 
-import static utils.NumberUtils.*;
+import static utils.PrintUtils.generate;
 
 import java.util.Arrays;
 
@@ -10,6 +10,8 @@ public class Ex04SpecialSorter {
 		
 		String[] arr = {"-2", "-6", "10", null, "4", "8", null, "Special", "a", "c", "b", "xx"};
 		sort(arr);
+		
+		generate("Mảng sau khi sắp xếp ASC", arr);
 		
 	}
 	
@@ -22,11 +24,12 @@ public class Ex04SpecialSorter {
 			return 1;
 		}
 		
-		if(isValidNumber(item)) {
-			return Integer.parseInt(item) < 0 ? 2 : 3;
-		}
-		
-		return 4;
+		try {
+            int val = Integer.parseInt(item);
+            return val < 0 ? 2 : 3;
+        } catch (NumberFormatException e) {
+            return 4;
+        }
 	}
 	
 	private static void sort(String[] arr) {
@@ -35,11 +38,15 @@ public class Ex04SpecialSorter {
 			int p2 = getPriority(item2);
 			
 			if(p1 != p2) {
-				return p2 - p1;
+				return Integer.compare(p1, p2);
 			}
 			
-			if(p1 == p2) {
-				return Integer.compare(p1, p2);
+			if(p1 == 5) {
+				return 0;
+			}
+			
+			if(p1 == 2 || p1 == 3) {
+				return Integer.compare(Integer.parseInt(item1), Integer.parseInt(item2));
 			}
 			
 			return item1.compareTo(item2);

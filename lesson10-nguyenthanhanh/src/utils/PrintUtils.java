@@ -14,4 +14,12 @@ public class PrintUtils {
 		System.out.println("}\n");
 	}
 	
+	public static void generateInt(String s, int[] elements) {
+		System.out.println(s + " --> {");
+		for (Object element: elements) {
+			System.out.println("  - " + element);
+		}
+		System.out.println("}\n");
+	}
+	
 }
