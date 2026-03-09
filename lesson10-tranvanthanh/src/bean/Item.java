@@ -1,7 +1,6 @@
 package bean;
 
 public class Item {
-	// itemId name salesPrice storeId
 	private int itemId;
 	private String name;
 	private double salesPrice;
