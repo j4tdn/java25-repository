@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import functional.StringTest;
-
 public class Ex02SingleObjectType {
 	
 	public static void main(String[] args) {
