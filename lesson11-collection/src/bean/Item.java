@@ -84,8 +84,9 @@ public class Item implements Comparable<Item>{
 
 	@Override
 	public int compareTo(Item o) {
-		Item item1 = this;
-		Item item2 = o;
-		return item1.getSalesPrice().compareTo(item2.getSalesPrice());
+//		Item item1 = this;
+//		Item item2 = o;
+//		return item1.getSalesPrice().compareTo(item2.getSalesPrice());
+		return 0;
 	}
 }
