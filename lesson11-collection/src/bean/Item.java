@@ -2,6 +2,7 @@ package bean;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Item implements Comparable<Item>{
 	
@@ -10,6 +11,11 @@ public class Item implements Comparable<Item>{
 	private BigDecimal salesPrice;
 	private LocalDate expiredDate;
 	private Integer storeId;
+
+	public Item(Integer id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 	
 	public Item() {
 		
@@ -34,6 +40,11 @@ public class Item implements Comparable<Item>{
 		}
 		
 		return getId() == that.getId();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId());
 	}
 
 	public Integer getId() {
