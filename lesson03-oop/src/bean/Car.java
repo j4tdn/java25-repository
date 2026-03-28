@@ -1,20 +1,41 @@
 package bean;
 
-public class Car {
+//  Comment 1 hàng
+/*  Comment N hàng ở bất kỳ vị trí nào*/
+/** Comment trước class/method để giá trị mô tả class/method đó */
 
-	// atrribute = thuộc tính = biến toàn cục
-	//theo hướng phát triển oop:
-	//- Mỗi class sẽ quản lý riêng của class đó -->> thuoc tinh trong class phải là private
-	//
+/**
+ * Class Car có các thuộc tính
+ * Từ class Car có thể tạo ra các đối tượng
+ * 
+ * Class Car --> Kiểu Dữ Liệu
+ */
+public class Car {
+	
+	// attribute(s) = thuộc tính = biến toàn cục
+	// sẽ được khởi tạo, gán giá trị khi một đối tượng được tạo ra
+	// cứ mỗi đối tượng nó sẽ quản lý riêng các thuộc tính(giá trị) của riêng nó
 	private Integer id;
 	private String model;
 	private String name;
 	private Double salesPrice;
 	private Integer amount;
-
-	// constructor mặc đinh
+	
+	// theo hướng phát triển oop
+	// mỗi class sẽ quản lý thuộc tính riêng của class đó --> tt trong class phải là private
+	// trong thực tế dự án các class sẽ gọi qua về để lấy, cập nhật dữ liệu để xử lý yêu cầu của bài
+	// thay vì truy cập trực tiếp các thuộc tính của class
+	// class hỗ trợ getter/setter[public] để lấy/cập nhật giá trị cho từng thuộc tính private
+	
+	// từ nay về sau
+	// khi tạo 1 class thì các tt phải cho là private và thêm getter, setter
+	// thứ tự: thuộc tính, hàm khởi tạo, getter-setter, toString
+	
+	// nếu để tt là public thì vẫn có thể truy cập trực tiếp từ bên ngoài giống như fop
+	
+	// default(empty) constructor
+	// hàm khởi tạo mặc định, dùng để khởi tạo đối tượng
 	public Car() {
-
 	}
 
 	// constructor
@@ -26,8 +47,12 @@ public class Car {
 		this.amount = 1;
 	}
 	
+	// class #
+	// Car c2 = new Car(2, "honda", "hrv", 880d);
+	// c2.amount = 6;
+	// c2.salesPrice = 990d; -- c2.setSalesPrice(990)
 	
-
+	// sout(c2.salesPrice) -- sout(c2.getSalesPrice())
 	public Integer getId() {
 		return id;
 	}
@@ -67,39 +92,38 @@ public class Car {
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
-
-
+	
+	// c1.equals(c2)
+	// Car: this(c1)
+	// Object: o(c2)
+	
 	@Override
 	public boolean equals(Object o) {
-		//quy ước 2 Car bằng nahu khi giống nhau id
-
+		// quy ước 2 Car bằng nhau khi giống id
+		
 		// Nếu 2 biến đối tượng cùng trỏ đến 1 ô nhớ tại HEAP
 		// --> 2 biến đối tượng bằng nhau, khỏi so sánh
-		if(this == o){
+		if (this == o) {
 			return true;
 		}
-		// 2 biên trỏ đến 2 ô nhớ khác nhau tại HEAP
+		
+		// 2 biến trỏ đến 2 ô nhớ khác nhau tại HEAP
 		// để gọi được hàm equals trong class Car thì chắc chắn là biến đối tượng Car mới gọi được --> this là Car
 		// trước khi so sánh id của mỗi Car --> phải kiểm tra o có phải là Car lúc runtime hay không
-
+		
 		// nếu o ko phải là Car thì return false
-		// nếu o là Car thì ép kiểu o từ Object sang Car lưu vào biên that (mục đích là để có Car gọi hàm getId())
-		if(!(o instanceof Car that)){
+		// nếu o là Car thì ép kiểu o từ Object sang Car lưu vào biến that(mục đích là để có Car gọi hàm getId())
+		if (!(o instanceof Car that)) {
 			return false;
 		}
-		//so sanh id cuar 2 đối tượng
-		return getId() = that.getId();
-
+		
+		// so sánh id của 2 biến đối tượng
+		return getId() == that.getId();
 	}
-
-
-
+	
 	@Override
 	public String toString() {
 		return "Car [id=" + id + ", model=" + model + ", name=" + name + ", salesPrice=" + salesPrice + ", amount="
 				+ amount + "]";
 	}
-
-	
-
 }

@@ -7,7 +7,7 @@ public class Ex01PolyObjectDemo {
 	- Square: calculates
 	- Rectangle: calcArea
 	- Circle: tinhS
-	==>Cùng một chức năng, code không đồng bộ nhớp
+	==>Cùng một chức năng, code không đồng bộ - nhớp
 	==> Xử lý
 
 	1. Tạo ra một class là cha của các class trên

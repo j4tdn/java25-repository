@@ -19,4 +19,5 @@ public interface Shape {
 	private void setStyle() {
 		System.out.println("Shape --> setStyle ...");
 	}
+	
 }
