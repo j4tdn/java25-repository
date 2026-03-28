@@ -18,6 +18,15 @@ public class Ex05ArrayListPrinciple {
 	 - new ArrayList<>()
 	   --> khởi tạo thuộc tính elementData = {}
 	   --> size = 0
+	   --> chỉ khởi tạo elementData khi add phần tử đầu tiên
+	   
+	 - new ArrayList<>(initialCapacity)
+	   --> khởi tạo thuộc tính elementData = new Object[initialCapacity]
+	   --> size = 0
+	   --> khi biết chắc chắn số lượng phần tử tối đa cần lưu trong ArrayList
+	       --> truyền initialCapacity = số lượng phần tử đó
+	       --> khởi tạo elementData 1 lần duy nhất
+	       --> hạn chế 'grow'
 	   
 	 - #add(e)
 	   --> trong lần đầu tiên thêm mới phần tử vào ArrayList
@@ -89,7 +98,10 @@ public class Ex05ArrayListPrinciple {
 	
 	public static void main(String[] args) {
 		
-		List<String> elements = new ArrayList<>();
+		// Array:            get/set
+		// ArrayList[Array]: get/set add/remove 
+		
+		List<String> elements = new ArrayList<>(50);
 		
 		elements.add("A");
 		elements.add("B");
@@ -103,6 +115,8 @@ public class Ex05ArrayListPrinciple {
 		elements.add("K");
 		
 		elements.add("L");
+		
+		elements.remove(3);
 		
 		System.out.println("size: " + elements.size());
 		
