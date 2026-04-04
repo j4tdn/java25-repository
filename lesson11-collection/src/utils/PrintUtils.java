@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,6 +18,14 @@ public class PrintUtils {
 		Set<Entry<K, V>> entries = map.entrySet();
 		for (Entry<K, V> entry: entries) {
 			System.out.println("   - " + entry.getKey() + ": " + entry.getValue());
+		}
+		System.out.println("}\n");
+	}
+	
+	public static <E> void generate(String s, Collection<E> elements) {
+		System.out.println(s + " --> {");
+		for (E element: elements) {
+			System.out.println("  - " + element);
 		}
 		System.out.println("}\n");
 	}
