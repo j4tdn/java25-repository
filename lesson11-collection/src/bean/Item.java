@@ -78,7 +78,7 @@ public class Item implements Comparable<Item> {
 			return false;
 		}
 
-		return Objects.equals(getId(), that.getId());
+		return getId() == that.getId();
 	}
 	
 	@Override
@@ -94,6 +94,6 @@ public class Item implements Comparable<Item> {
 
 	@Override
 	public int compareTo(Item o) {
-		return this.id.compareTo(o.id);
+		return 0;
 	}
 }
