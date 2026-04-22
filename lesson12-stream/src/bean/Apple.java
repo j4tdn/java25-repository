@@ -6,12 +6,12 @@ import java.util.Objects;
 import common.Color;
 
 public class Apple {
-	
+
 	private Integer id;
 	private Color color;
 	private BigDecimal weight;
 	private String originalCountry;
-	
+
 	public Apple() {
 	}
 
@@ -20,6 +20,28 @@ public class Apple {
 		this.color = color;
 		this.weight = weight;
 		this.originalCountry = originalCountry;
+	}
+
+	public Apple(String line) {
+		String[] tokens = line.split(", ");
+		if (tokens.length == 4) {
+			this.id = Integer.parseInt(tokens[0]);
+			this.color = Color.readValueFromString(tokens[1]);
+			this.weight = new BigDecimal(tokens[2]);
+			this.originalCountry = tokens[3];
+		}
+	}
+
+	public static Apple cast(String line) {
+		String[] tokens = line.split(", ");
+		if (tokens.length == 4) {
+			int id = Integer.parseInt(tokens[0]);
+			Color color = Color.readValueFromString(tokens[1]);
+			BigDecimal weight = new BigDecimal(tokens[2]);
+			String country = tokens[3];
+			return new Apple(id, color, weight, country);
+		}
+		return null;
 	}
 
 	public Integer getId() {
@@ -53,7 +75,7 @@ public class Apple {
 	public void setOriginalCountry(String originalCountry) {
 		this.originalCountry = originalCountry;
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
@@ -64,7 +86,7 @@ public class Apple {
 		}
 		return getId() == that.getId();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(getId());
