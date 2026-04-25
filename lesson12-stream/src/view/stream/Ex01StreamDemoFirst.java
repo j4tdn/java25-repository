@@ -33,7 +33,7 @@ public class Ex01StreamDemoFirst {
 	 * filter, map --> Stream<T>
 	 * 
 	 * target
-	 * --> Collectors.toList || toSet || joining || toMap || toArray
+	 * --> Collectors.toList || toSet || joining || toMap || toArray || forEach || count
 	 * 
 	 */
 	

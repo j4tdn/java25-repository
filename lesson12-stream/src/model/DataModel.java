@@ -6,7 +6,9 @@ import java.util.Map;
 
 import bean.Apple;
 import bean.Dish;
+import bean.Player;
 import common.Color;
+import common.GameStatus;
 import common.Kind;
 
 import static utils.NumberUtils.*;
@@ -14,6 +16,15 @@ import static utils.NumberUtils.*;
 public class DataModel {
 	
 	private DataModel() {
+	}
+	
+	public static List<Player> mockPlayerList() {
+		return List.of(
+			new Player("P1", List.of("bachuon", "hairo", "dambich"), GameStatus.LOSE),
+			new Player("P2", List.of(), GameStatus.WIN),
+			new Player("P3", List.of("haibich", "namco", "bonro"), GameStatus.LOSE),
+			new Player("P4", List.of("bayco", "bayro"), GameStatus.LOSE)
+		);
 	}
 	
 	public static Map<String, Integer> mockModelMap() {
