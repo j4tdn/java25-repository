@@ -1,0 +1,33 @@
+A. nhắc lại khái niệm
+-final: final cho biến
+	--> biến có từ khóa final thì mình sẽ không thể dùng toán tử = để gán lại giá trị(tại stack)
+	--> final ở stack
+
+-immutable+ immutable cho object
+	--> object được gọi là immutable khi obiject đó được tạo ra và lưu trữ tại vùng nhớ HEAp sau đó
+		không thể cập nhâoj được gí trị --> immutable object
+	--> để object co thể là  immutable thì
+		- class của nó phải có private attribute(s) và final cho atttributes
+		- nâng cao: private và final cho các attribute thì các attribute đó vẫn có thẻ cạpa nhập được
+		
+		Item
+			priavte final Integer id;
+			priavte final String name;
+			private final Order order;	
+			
+			private Integer getid(){
+			
+			return id;
+			}
+			
+			private String getName() {
+			return name;
+			}
+			
+			priavte Order getOrrder(){
+			return order;
+			}
+			
+			App --> Item item = new Item()
+					Order order = item.getOrder();
+					order.setTotalOfMoney
