@@ -1,16 +1,114 @@
 package utils;
 
+import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileUtils {
 
 	private FileUtils() {
 	}
 	
+	// helper methods for manipulation
+	public static void writeAndOpen(String path, Iterable<String> iterable) {
+		File file = new File(path);
+
+		if (!file.exists()) {
+			System.out.println("File " + file.getName() + " is not existed yet ...");
+			return;
+		}
+		
+		try {
+			Files.write(file.toPath(), iterable);
+			
+			System.out.println("Opening file .... '" + file.getName() + "'");
+			Desktop.getDesktop().open(file);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public static List<String> read(String path) {
+		List<String> lines = new ArrayList<>();
+		
+		File file = new File(path);
+
+		if (!file.exists()) {
+			System.out.println("File " + file.getName() + " is not existed yet ...");
+			return lines;
+		}
+
+		try {
+			lines.addAll(Files.readAllLines(file.toPath()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return lines;
+	}
+	
+	public static void writeObjectAndOpen(String path, Object object) {
+		File file = new File(path);
+
+		if (!file.exists()) {
+			System.out.println("File " + file.getName() + " is not existed yet ...");
+			return;
+		}
+		
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		
+		try {
+			fos = new FileOutputStream(file);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(object);
+			
+			System.out.println("Opening file .... '" + file.getName() + "'");
+			Desktop.getDesktop().open(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			FileUtils.close(oos, fos);
+		}
+	}
+	
+	public static Object readObject(String path) {
+		File file = new File(path);
+		
+		if (!file.exists()) {
+			System.out.println("File " + file.getName() + " is not existed yet ...");
+			return null;
+		}
+		
+		Object target = null;
+		
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		
+		try {
+			fis = new FileInputStream(file);
+			ois = new ObjectInputStream(fis);
+			
+			target = ois.readObject();
+			
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			FileUtils.close(ois, fis);
+		}
+		return target;
+	}
+	
+	// helper methods for structure
 	public static void close(AutoCloseable ...closeables) {
 		for (AutoCloseable closeable: closeables) {
 			try {
