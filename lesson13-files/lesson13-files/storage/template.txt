@@ -1,0 +1,7 @@
+=== Danh sách mã biển số xe theo thành phố tại Việt Nam [06.05.2026] ===
+Quảng Nam: 92
+Đà Nẵng: 43
+TP-Huế: 75
+Quảng Trị: 74
+Quảng Bình: 73
+T-T-Huế: 75

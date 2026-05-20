@@ -1,0 +1,2 @@
+INDEX VERSION 1.134+C:\Users\RikkeiNhiTon\Desktop\java25-repository\lesson09-preview\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
