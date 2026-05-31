@@ -1,5 +1,8 @@
 package model;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.temporal.ChronoField;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +10,8 @@ import java.util.Map;
 import bean.Apple;
 import bean.Dish;
 import bean.Player;
+import bean.Trader;
+import bean.Transaction;
 import common.Color;
 import common.GameStatus;
 import common.Kind;
@@ -16,6 +21,23 @@ import static utils.NumberUtils.*;
 public class DataModel {
 	
 	private DataModel() {
+	}
+	
+	public static List<Transaction> mockTransaction(){
+		Trader t1 =  new Trader("T123", "A123", "Milan");
+		Trader t2 =  new Trader("T123", "A123", "Hue");
+		Trader t3 =  new Trader("T123", "A123", "Milan");
+		Trader t4 =  new Trader("T123", "A123", "Da Nang");
+		return List.of(
+				new Transaction("TA1", t1, LocalDate.now(), new BigDecimal("5200")),
+				new Transaction("TA2", t2, LocalDate.now().with(ChronoField.YEAR, 2022), new BigDecimal("5200")),
+				new Transaction("TA3", t3, LocalDate.now().minusDays(10), new BigDecimal("6200")),
+				new Transaction("TA4", t4, LocalDate.now().plusDays(1), new BigDecimal("5700")),
+				new Transaction("TA5", t1, LocalDate.now().minusDays(2), new BigDecimal("2300")),
+				new Transaction("TA6", t2, LocalDate.now().plusDays(4), new BigDecimal("5400")),
+				new Transaction("TA7", t3, LocalDate.now().plusDays(4), new BigDecimal("4300")),
+				new Transaction("TA8", t4, LocalDate.now(), new BigDecimal("6600"))
+				);
 	}
 	
 	public static List<Player> mockPlayer(){
