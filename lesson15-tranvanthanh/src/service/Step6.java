@@ -7,10 +7,7 @@ import java.util.Map;
 
 public class Step6 {
 
-    public Map<Integer, BigDecimal> execute(
-            Map<Integer, BigDecimal> whShare,
-            BigDecimal planningAmount
-    ) {
+    public Map<Integer, BigDecimal> execute(Map<Integer, BigDecimal> whShare,BigDecimal planningAmount) {
 
         Map<Integer, BigDecimal> result = new HashMap<>();
 
@@ -19,10 +16,7 @@ public class Step6 {
             Integer whId = entry.getKey();
             BigDecimal share = entry.getValue();
 
-            BigDecimal allocation = share
-                    .divide(BigDecimal.valueOf(100), 10, RoundingMode.HALF_UP)
-                    .multiply(planningAmount)
-                    .setScale(1, RoundingMode.HALF_UP);
+            BigDecimal allocation = share.divide(BigDecimal.valueOf(100), 10, RoundingMode.HALF_UP).multiply(planningAmount).setScale(1, RoundingMode.HALF_UP);
 
             result.put(whId, allocation);
         }

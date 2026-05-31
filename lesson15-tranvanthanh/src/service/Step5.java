@@ -23,9 +23,7 @@ public class Step5 {
 
         for (Map.Entry<Integer, BigDecimal> entry : whDemand.entrySet()) {
 
-            BigDecimal share = entry.getValue()
-                    .multiply(BigDecimal.valueOf(100))
-                    .divide(total, 2, RoundingMode.HALF_UP);
+            BigDecimal share = entry.getValue().multiply(BigDecimal.valueOf(100)).divide(total, 2, RoundingMode.HALF_UP);
 
             result.put(entry.getKey(), share);
         }
