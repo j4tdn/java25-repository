@@ -1,0 +1,7 @@
+=== Danh sach ma bien so xe theo thanh pho tai VN ===
+Quảng Nam: 92
+Đà Nẵng: 43
+Huế: 75
+Quảng Trị: 74
+Quảng Bình: 73
+null: 9999
