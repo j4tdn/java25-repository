@@ -4,6 +4,7 @@ import calculation.context.CountryLevelContext;
 import calculation.exception.CalculationException;
 import calculation.parameter.RefItemStoreId;
 import calculation.processor.FillingGapStorePotentialProcessor;
+import calculation.processor.StoreDemandProcessor;
 import calculation.result.WarehouseResult;
 import calculation.validator.PlanningAmountValidator;
 
@@ -32,13 +33,21 @@ public class CountryLevelCalculator implements Calculator<WarehouseResult> {
 		planningAmountValidator.validate();
 		
 		
-		log("- Step 2: Filling gap by references or average");
+		log("\n- Step 2: Filling gap by references or average");
 		Map<RefItemStoreId, BigDecimal> refItemStorePotentials = FillingGapStorePotentialProcessor.of()
-				.withReferenceItemStores(context.getReferenceItemStores())
-				.withReferenceStores(context.getReferenceStores())
+				.withReferenceItemStores(context.getRefItemStores())
+				.withReferenceStores(context.getRefStores())
 				.process();
-		// LOG: in kết quả
+		logRefItemStoreLevel(refItemStorePotentials, "StorePotential");
 		
+		log("\n- Step 3: Calculate Store Demands of Current Item");
+		Map<Long, BigDecimal> storeDemands = StoreDemandProcessor.of()
+				.withRefWeights(context.getRefWeights())
+				.withStoreTrendFactors(context.getStoreTrendFactors())
+				.withRefItemStorePotentials(refItemStorePotentials)
+				.withStoreIds(context.getStoreIds())
+				.process();
+		logStoreLevel(storeDemands, "StoreDemand");
 		
 		return null;
 	}

@@ -3,10 +3,15 @@ package model;
 import static utils.NumberUtils.bd;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
+import java.util.stream.Stream;
+
+import javax.print.attribute.HashAttributeSet;
 
 import bean.Item;
 import bean.Store;
@@ -32,7 +37,7 @@ public class DataModel {
 	private DataModel() {
 	}
 	
-	private static List<Long> mockItemStoreIds() {
+	public static List<Long> mockItemStoreIds() {
 		return LongStream.rangeClosed(1, 14).boxed().toList();
 	}
 
@@ -40,22 +45,22 @@ public class DataModel {
 	 * Dữ liệu test cho store potential của reference item A55
 	 */
 	public static Map<Item, List<Store>> mockStoresOfRefItemA55() {
-		Item itemA55 = new Item(55, "Item A55");
+		Item itemA55 = new Item(55L, "Item A55");
 		List<Store> stores = List.of(
-			new Store(1, "Store 1", bd(21.9), 2),
-			new Store(2, "Store 2", bd(66.885), 1),
-			new Store(3, "Store 3", bd(10.5), 1),
-			new Store(4, "Store 4", bd(36.4), 1),
-			new Store(5, "Store 5", bd(14), 1),
-			new Store(6, "Store 6", bd(65.52), 1),
-			new Store(7, "Store 7", bd(17.9), 2),
-			new Store(8, "Store 8", bd(26.7), 2),
-			new Store(9, "Store 9", bd(54.9), 2),
-			new Store(10, "Store 10", bd(35), 2),
-			new Store(11, "Store 11", bd(22.7), 3),
-			new Store(12, "Store 12", bd(1), 3),
-			new Store(13, "Store 13", bd(19.1), 3),
-			new Store(14, "Store 14", bd(19.4), 3)
+			new Store(1L, "Store 1", bd(21.9), 2L),
+			new Store(2L, "Store 2", bd(66.885), 1L),
+			new Store(3L, "Store 3", bd(10.5), 1L),
+			new Store(4L, "Store 4", bd(36.4), 1L),
+			new Store(5L, "Store 5", bd(14), 1L),
+			new Store(6L, "Store 6", bd(65.52), 1L),
+			new Store(7L, "Store 7", bd(17.9), 2L),
+			new Store(8L, "Store 8", bd(26.7), 2L),
+			new Store(9L, "Store 9", bd(54.9), 2L),
+			new Store(10L, "Store 10", bd(35), 2L),
+			new Store(11L, "Store 11", bd(22.7), 3L),
+			new Store(12L, "Store 12", bd(1), 3L),
+			new Store(13L, "Store 13", bd(19.1), 3L),
+			new Store(14L, "Store 14", bd(19.4), 3L)
 		);
 		return Map.of(itemA55, stores);
 	}
@@ -73,24 +78,30 @@ public class DataModel {
 	 * Dữ liệu test cho store potential của reference item A77
 	 */
 	public static Map<Item, List<Store>> mockStoresOfRefItemA77() {
-		Item itemA77 = new Item(77, "Item A77");
+		Item itemA77 = new Item(77L, "Item A77");
 		List<Store> stores = List.of(
-			new Store(1, "Store 1", bd(22.024), 2),
-			new Store(2, "Store 2", bd(150.777), 1),
-			new Store(3, "Store 3", bd(33.4), 1),
-			new Store(4, "Store 4", bd(23.4), 1),
-			new Store(5, "Store 5", bd(26.289), 1),
-			new Store(6, "Store 6", bd(22.2), 1),
-			new Store(7, "Store 7", bd(23.6), 2),
-			new Store(8, "Store 8", bd(21.9), 2),
-			new Store(9, "Store 9", bd(20.74), 2),
-			new Store(10, "Store 10", bd(0), 2),
-			new Store(11, "Store 11", bd(26.612), 3),
-			new Store(12, "Store 12", bd(0), 3),
-			new Store(13, "Store 13", bd(32.1), 3),
-			new Store(14, "Store 14", bd(22.5), 3)
+			new Store(1L, "Store 1", bd(22.024), 2L),
+			new Store(2L, "Store 2", bd(150.777), 1L),
+			new Store(3L, "Store 3", bd(33.4), 1L),
+			new Store(4L, "Store 4", bd(23.4), 1L),
+			new Store(5L, "Store 5", bd(26.289), 1L),
+			new Store(6L, "Store 6", bd(22.2), 1L),
+			new Store(7L, "Store 7", bd(23.6), 2L),
+			new Store(8L, "Store 8", bd(21.9), 2L),
+			new Store(9L, "Store 9", bd(20.74), 2L),
+			new Store(10L, "Store 10", bd(0), 2L),
+			new Store(11L, "Store 11", bd(26.612), 3L),
+			new Store(12L, "Store 12", bd(0), 3L),
+			new Store(13L, "Store 13", bd(32.1), 3L),
+			new Store(14L, "Store 14", bd(22.5), 3L)
 		);
 		return Map.of(itemA77, stores);
+	}
+	
+	public static Map<Item, List<Store>> mockReferenceItemStores() {
+		Map<Item, List<Store>> referenceItemStores = new HashMap<>(mockStoresOfRefItemA55());
+		referenceItemStores.putAll(mockStoresOfRefItemA77());
+		return referenceItemStores;
 	}
 
 	/**

@@ -12,26 +12,26 @@ import java.util.Objects;
  */
 public class Store {
 
-	private Integer id;
+	private Long id;
 	private String desc;
 	private BigDecimal potential;
-	private Integer whId;
+	private Long whId;
 
 	public Store() {
 	}
 
-	public Store(Integer id, String desc, BigDecimal potential, Integer whId) {
+	public Store(Long id, String desc, BigDecimal potential, Long whId) {
 		this.id = id;
 		this.desc = desc;
 		this.potential = potential;
 		this.whId = whId;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -51,11 +51,11 @@ public class Store {
 		this.potential = potential;
 	}
 
-	public Integer getWhId() {
+	public Long getWhId() {
 		return whId;
 	}
 
-	public void setWhId(Integer whId) {
+	public void setWhId(Long whId) {
 		this.whId = whId;
 	}
 
