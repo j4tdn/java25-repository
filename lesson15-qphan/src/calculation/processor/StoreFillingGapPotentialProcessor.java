@@ -14,25 +14,25 @@ import bean.Item;
 import bean.Store;
 import calculation.parameter.RefItemStoreId;
 
-public class FillingGapStorePotentialProcessor implements Processor<Map<RefItemStoreId, BigDecimal>> {
+public class StoreFillingGapPotentialProcessor implements Processor<Map<RefItemStoreId, BigDecimal>> {
 
 	private Map<Item, List<Store>> refItemStores;
 	private Map<Long, Long> refStores;
 	
-	private FillingGapStorePotentialProcessor(){
+	private StoreFillingGapPotentialProcessor(){
 		
 	}
 	
-	public static FillingGapStorePotentialProcessor of() {
-		return new FillingGapStorePotentialProcessor();
+	public static StoreFillingGapPotentialProcessor of() {
+		return new StoreFillingGapPotentialProcessor();
 	}
 	
-	public FillingGapStorePotentialProcessor withReferenceItemStores(Map<Item, List<Store>> referenceItemStores) {
+	public StoreFillingGapPotentialProcessor withReferenceItemStores(Map<Item, List<Store>> referenceItemStores) {
 		this.refItemStores = referenceItemStores;
 		return this;
 	}
 	
-	public FillingGapStorePotentialProcessor withReferenceStores(Map<Long, Long> referenceStores) {
+	public StoreFillingGapPotentialProcessor withReferenceStores(Map<Long, Long> referenceStores) {
 		this.refStores = referenceStores;
 		return this;
 	}
@@ -48,7 +48,7 @@ public class FillingGapStorePotentialProcessor implements Processor<Map<RefItemS
 			BigDecimal sumOfOwnStorePotential = ownStorePotentials.values()
 					.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
 					
-			BigDecimal averageStorePotential = sumOfOwnStorePotential.divide(bd(ownStorePotentials.size()), 1, RoundingMode.HALF_UP);
+			BigDecimal averageStorePotential = sumOfOwnStorePotential.divide(bd(ownStorePotentials.size()), 10, RoundingMode.HALF_UP);
 			
 			BigDecimal interpolatedStorePotential = null;
 			for (Store store: stores) {

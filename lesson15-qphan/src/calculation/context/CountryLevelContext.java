@@ -3,40 +3,43 @@ package calculation.context;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import bean.Item;
 import bean.Store;
 
 public class CountryLevelContext extends Context {
-	
+
 	private Integer planningAmount;
 	private Integer requiredMinPlanningAmount;
+	private Integer minPerStore;
 	private Map<Item, List<Store>> refItemStores;
 	private Map<Long, Long> refStores;
 	private Map<Long, BigDecimal> refWeights;
 	private Map<Long, BigDecimal> storeTrendFactors;
 	private List<Long> storeIds;
-	
+	private Map<Long, Set<Long>> whStoreIds;
+
 	private CountryLevelContext() {
 	}
-	
+
 	public static CountryLevelContext of() {
 		return new CountryLevelContext();
 	}
-	
+
 	public Integer getPlanningAmount() {
 		return planningAmount;
 	}
-	
+
 	public CountryLevelContext withPlanningAmount(Integer planningAmount) {
 		this.planningAmount = planningAmount;
 		return this;
 	}
-	
+
 	public Integer getRequiredMinPlanningAmount() {
 		return requiredMinPlanningAmount;
 	}
-	
+
 	public CountryLevelContext withRequiredMinPlanningAmount(Integer requiredMinPlanningAmount) {
 		this.requiredMinPlanningAmount = requiredMinPlanningAmount;
 		return this;
@@ -59,31 +62,50 @@ public class CountryLevelContext extends Context {
 		this.refStores = refStores;
 		return this;
 	}
-	
+
 	public Map<Long, BigDecimal> getRefWeights() {
 		return refWeights;
 	}
-	
+
 	public CountryLevelContext withRefWeights(Map<Long, BigDecimal> refWeights) {
 		this.refWeights = refWeights;
 		return this;
 	}
-	
+
 	public Map<Long, BigDecimal> getStoreTrendFactors() {
 		return storeTrendFactors;
 	}
-	
+
 	public CountryLevelContext withStoreTrendFactors(Map<Long, BigDecimal> storeTrendFactors) {
 		this.storeTrendFactors = storeTrendFactors;
 		return this;
 	}
-	
+
 	public List<Long> getStoreIds() {
 		return storeIds;
 	}
-	
+
 	public CountryLevelContext withStoreIds(List<Long> storeIds) {
 		this.storeIds = storeIds;
 		return this;
 	}
+
+	public Map<Long, Set<Long>> getWhStoreIds() {
+		return whStoreIds;
+	}
+
+	public CountryLevelContext withWhStoreIds(Map<Long, Set<Long>> whStoreIds) {
+		this.whStoreIds = whStoreIds;
+		return this;
+	}
+	
+	public Integer getMinPerStore() {
+		return minPerStore;
+	}
+	
+	public CountryLevelContext withMinPerStore(Integer minPerStore) {
+		this.minPerStore = minPerStore;
+		return this;
+	}
+
 }

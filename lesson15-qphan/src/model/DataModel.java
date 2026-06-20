@@ -6,12 +6,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Set;
 import java.util.stream.LongStream;
-import java.util.stream.Stream;
-
-import javax.print.attribute.HashAttributeSet;
 
 import bean.Item;
 import bean.Store;
@@ -39,6 +35,14 @@ public class DataModel {
 	
 	public static List<Long> mockItemStoreIds() {
 		return LongStream.rangeClosed(1, 14).boxed().toList();
+	}
+	
+	public static Map<Long, Set<Long>> mockWhStoreIds() {
+		return Map.of(
+			1L, Set.of(2L,3L,4L,5L,6L),
+			2L, Set.of(1L,7L,8L,9L,10L),
+			3L, Set.of(11L,12L, 13L, 14L)
+		);
 	}
 
 	/**

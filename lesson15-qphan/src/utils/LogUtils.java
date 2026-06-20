@@ -1,11 +1,11 @@
 package utils;
 
-import java.math.BigDecimal;
+import static java.util.Comparator.comparing;
+
 import java.util.Map;
 import java.util.TreeMap;
 
 import calculation.parameter.RefItemStoreId;
-import static java.util.Comparator.*;
 
 public class LogUtils {
 	
@@ -16,8 +16,8 @@ public class LogUtils {
 		System.out.printf(message + "\n", arguments);
 	}
 	
-	public static void logRefItemStoreLevel(Map<RefItemStoreId, BigDecimal> refItemStoreParams, String columnName) {
-		Map<RefItemStoreId, BigDecimal> sortedMap = new TreeMap<>(comparing(RefItemStoreId::getRefItemId).thenComparing(RefItemStoreId::getStoreId));
+	public static <T extends Number> void logRefItemStoreLevel(Map<RefItemStoreId, T> refItemStoreParams, String columnName) {
+		Map<RefItemStoreId, T> sortedMap = new TreeMap<>(comparing(RefItemStoreId::getRefItemId).thenComparing(RefItemStoreId::getStoreId));
 		sortedMap.putAll(refItemStoreParams);
 		
 		System.out.printf("%-15s %-15s %-15s\n", "RefItemId", "StoreId", columnName);
@@ -26,12 +26,21 @@ public class LogUtils {
 		});
 	}
 	
-	public static void logStoreLevel(Map<Long, BigDecimal> storeParams, String columnName) {
-		Map<Long, BigDecimal> sortedMap = new TreeMap<>(storeParams);
+	public static <T extends Number> void logStoreLevel(Map<Long, T> storeParams, String columnName) {
+		Map<Long, T> sortedMap = new TreeMap<>(storeParams);
 		
 		System.out.printf("%-15s %-15s\n", "StoreId", columnName);
 		sortedMap.forEach((storeId, param) -> {
 			System.out.printf("%-15s %-15s\n", storeId, param);
+		});
+	}
+	
+	public static <T extends Number> void logWhLevel(Map<Long, T> whParams, String columnName) {
+		Map<Long, T> sortedMap = new TreeMap<>(whParams);
+		
+		System.out.printf("%-15s %-15s\n", "WhId", columnName);
+		sortedMap.forEach((whId, param) -> {
+			System.out.printf("%-15s %-15s\n", whId, param);
 		});
 	}
 	

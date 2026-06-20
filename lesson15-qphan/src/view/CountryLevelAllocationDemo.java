@@ -60,11 +60,13 @@ public class CountryLevelAllocationDemo {
 		return CountryLevelContext.of()
 				.withPlanningAmount(planningAmount)
 				.withRequiredMinPlanningAmount(requiredMinPlanningAmount)
+				.withMinPerStore(minPerStore)
 				.withRefItemStores(mockReferenceItemStores())
 				.withRefStores(mockRefStores())
 				.withRefWeights(mockRefWeights())
 				.withStoreTrendFactors(mockStoreTrendFactors())
-				.withStoreIds(mockItemStoreIds());
+				.withStoreIds(mockItemStoreIds())
+				.withWhStoreIds(mockWhStoreIds());
 	}
 	
 }
