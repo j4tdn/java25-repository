@@ -11,9 +11,10 @@ USE java25_shopping;
 
 -- Số nguyên: INT
 -- Số thực: DECIMAL(p, s)
+--        : DECIMAL(17, 2)
 
 -- Chuỗi: VARCHAR(255)
---      : SĐT VARCHAR(50)
+--      : SĐT, Màu sắc VARCHAR(50)
 --      : Không giới hạn TEXT
 
 -- DML ==> test data, demo
