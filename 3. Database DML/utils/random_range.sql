@@ -1,0 +1,11 @@
+DELIMITER $$
+
+CREATE FUNCTION random_range(minIncl INT, maxExcl INT) 
+RETURNS INT
+DETERMINISTIC
+NO SQL
+BEGIN
+    RETURN minIncl + FLOOR(RAND() * (maxExcl - minIncl + 1));
+END$$
+
+DELIMITER ;
