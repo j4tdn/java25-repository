@@ -1,0 +1,66 @@
+INSERT INTO T17_ORDER_STATUS_DETAIL (C17_ORDER_ID, C17_ORDER_STATUS_ID, C17_EMPLOYEE_ID, C17_LAST_UPDATED)
+
+-- 1. Đơn hàng từ 1 đến 5: Giao thành công (Tạo tự động đủ các bước từ 1 -> 5)
+SELECT 
+    O.C06_ORDER_ID,
+    S.status_id AS C17_ORDER_STATUS_ID,
+    1 AS C17_EMPLOYEE_ID,
+    NOW() - INTERVAL (5 - S.status_id) DAY AS C17_LAST_UPDATED
+FROM T06_ORDER O
+CROSS JOIN (
+    SELECT 1 AS status_id UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5
+) S
+WHERE O.C06_ORDER_ID BETWEEN 1 AND 5
+
+UNION ALL
+
+-- 2. Đơn hàng từ 6 đến 8: Đóng gói thành công (Tạo tự động các bước từ 1 -> 3)
+SELECT 
+    O.C06_ORDER_ID,
+    S.status_id,
+    2 AS C17_EMPLOYEE_ID,
+    NOW() - INTERVAL (3 - S.status_id) DAY
+FROM T06_ORDER O
+CROSS JOIN (
+    SELECT 1 AS status_id UNION ALL SELECT 2 UNION ALL SELECT 3
+) S
+WHERE O.C06_ORDER_ID BETWEEN 6 AND 8
+
+UNION ALL
+
+-- 3. Đơn hàng từ 9 đến 10: Đang giao hàng (Tạo tự động các bước từ 1 -> 4)
+SELECT 
+    O.C06_ORDER_ID,
+    S.status_id,
+    3 AS C17_EMPLOYEE_ID,
+    NOW() - INTERVAL (4 - S.status_id) DAY
+FROM T06_ORDER O
+CROSS JOIN (
+    SELECT 1 AS status_id UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
+) S
+WHERE O.C06_ORDER_ID BETWEEN 9 AND 10
+
+UNION ALL
+
+-- 4. Đơn hàng 11 và 12: Hủy đơn hàng (Trạng thái 7)
+SELECT 
+    C06_ORDER_ID,
+    7 AS C17_ORDER_STATUS_ID,
+    4 AS C17_EMPLOYEE_ID,
+    NOW() AS C17_LAST_UPDATED
+FROM T06_ORDER
+WHERE C06_ORDER_ID IN (11, 12)
+
+UNION ALL
+
+-- 5. Đơn hàng 13: Giao hàng thất bại (Tạo tự động các bước 1, 2, 3, 4, 6)
+SELECT 
+    O.C06_ORDER_ID,
+    S.status_id,
+    5 AS C17_EMPLOYEE_ID,
+    NOW() - INTERVAL (6 - S.status_id) DAY
+FROM T06_ORDER O
+CROSS JOIN (
+    SELECT 1 AS status_id UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 6
+) S
+WHERE O.C06_ORDER_ID = 13;
