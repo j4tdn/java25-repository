@@ -29,6 +29,7 @@ CREATE TABLE departments (
     manager_id INT NULL,
     manager_start_date DATE
 );
+-- Thiếu unique cho manager_id vì quan hệ 1-1
 
 -- Tạo bảng employess
 CREATE TABLE employees (
@@ -88,6 +89,8 @@ CREATE TABLE employee_project (
         FOREIGN KEY (project_id)
         REFERENCES projects(project_id)
 );
+
+-- Phần A: 48 điểm (thiếu 1 unique constraint)
 
 
 Phần B. Viết các lệnh để tạo dữ liệu kiểm thử cho dự án
@@ -234,7 +237,7 @@ VALUES
 (2, 106, 110),
 (6, 106, 140);
 
-
+-- Phần B: 5 điểm
 
 Phần C. Thực hiện truy vấn
 1. Liệt kê các dự án diễn ra trong năm 2026 có số tiền thu được trên 500 triệu VND
@@ -247,10 +250,7 @@ Select
     revenue
 from projects
 where
-	start_date <= STR_TO_DATE(
-		CONCAT (2025, '-12-31'),
-        '%Y-%m-%d'
-	)
+	start_date <= STR_TO_DATE(CONCAT (2025, '-12-31'),'%Y-%m-%d')
     And(
 		end_date Is Null
         Or end_date >= STR_TO_DATE(
@@ -259,12 +259,17 @@ where
 		)
 	)
     And revenue > 500 * 1000000;
+-- Có 2 vấn đề
+-- 1. Sao em ko để str_to_date(value, format) mà phải dùng concat a chưa hiểu lý do
+-- 2. Phần where e làm đúng chỗ > 500 triệu, còn dự án diễn ra năm 2026 có vẻ chưa đúng [diễn ra trong năm 2026 có nghĩa là start_date và end_date nằm trong khoảng 1-1 đến 31/12 năm 2026
 
 
 
 2. Liệt kê các nhân viên đã tham gia hơn ?*? giờ trong các dự án, hiển thị chi tiết số giờ trong mỗi
 dự án mà nhân viên tham gia
---
+-- Em quên phần GROUP BY ?
+
+
 3. Liệt kê các nhân viên có mức lương >= mức lương của người giám sát/quản lý trực tiếp nhân
 viên đó
 
@@ -280,6 +285,11 @@ From employees e
 JOIN employees s
 	ON e.supervisor_id = s.supervisor_id
 WHERE e.salary >= s.salary;
+
+-- Chỗ ON phải là: ON e.supervisor_id = s.employee_id
+-- Khúc self FK này em cứ xem đơn giản như
+-- Bảng con: Employee(employee_id, supervisor_id[FK]) [Nhân Viên] có FK trỏ đến Bảng Cha Employee(employee_id) [Giám Sát Viên hoặc Quản lý]
+-- Khi join thì phải là BangCon.FK = BangCha.PK
 	
 
 4. Liệt kê các phòng ban có số lượng nhân viên lớn hơn 1
@@ -299,6 +309,9 @@ GROUP BY
     
 Having COUNT(e.employee_id) > 1
 
+-- Chính xác
+-- Bổ sung: Chỗ count em có thể dùng count(*) cũng được
+
 5. Liệt kê các nhân viên đã làm việc cho công ty hơn 5 năm
 
 SELECT
@@ -307,6 +320,8 @@ SELECT
     hire_date
 FROM employees
 WHERE DATE_ADD(hire_date, INTERVAL 5 YEAR) < CURDATE();
+
+-- Chính xác
 	
     
 6. Liệt kê các nhân viên vừa là trưởng phòng ban, và là quản lý dự án
@@ -323,6 +338,8 @@ JOIN departments d
 
 JOIN projects p
     ON p.manager_id = e.employee_id;
+    
+-- Chính xác
 
 7. Liệt kê các nhân viên quản lý nhiều hơn 1 dự án
 
@@ -342,12 +359,16 @@ GROUP BY
 
 HAVING COUNT(p.project_id) > 1;
 
+-- Chính xác
+
 8. Mỗi khi nhân viên tham gia vào dự án chúng ta cần lưu lại thông tin hay còn được gọi là log để
 biết nhân viên đó tham gia vào dự án vào thời gian nào
 Mỗi khi nhân viên cập nhật số giờ tham gia dự án, ta cần lưu lại thông tin thời gian cập nhật khi
 nào, số giờ tham gia cũ, số giờ tham gia mới
 Công việc được thực hiện tự động khi dự dữ liệu được thêm, cập nhật
 --
+
+-- Phần C: 20 điểm
 
 
 Link: https://youtu.be/p_ujcIO20eA
