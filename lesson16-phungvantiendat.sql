@@ -46,6 +46,8 @@ CREATE TABLE T01_DEPARTMENT(
     C01_MANAGER_JOIN_DATE DATE
 );
 
+-- Thiếu unique cho C01_MANAGER_ID, dùng để phân biệt FK của quan hệ 1-1 với 1-N(-2đ)
+
 CREATE TABLE T02_EMPLOYEE(
 	C02_EMPLOYEE_ID INT AUTO_INCREMENT PRIMARY KEY,
     C02_EMPLOYEE_NAME VARCHAR(100),
@@ -76,6 +78,10 @@ CREATE TABLE T04_CONDUCT_PROJECT(
     C04_WORKED_HOURS DOUBLE
 );
 
+-- C04_CONDUCT_ID em làm ko sai nhưng thừa(-2đ)
+-- Ở bảng N-N khi khóa chính [nhiêu hơn 1 column] bị tham chiếu nghĩa là dùng để tạo FK ở table khác thì mình mới tạo 1 column mới làm khóa chính như này em hi
+-- A có giải thích bữa học rồi
+
 ALTER TABLE T02_EMPLOYEE
 ADD CONSTRAINT FK_T02_DEPARTMENT FOREIGN KEY(C02_DEPARTMENT_ID) REFERENCES T01_DEPARTMENT(C01_DEPARTMENT_ID);
 
@@ -91,6 +97,10 @@ ADD CONSTRAINT FK_T03_PROJECT_MANAGER FOREIGN KEY(C03_PROJECT_MANAGER_ID) REFERE
 ALTER TABLE T04_CONDUCT_PROJECT
 -- ADD CONSTRAINT FK_T04_EMPLOYEE FOREIGN KEY(C04_EMPLOYEE_ID) REFERENCES T02_EMPLOYEE(C02_EMPLOYEE_ID)
 ADD CONSTRAINT FK_T04_PROJECT FOREIGN KEY(C04_PROJECT_ID) REFERENCES T03_PROJECT(C03_PROJECT_ID);
+
+-- Em ALTER như này cũng được, nhưng trong dự án thì kiểu tạo TABLE nào nếu ko có quan hệ lồng như ko tạo FK được thì e nên tạo FK bên trong câu lệnh tạo TABLE luôn
+
+-- Phần A: 50đ - 4đ = 46đ
 
 
 -- Phần B. Viết các lệnh để tạo dữ liệu kiểm thử cho dự án
@@ -133,11 +143,16 @@ VALUES
     (6, 2, 45.0),
     (2, 3, 160.0);
     
+-- Phần B: 5đ
+    
 -- Phần C. Thực hiện truy vấn
 -- 1. Liệt kê các dự án diễn ra trong năm *?* có số tiền thu được trên *?* triệu VND
 SELECT *
 FROM T03_PROJECT
 WHERE YEAR(C03_START_DATE) = 2023 AND C03_REVENUE > 20000000;
+
+-- Chưa đúng
+-- Ví dụ năm e đang set là 2023 thì ví dự start_date 2022 như end_date = null hoặc >= 2023 vẫn ok
 
 -- 2. Liệt kê các nhân viên đã tham gia hơn ?*? giờ trong các dự án, hiển thị chi tiết số giờ trong mỗi
 -- dự án mà nhân viên tham gia
@@ -148,6 +163,10 @@ FROM T02_EMPLOYEE T02
     JOIN T03_PROJECT ON C04_PROJECT_ID = C03_PROJECT_ID
 WHERE T04.C04_WORKED_HOURS > 100;
 
+-- Câu này đề yêu cầu là: số giờ trong 'các' dự án, ý câu hỏi là tổng giờ trong các dự án > ?*?
+-- Còn e đang làm là số giờ trong 'mỗi' dự án > ?*?
+-- Như đã giải thích ở lớp, a ko trừ điểm
+
 -- 3. Liệt kê các nhân viên có mức lương >= mức lương của người giám sát/quản lý trực tiếp nhân
 -- viên đó
 
@@ -157,6 +176,8 @@ SELECT EMP.C02_EMPLOYEE_NAME, EMP.C02_SALARY,
 	JOIN T02_EMPLOYEE SUP ON EMP.C02_SUPERVISOR_ID = SUP.C02_EMPLOYEE_ID
 WHERE EMP.C02_SALARY >= SUP.C02_SALARY;
 
+-- Chính xác
+
 -- 4. Liệt kê các phòng ban có số lượng nhân viên lớn hơn *?*
 SELECT T01.C01_DEPARTMENT_ID, T01.C01_DEPARTMENT_NAME, COUNT(C02_EMPLOYEE_ID) QUANTITY
 	FROM T01_DEPARTMENT T01
@@ -165,16 +186,24 @@ GROUP BY C01_DEPARTMENT_ID, C01_DEPARTMENT_NAME
 HAVING COUNT(C02_EMPLOYEE_ID) > 2;
 -- HAVING COUNT(C02_DEPARTMENT_ID) > 2
 
+-- Query đúng nhưng code chưa clean(-1đ)
+-- Nếu đặt ALIAS thì nên viết ALIAS.COLUMN_NAME cho toàn bộ
+-- Có thể dùng count(*)
+
 -- 5. Liệt kê các nhân viên đã làm việc cho công ty hơn ?*? năm
 SELECT *
 	FROM T02_EMPLOYEE
 WHERE (YEAR(NOW()) - YEAR(C02_JOIN_DATE)) > 5;
+
+-- Chính xác
 
 -- 6. Liệt kê các nhân viên vừa là trưởng phòng ban, và là quản lý dự án
 SELECT DISTINCT T02.*
 	FROM T02_EMPLOYEE T02
 	JOIN T01_DEPARTMENT T01 ON T01.C01_MANAGER_ID = T02.C02_EMPLOYEE_ID
     JOIN T03_PROJECT T03 ON T03.C03_PROJECT_MANAGER_ID = T02.C02_EMPLOYEE_ID;
+
+-- Chính xác
     
 -- 7. Liệt kê các nhân viên quản lý nhiều hơn 1 dự án
 SELECT T02.C02_EMPLOYEE_ID, T02.C02_EMPLOYEE_NAME, COUNT(C03_PROJECT_MANAGER_ID) QUANTITY
@@ -182,6 +211,9 @@ SELECT T02.C02_EMPLOYEE_ID, T02.C02_EMPLOYEE_NAME, COUNT(C03_PROJECT_MANAGER_ID)
     JOIN T03_PROJECT T03 ON T02.C02_EMPLOYEE_ID = T03.C03_PROJECT_MANAGER_ID
 GROUP BY T02.C02_EMPLOYEE_ID, T02.C02_EMPLOYEE_NAME
 HAVING COUNT(C03_PROJECT_MANAGER_ID) > 1;
+
+-- Chính xác
+-- Có thể dùng count(*)
 
 -- 8. Mỗi khi nhân viên tham gia vào dự án chúng ta cần lưu lại thông tin hay còn được gọi là log để
 -- biết nhân viên đó tham gia vào dự án vào thời gian nào
@@ -207,5 +239,11 @@ BEGIN
     VALUES(NEW.C04_EMPLOYEE_ID, NEW.C04_PROJECT_ID, OLD.C04_WORKED_HOURS, NEW.C04_WORKED_HOURS, NEW.NOW());
 END $$
 DELIMITER ;
+
+-- Chỗ hàm NOW em ko cần gọi NEW.NOW() chỉ cần NOW() hoặc current_timestamp()
+-- Thiếu logging để biết nhân viên tham gia dự án vào thời gian nào
+-- 5/10
+
+-- Phần C: 34đ
 
 -- Link: https://youtu.be/zTJ5XrhkZdY
