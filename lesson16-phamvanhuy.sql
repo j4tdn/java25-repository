@@ -76,6 +76,11 @@ CREATE TABLE PHONGBAN (
     constraint UQ_PHONGBAN_Ten unique (TenPB)
 );
 
+-- Các PK không phải dùng từ Table khác, a thấy thường sẽ dùng INT và AUTO_INCREMENT
+-- A ko trừ điểm chỗ này, nhưng lưu ý giúp a hi
+-- Quan hệ 1-1 MaTruongPhong phải để UNIQUE để phân biệt với FK 1-N
+-- MySQL ko cần dùng NVARCHAR ?
+
 create table NHANVIEN (
     MaNV varchar(10) not null,
     HoTen nvarchar(100) not null,
@@ -88,7 +93,7 @@ create table NHANVIEN (
     MaNVQuanLy varchar(10) null,
     constraint PK_NHANVIEN primary key (MaNV),
     constraint CK_NHANVIEN_Luong check (Luong >= 0),
-    constraint CK_NHANVIEN_GT check (GioiTinh in (n'Nam', n'Nữ')),
+    constraint CK_NHANVIEN_GT check (GioiTinh in (n'Nam', n'Nữ')), -- STYLE này của SQL_SERVER
     constraint FK_NHANVIEN_PHONGBAN foreign key (MaPB) references PHONGBAN(MaPB),
     constraint FK_NHANVIEN_QUANLY foreign key (MaNVQuanLy) references NHANVIEN(MaNV)
 );
@@ -119,6 +124,8 @@ create table PHANCONG (
     constraint FK_PHANCONG_NHANVIEN foreign key (MaNV) references NHANVIEN(MaNV),
     constraint FK_PHANCONG_DUAN foreign key (MaDA) references DUAN(MaDA)
 );
+
+-- Phần A: 50đ - 2đ(Bảng dự án thiếu UNIQUE) - 10đ(tạo table và column tiếng việt) = 38đ
 
 -- PHẦN B. TẠO DỮ LIỆU KIỂM THỬ
 
@@ -226,6 +233,8 @@ insert into PHANCONG (MaNV, MaDA, SoGio) values
 ('NV10', 'DA04', 280),
 ('NV11', 'DA04', 320);
 
+-- Phần B: 5đ
+
 -- PHẦN C. THỰC HIỆN TRUY VẤN
 
 -- Câu 1:
@@ -241,6 +250,8 @@ where year(NgayBatDau) <= @nam
 and (NgayKetThuc is null or year(NgayKetThuc) >= @nam)
 and SoTienThu > @SoTrieu * 1000000
 order by SoTienThu desc; 
+
+-- Chính xác
 
 -- ------------------------------------------------------------
 -- Câu 2:
@@ -259,6 +270,9 @@ join(
 ) tg on nv.MaNV = tg.MaNV
 order by nv.MaNV;
 
+-- Chính xác
+-- Cách làm khác hơn cách a đã hướng dẫn(đơn giản hơn) nhưng ok
+
 -- ------------------------------------------------------------
 -- Câu 3:
 -- Liệt kê các nhân viên có mức lương >= mức lương của
@@ -268,6 +282,8 @@ select nv.MaNV, nv.Luong as LuongNhanVien, ql.HoTen as TenNguoiQuanLy, ql.Luong 
 from NHANVIEN nv
 join NHANVIEN ql on nv.MaNVQuanLy = ql.MaNv
 where nv.Luong >= ql.Luong;
+
+-- Chính xác
 
 
 
@@ -282,6 +298,9 @@ join NHANVIEN nv on pb.MaPB = nv.MaPB
 group by pb.MaPB, pb.TenPB
 having count(nv.MaNV) > 2;
 
+-- Chính xác
+-- Em có thể dùng count(*)
+
 
 
 -- ------------------------------------------------------------
@@ -293,7 +312,7 @@ from NHANVIEN
 where curdate() > date_add(NgayVaoLam, interval 10 year)
 order by SoNamLamViec desc;
 
-
+-- Chính xác
 
 -- ------------------------------------------------------------
 -- Câu 6:
@@ -305,7 +324,7 @@ from NHANVIEN nv
 join PHONGBAN pb on nv.MaNV = pb.MaTruongPhong
 join DUAN da on nv.MaNV = da.MaNVQuanLy;
 
-
+-- Chính xác
 
 -- ------------------------------------------------------------
 -- Câu 7:
@@ -317,7 +336,8 @@ join DUAN da on nv.MaNV = da.MaNVQuanLy
 group by nv.MaNV, nv.HoTen
 having count(da.MaDA) > 1
 
-
+-- Chính xác
+-- Tương tự em có thể dùng count(*)
 
 
 -- ------------------------------------------------------------
@@ -335,7 +355,12 @@ having count(da.MaDA) > 1
 -- Công việc được thực hiện tự động khi dữ liệu
 -- được thêm hoặc cập nhật.
 
+-- Phần C: 45đ chưa làm câu 8(10đ) = 35đ
+
 
 -- video
 -- https://youtu.be/XjY-NEWl8ZI
 -- https://youtu.be/recDYwYlugU
+
+
+-- video(s) a không xem được ???
