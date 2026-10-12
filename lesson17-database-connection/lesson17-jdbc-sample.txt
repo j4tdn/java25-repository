@@ -1,0 +1,55 @@
+Java -> JDBC -> Database
+
+A. SELECT
+
+1. Liệt kê những columns thuộc cùng 1 table
+--> Tạo 1 class chứa những thuộc tính để mapping/nhận dữ liệu từ các columns trong table
+   VD: Liệt kê các loại hàng: mã loại, tên loại, mô tả
+   --> List<ItemGroup> ItemGroup: id, name, desc, items
+
+   --> ItemGroup --> Entity(JPA/Hibernate)
+
+2. Liệt kê những columns thuộc nhiều table
+   + Liệt kê data trong bảng mặt hàng, loại hàng --> MQH với nhau
+   --> Tạo ra 2 class có quan hệ HAS-A để mapping/nhận dữ liệu
+   SELECT * MatHang, LoaiHang
+   --> List<Item>: id, name, salesPrice, itemGroup
+
+   --> List<ItemGroup>: id, name, items
+
+3. Liệt kê những columns thuộc 1/N table
+   và những columns không thuộc bảng nào(tính toán) --> SUM, AGV, GROUP_CONCAT
+   --> Tạo ra 1 class gọi là DTO(data transfer object) chứa những thuộc tính dùng để mapping/nhận dữ liệu
+   Class: ItemDto, ItemGroupDto, ItemHighestOrderDto
+
+4. Liệt kê 1 column, 1 phần tử
+   --> List<T>, T
+
+5. Mã hóa dữ liệu
+   --> Bài toán tổng quát: đăng ký/đăng nhập
+   --> Lưu, mã hóa mật khẩu với thuật toán ...
+
+6. Khi thêm/sửa/xóa nhiều dòng dữ liệu cùng lúc
+   --> executeBatch
+
+7. Transactional
+   --> Lý thuyết
+   --> JDBC - JPA/Hibernate
+
+8. Thực hiện gọi các function, procedure
+   --> JDBC - JPA/Hibernate
+
+-------------------------
+Làm quen với Maven, quản lý các dependency và ...
+
+
+1. Liệt kê toàn bộ các loại hàng có trong hệ thống
+
+2. Liệt kê loại hàng theo mã loại
+
+3. Liệt kê loại hàng theo tên loại
+
+4. Liệt kê toàn bộ các loại hàng [kèm theo thông tin mặt hàng] có trong hệ thống
+
+5. Hiển thị tổng số lượng mặt hàng của mỗi loại hàng trong hệ thống
+   Yêu cầu: tổng số lượng @param mặt hàng
