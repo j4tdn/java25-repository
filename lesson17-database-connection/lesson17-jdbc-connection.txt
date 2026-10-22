@@ -1,0 +1,23 @@
+1. Liệt kê toàn bộ các loại hàng có trong hệ thống   
+
+2. Liệt kê loại hàng theo mã loại   
+
+3. Liệt kê loại hàng theo tên loại   
+
+4. Liệt kê toàn bộ các loại hàng [kèm theo thông tin mặt hàng] có trong hệ thống   
+
+5. Hiển thị tổng số lượng mặt hàng của mỗi loại hàng trong hệ thống   
+	Yêu cầu: tổng số lượng @param mặt hàng
+	
+=====================================
+mvc   
+
+dao, service   
+
+- Tạo theo đối tượng trong database   
+	VD: Table: ItemGroup         
+	JDBC : ItemGroupView, ItemGroupService, ItemGroupDao         
+	--> Thực hiện truy vấn liên quan đến loại hàng trong những class, interface đó   
+	
+- Tạo theo giao diện web   
+	VD: UI Web Page: Store Parameter
