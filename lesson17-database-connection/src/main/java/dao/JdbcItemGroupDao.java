@@ -1,17 +1,14 @@
 package dao;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import connection.DbConnection;
@@ -19,6 +16,7 @@ import enumeration.Color;
 import enumeration.Status;
 import persistence.Item;
 import persistence.ItemGroup;
+import persistence.ItemGroupDto;
 import utils.SqlUtils;
 
 public class JdbcItemGroupDao implements ItemGroupDao {
@@ -45,6 +43,25 @@ public class JdbcItemGroupDao implements ItemGroupDao {
 			+ "SELECT *\n"
 			+ "  FROM t02_item_group\n"
 			+ " WHERE C02_ITEM_GROUP_NAME = ?";
+
+	private static String Q_COUNT_ITEMS_PER_GROUP = ""
+			+ "SELECT t02.C02_ITEM_GROUP_ID AS ITEM_GROUP_ID,\n"
+			+ "       t02.C02_ITEM_GROUP_NAME AS ITEM_GROUP_NAME,\n"
+			+ "       COUNT(t01.C01_ITEM_ID) AS AMOUNT_OF_ITEMS\n"
+			+ "  FROM t02_item_group t02\n"
+			+ "  JOIN t01_item t01\n"
+			+ "    ON t02.C02_ITEM_GROUP_ID = t01.C01_ITEM_GROUP_ID\n"
+			+ " GROUP BY t02.C02_ITEM_GROUP_ID, t02.C02_ITEM_GROUP_NAME\n"
+			+ "HAVING COUNT(t01.C01_ITEM_ID) > ?";
+
+	private static final String Q_INSERT_ITEM_GROUP = ""
+			+ "INSERT INTO t02_item_group (C02_ITEM_GROUP_NAME, C02_STATUS)\n"
+			+ "VALUES (?, ?)";
+
+	private static final String Q_UPDATE_ITEM_GROUP = ""
+			+ "UPDATE t02_item_group\n"
+			+ "   SET C02_ITEM_GROUP_NAME = ?, C02_STATUS = ?\n"
+			+ " WHERE C02_ITEM_GROUP_ID = ?";
 	
 	private final Connection conn;
 	private Statement st = null;
@@ -173,6 +190,78 @@ public class JdbcItemGroupDao implements ItemGroupDao {
 			SqlUtils.close(rs, pst);
 		}
 		return result;
+	}
+
+	@Override
+	public List<ItemGroupDto> countItemsPerGroup(int amount) {
+		List<ItemGroupDto> result = new ArrayList<>();
+		PreparedStatement countStatement = null;
+		ResultSet countResultSet = null;
+
+		try {
+			countStatement = conn.prepareStatement(Q_COUNT_ITEMS_PER_GROUP);
+			countStatement.setInt(1, amount);
+			countResultSet = countStatement.executeQuery();
+			while (countResultSet.next()) {
+				result.add(new ItemGroupDto(
+					countResultSet.getLong("ITEM_GROUP_ID"),
+					countResultSet.getString("ITEM_GROUP_NAME"),
+					countResultSet.getInt("AMOUNT_OF_ITEMS")
+				));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			SqlUtils.close(countResultSet, countStatement);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ItemGroup insert(ItemGroup itemGroup) {
+		try (PreparedStatement insertStatement = conn.prepareStatement(
+				Q_INSERT_ITEM_GROUP, Statement.RETURN_GENERATED_KEYS)) {
+			insertStatement.setString(1, itemGroup.getName());
+			insertStatement.setInt(2, itemGroup.getStatus().getValue());
+			insertStatement.executeUpdate();
+
+			try (ResultSet generatedKeys = insertStatement.getGeneratedKeys()) {
+				if (generatedKeys.next()) {
+					itemGroup.setId(generatedKeys.getLong(1));
+					return itemGroup;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	@Override
+	public ItemGroup update(ItemGroup itemGroup) {
+		try (PreparedStatement updateStatement = conn.prepareStatement(Q_UPDATE_ITEM_GROUP)) {
+			updateStatement.setString(1, itemGroup.getName());
+			updateStatement.setInt(2, itemGroup.getStatus().getValue());
+			updateStatement.setLong(3, itemGroup.getId());
+
+			if (updateStatement.executeUpdate() > 0) {
+				return itemGroup;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	@Override
+	public ItemGroup save(ItemGroup itemGroup) {
+		if (itemGroup.getId() == null) {
+			return insert(itemGroup);
+		}
+		return update(itemGroup);
 	}
 	
 }

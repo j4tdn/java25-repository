@@ -7,6 +7,8 @@ import persistence.Item;
 
 public interface ItemDao {
 
+	List<Item> getItems();
+
 	/**
 	 * Find items in the given item group and not sold on {@code saleDate}.
 	 *

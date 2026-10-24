@@ -17,6 +17,11 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
+	public List<Item> getItems() {
+		return itemDao.getItems();
+	}
+
+	@Override
 	public List<Item> getByItemGroupNameAndNotSoldDate(String itemGroupName, Date saleDate) {
 		Objects.requireNonNull(itemGroupName, "itemGroupName must not be null");
 		Objects.requireNonNull(saleDate, "saleDate must not be null");

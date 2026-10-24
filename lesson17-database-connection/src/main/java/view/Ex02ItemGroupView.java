@@ -38,6 +38,10 @@ public class Ex02ItemGroupView {
 			itemGroupService.getItemGroups(),
 			ItemGroup::getItems
 		);
+		generate(
+			"6. Count items per item group",
+			itemGroupService.countItemsPerGroup(3)
+		);
 	}
 	
 }

@@ -11,9 +11,16 @@ import java.util.List;
 import connection.DbConnection;
 import enumeration.Color;
 import persistence.Item;
+import persistence.ItemGroup;
 import utils.SqlUtils;
 
 public class JdbcItemDao implements ItemDao {
+
+	private static final String Q_GET_ITEMS = ""
+			+ "SELECT t01.*, t02.*\n"
+			+ "  FROM t01_item t01\n"
+			+ "  JOIN t02_item_group t02\n"
+			+ "    ON t01.C01_ITEM_GROUP_ID = t02.C02_ITEM_GROUP_ID";
 
 	private static final String Q_GET_BY_ITEM_GROUP_NAME_AND_NOT_SOLD_DATE = ""
 			+ "SELECT DISTINCT t01.*\n"
@@ -36,6 +43,40 @@ public class JdbcItemDao implements ItemDao {
 
 	public JdbcItemDao() {
 		conn = DbConnection.getConnection();
+	}
+
+	@Override
+	public List<Item> getItems() {
+		List<Item> result = new ArrayList<>();
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+
+		try {
+			pst = conn.prepareStatement(Q_GET_ITEMS);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				ItemGroup group = new ItemGroup(
+					rs.getLong("C02_ITEM_GROUP_ID"),
+					rs.getString("C02_ITEM_GROUP_NAME"),
+					enumeration.Status.getName(rs.getInt("C02_STATUS"))
+				);
+
+				result.add(new Item(
+					rs.getLong("C01_ITEM_ID"),
+					rs.getString("C01_ITEM_NAME"),
+					rs.getBigDecimal("C01_BUY_PRICE"),
+					rs.getString("C01_MATERIAL"),
+					Color.getName(rs.getString("C01_COLOR")),
+					group
+				));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			SqlUtils.close(rs, pst);
+		}
+
+		return result;
 	}
 
 	@Override

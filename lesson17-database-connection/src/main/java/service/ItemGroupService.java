@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import persistence.ItemGroup;
+import persistence.ItemGroupDto;
 
 public interface ItemGroupService {
 	
@@ -35,5 +36,13 @@ public interface ItemGroupService {
 	 * @return {@code ItemGroup}
 	 */
 	ItemGroup get(String name);
+
+	List<ItemGroupDto> countItemsPerGroup(int amount);
+
+	ItemGroup insert(ItemGroup itemGroup);
+
+	ItemGroup update(ItemGroup itemGroup);
+
+	ItemGroup save(ItemGroup itemGroup);
 	
 }

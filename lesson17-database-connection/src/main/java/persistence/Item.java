@@ -12,6 +12,7 @@ public class Item {
 	private BigDecimal buyPrice;
 	private String material;
 	private Color color;
+	private ItemGroup group;
 	
 	public Item() {
 	}
@@ -22,6 +23,11 @@ public class Item {
 		this.buyPrice = buyPrice;
 		this.material = material;
 		this.color = color;
+	}
+
+	public Item(Long id, String name, BigDecimal buyPrice, String material, Color color, ItemGroup group) {
+		this(id, name, buyPrice, material, color);
+		this.group = group;
 	}
 
 	public Long getId() {
@@ -63,6 +69,14 @@ public class Item {
 	public void setColor(Color color) {
 		this.color = color;
 	}
+
+	public ItemGroup getGroup() {
+		return group;
+	}
+
+	public void setGroup(ItemGroup group) {
+		this.group = group;
+	}
 	
 	@Override
 	public boolean equals(Object o) {
@@ -84,6 +98,6 @@ public class Item {
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", name=" + name + ", buyPrice=" + buyPrice + ", material=" + material
-				+ ", color=" + color + "]";
+				+ ", color=" + color + ", group=" + group + "]";
 	}
 }
