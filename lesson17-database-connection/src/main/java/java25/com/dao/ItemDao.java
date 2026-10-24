@@ -15,12 +15,13 @@ public interface ItemDao {
     List<Item> getItems();
 
     /**
-     *
-     * @param groupName
-     * @param orderDate
+     * Get items which belong to the specified group
+     *      and not sell in the given sales date
+     * @param groupName the name of group
+     * @param salesDate the given sales date
      *
      * @return {@code list of Item}
      */
-    List<Item> getItemsByGroupAndNotSoldOnDate(String groupName, LocalDate orderDate);
+    List<Item> getItemsByGroupAndNotSoldOnDate(String groupName, LocalDate salesDate);
 
 }

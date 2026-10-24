@@ -35,4 +35,6 @@ public interface ItemGroupDao {
      * @return {@code list of item group dto}
      */
     List<ItemGroupDto> countItemsPerGroup(int amount);
+
+    boolean saveOrUpdate(ItemGroup itemGroup);
 }

@@ -3,13 +3,11 @@ package java25.com.dao;
 import java25.com.common.Status;
 import java25.com.connection.DbConnection;
 import java25.com.persistence.ItemGroup;
-import java25.com.utils.SqlUtils;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcItemGroupDao implements ItemGroupDao {
+public class JdbcItemGroupDao extends GenericDao implements ItemGroupDao {
     private static String Q_GET_ALL = "SELECT * FROM T02_ITEM_GROUP;";
     private static String Q_GET_BY_ID = "SELECT * FROM T02_ITEM_GROUP " +
             "WHERE C02_ITEM_GROUP_ID = ?;";
@@ -28,6 +26,16 @@ public class JdbcItemGroupDao implements ItemGroupDao {
             "GROUP BY t02.C02_ITEM_GROUP_ID,t02.C02_ITEM_GROUP_NAME\n" +
             "HAVING AMOUNT_OF_ITEMS > ?;";
 
+    private static String Q_INSERT = "" +
+            "INSERT INTO T02_ITEM_GROUP (C02_ITEM_GROUP_NAME, C02_STATUS)\n" +
+            "VALUES (?, ?);";
+
+    private static String Q_UPDATE = ""+
+            "UPDATE T02_ITEM_GROUP\n" +
+            "SET C02_ITEM_GROUP_NAME = ?, \n" +
+            "    C02_STATUS = ?\n" +
+            "WHERE C02_ITEM_GROUP_ID = ?;";
+
     private Connection conn = null;
     private PreparedStatement pst = null;
     private ResultSet rs = null;
@@ -38,95 +46,89 @@ public class JdbcItemGroupDao implements ItemGroupDao {
 
     @Override
     public List<ItemGroup> findAll() {
-        List<ItemGroup> results = new ArrayList<>();
-
-        Statement st = null;
-        ResultSet rs = null;
-        try {
-            st = conn.createStatement();
-            rs = st.executeQuery(Q_GET_ALL);
-            while (rs.next()) {
-                ItemGroup group = new ItemGroup(
-                        rs.getLong("C02_ITEM_GROUP_ID"),
-                        rs.getString("C02_ITEM_GROUP_NAME"),
-                        Status.getName(rs.getInt("C02_STATUS"))
-                );
-                results.add(group);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return results;
+        return getList(Q_GET_ALL, this::groupTransformer);
     }
 
     @Override
     public ItemGroup findById(Long itemGroupId) {
-        ItemGroup itemGroup = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        try {
-            pst = conn.prepareStatement(Q_GET_BY_ID);
-            pst.setLong(1, itemGroupId);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                itemGroup = new ItemGroup(
-                        rs.getLong("C02_ITEM_GROUP_ID"),
-                        rs.getString("C02_ITEM_GROUP_NAME"),
-                        Status.getName(rs.getInt("C02_STATUS"))
-                );
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            SqlUtils.close(rs, pst);
-        }
-        return itemGroup;
+        return get(Q_GET_BY_ID, pst -> {
+                    try {
+                        pst.setLong(1, itemGroupId);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                this::groupTransformer);
     }
 
     @Override
     public ItemGroup findByName(String name) {
-        ItemGroup itemGroup = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        try {
-            pst = conn.prepareStatement(Q_GET_BY_NAME);
-            pst.setString(1, "%" + name + "%");
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                itemGroup = new ItemGroup(
-                        rs.getLong("C02_ITEM_GROUP_ID"),
-                        rs.getString("C02_ITEM_GROUP_NAME"),
-                        Status.getName(rs.getInt("C02_STATUS"))
-                );
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            SqlUtils.close(rs, pst);
-        }
-        return itemGroup;
+        return get(Q_GET_BY_NAME, pst -> {
+                    try {
+                        pst.setString(2, name);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                this::groupTransformer);
     }
 
     @Override
     public List<ItemGroupDto> countItemsPerGroup(int amount) {
-        List<ItemGroupDto> results = new ArrayList<>();
-        try {
-            pst = conn.prepareStatement(Q_COUNT_ITEMS);
-            pst.setInt(1, amount);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                ItemGroupDto group = new ItemGroupDto(
-                        rs.getLong("ITEM_GROUP_ID"),
-                        rs.getString("ITEM_GROUP_NAME"),
-                        rs.getInt("AMOUNT_OF_ITEMS"));
-                results.add(group);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            SqlUtils.close(rs, pst);
+        return getList(Q_COUNT_ITEMS, this::groupDtoTransformer);
+    }
+
+    @Override
+    public boolean saveOrUpdate(ItemGroup request) {
+        ItemGroup itemGroup = null;
+        if(request.getId() != null) {
+            return modify(Q_INSERT, pst -> {
+                try {
+                    pst.setString(1, request.getName());
+                    pst.setInt(2, 1);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+        } else {
+            return modify(Q_UPDATE, pst -> {
+                try {
+                    pst.setString(1, request.getName());
+                    pst.setInt(2, request.getStatus().getValue());
+                    pst.setLong(3, request.getId());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
         }
-        return results;
+    }
+
+    private ItemGroup groupTransformer(ResultSet rs) {
+        ItemGroup group = null;
+        try {
+            group = new ItemGroup(
+                    rs.getLong("C02_ITEM_GROUP_ID"),
+                    rs.getString("C02_ITEM_GROUP_NAME"),
+                    Status.getName(rs.getInt("C02_STATUS"))
+            );
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+        return group;
+    }
+
+    private ItemGroupDto groupDtoTransformer(ResultSet rs) {
+        ItemGroupDto group = null;
+        try {
+            group = new ItemGroupDto(
+                    rs.getLong("ITEM_GROUP_ID"),
+                    rs.getString("ITEM_GROUP_NAME"),
+                    rs.getInt("AMOUNT_OF_ITEMS")
+            );
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+        return group;
     }
 
 }
