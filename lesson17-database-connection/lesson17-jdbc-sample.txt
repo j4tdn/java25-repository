@@ -1,0 +1,12 @@
+1. Liệt kê toàn bộ loại hàng có trong hệ thống
+
+2. Liệt kê loại hàng theo mã loại 
+
+3. Liệt kê loại hàng theo tên loại
+
+4. Liệt kê toàn bộ các lọai hàng [kèm theo thông tin mặt hàng] có trong hệ thống
+
+5. Hiển thị tổng số lượng mặt hàng của mỗi loại hàng trong hệ thống
+	Yêu cầu: tống số lượng @param mặt hàng
+	
+	
