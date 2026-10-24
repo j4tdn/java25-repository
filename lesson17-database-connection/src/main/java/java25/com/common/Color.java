@@ -9,5 +9,9 @@ public enum Color {
     YELLOW,
     ORIGIN,
     GRAY,
-    GREY
+    GREY;
+
+    public static Color getName(String name) {
+        return Color.valueOf(name);
+    }
 }

@@ -2,12 +2,16 @@ package java25.com.persistence;
 
 import java25.com.common.Status;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ItemGroup {
     private Long id;
     private String name;
     private Status status;
+    private List<Item> items = new ArrayList<>();
+
 
     public ItemGroup() {
     }
@@ -16,6 +20,13 @@ public class ItemGroup {
         this.id = id;
         this.name = name;
         this.status = status;
+    }
+
+    public ItemGroup(ItemGroup itemGroup, List<Item> items) {
+        this.id = itemGroup.id;
+        this.name = itemGroup.name;
+        this.status = itemGroup.status;
+        this.items = items;
     }
 
     public Long getId() {
@@ -40,6 +51,14 @@ public class ItemGroup {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     @Override

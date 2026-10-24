@@ -1,0 +1,19 @@
+package java25.com.utils;
+
+public class SqlUtils {
+    private SqlUtils() {
+
+    }
+
+    public static void close(AutoCloseable ...closeables) {
+        for(AutoCloseable closeable : closeables) {
+            if(closeable != null) {
+                try {
+                    closeable.close();
+                }catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+}
