@@ -1,18 +1,51 @@
-1. Liệt kê toàn bộ các "loại hàng" có trong hệ thống
+01. Liệt kê toàn bộ các "loại hàng" có trong hệ thống
 
-2. Liệt kê "loại hàng" theo mã loại
+02. Liệt kê "loại hàng" theo mã loại
 
-3. Liệt kê "loại hàng" theo tên loại
+03. Liệt kê "loại hàng" theo tên loại
 
-4. Liệt kê toàn bộ các "loại hàng" [kèm theo thông tin mặt hàng] có trong hệ thống
+04. Liệt kê toàn bộ các "loại hàng" [kèm theo thông tin mặt hàng] có trong hệ thống
 
-5. Hiển thị tổng số lượng "mặt hàng" của mỗi "loại hàng" trong hệ thống
-   Yêu cầu: tổng số lượng @param mặt hàng
+05. Liệt kệ toàn bộ "mặt hàng" chứa thông tin "loại hàng"
+
+06. Hiển thị tổng số lượng "mặt hàng" của mỗi "loại hàng" trong hệ thống
+   Yêu cầu: tổng số lượng @param mặt hàng > 20
+   ==> DTO: itemGroupId, itemGroupName, amountOfItems
    
+07. Liệt kê những 'mặt hàng' 
+   - thuộc loại hàng là @1 
+   - và không bán được trong ngày @p2
+   Trong đó: @p1 là chuỗi dữ liệu
+             @p2 thông tin dưới dạng ngày tháng năm
+             
+   JDBC: java.sql.Date, java.sql.Time, java.sql.TimeStamp
+   SQL :     DATE           TIME       DATETIME/TIMESTAMP
+   
+   JAVA: java.util.Date, java.util.Calendar 
+         LocalDate, LocalTime, LocalDateTime
+
+Viết hàm
+             
+08. Thực hiện chức năng
+    - thêm mới 1 loại hàng
+    - sửa 1 loại hàng
+    - thêm/sửa 1 loại hàng
+    
+09. Thực hiện thêm mới N loại hàng
+
+10. Tạo tài khoản cho khách hàng mới
+    Yêu cầu mật khẩu được mã hóa theo 1 thuật toán mã hóa nào đó
+    VD: MD5, SHA256
+
+11. Thực hiện chức năng đăng nhập cho tài khoản theo
+    - Email
+    - Password 
+ 
+
 ===================
 mvc
 dao, service
-- Tạo theo đối tương trong database
+- Tạo theo đối tượng trong database
   VD: Table: ItemGroup
       JDBC : ItemGroupView, ItemGroupService, ItemGroupDao
       --> Thực hiện truy vấn liên quan đến loại hàng trong những class, interface đó 
@@ -20,3 +53,9 @@ dao, service
 - Tạo theo giao diện web
   VD: UI Web Page: Store Parameter
       JDBC: StoreParameterView, StoreParameterService, StoreParameterDao
+      
+persistence
+   - entity: là những class mapping toàn bộ các thuộc tính với 1 table
+   - data transfer object: là những class chứa các thuộc tính tự do là thông tin trả về cần cho business/ui
+                           có thể chứa các thuộc tính do tính mà ra ko phải là table column nào
+   - lưu ý: dao không tạo và đặt tên theo dto                         

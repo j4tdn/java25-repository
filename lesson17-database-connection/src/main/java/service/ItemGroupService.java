@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import persistence.ItemGroup;
+import persistence.ItemGroupDto;
 
 public interface ItemGroupService {
 	
@@ -19,6 +20,13 @@ public interface ItemGroupService {
 	 * @return {@code list of ItemGroup}
 	 */
 	List<ItemGroup> getItemGroups();
+	
+	/**
+	 * Count amount of items per group
+	 * 
+	 * @return {@code list of ItemGroupDto}
+	 */
+	List<ItemGroupDto> countItemsPerGroup();
 	
 	/**
 	 * Find item group by id

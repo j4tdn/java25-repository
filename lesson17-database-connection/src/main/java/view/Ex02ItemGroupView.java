@@ -38,6 +38,11 @@ public class Ex02ItemGroupView {
 			itemGroupService.getItemGroups(),
 			ItemGroup::getItems
 		);
+		
+		generate(
+			"6. Đếm số lượng mặt hàng của từng loại hàng", 
+			itemGroupService.countItemsPerGroup()
+		);
 	}
 	
 }
