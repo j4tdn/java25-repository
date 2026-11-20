@@ -2,6 +2,9 @@ package view;
 
 import static utils.PrintUtils.generate;
 
+import java.util.List;
+
+import enumeration.Status;
 import persistence.ItemGroup;
 import service.ItemGroupService;
 import service.ItemGroupServiceImpl;
@@ -42,6 +45,17 @@ public class Ex02ItemGroupView {
 		generate(
 			"6. Đếm số lượng mặt hàng của từng loại hàng", 
 			itemGroupService.countItemsPerGroup()
+		);
+		
+		System.out.println("8. Thực hiện thêm/sửa loại hàng");
+		// itemGroupService.save(new ItemGroup("Balo", Status.Disabled));
+		// itemGroupService.saveOrUpdate(new ItemGroup(66L, "Thắt lưng", Status.Active));
+		
+		System.out.println("9. Thực hiện thêm danh sách loại hàng");
+		itemGroupService.save(
+			List.of(new ItemGroup("Loại hàng A1 ", Status.Active),
+					new ItemGroup("Loại hàng A2 ", Status.Active),
+					new ItemGroup("Loại hàng A3 ", Status.Disabled))
 		);
 	}
 	

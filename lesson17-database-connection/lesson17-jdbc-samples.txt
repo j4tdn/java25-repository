@@ -35,12 +35,13 @@ Viết hàm
 
 10. Tạo tài khoản cho khách hàng mới
     Yêu cầu mật khẩu được mã hóa theo 1 thuật toán mã hóa nào đó
-    VD: MD5, SHA256
+    VD: MD5, SHA256, Bcrypt
 
 11. Thực hiện chức năng đăng nhập cho tài khoản theo
     - Email
-    - Password 
- 
+    - Password
+
+12. Transactional 
 
 ===================
 mvc

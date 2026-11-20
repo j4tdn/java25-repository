@@ -15,7 +15,12 @@ public class ItemGroup {
 	
 	public ItemGroup() {
 	}
-
+	
+	public ItemGroup(String name, Status status) {
+		this.name = name;
+		this.status = status;
+	}
+	
 	public ItemGroup(Long id, String name, Status status) {
 		this.id = id;
 		this.name = name;

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -14,22 +15,23 @@ import connection.DbConnection;
 import utils.SqlUtils;
 
 class GenericDao {
-	
+
+	final int BATCH_SIZE = 999;
 	final Connection conn;
 	Statement st = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
-	
+
 	GenericDao() {
 		conn = DbConnection.getConnection();
 	}
-	
+
 	<E> List<E> getList(String sql, Function<ResultSet, E> getRecordFunc) {
 		List<E> result = new ArrayList<>();
 		try {
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				E element = getRecordFunc.apply(rs);
 				result.add(element);
 			}
@@ -40,14 +42,14 @@ class GenericDao {
 		}
 		return result;
 	}
-	
+
 	<E> List<E> getList(String sql, Consumer<PreparedStatement> paramSetters, Function<ResultSet, E> getRecordFunc) {
 		List<E> result = new ArrayList<>();
 		try {
 			pst = conn.prepareStatement(sql);
 			paramSetters.accept(pst);
 			rs = pst.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				E element = getRecordFunc.apply(rs);
 				result.add(element);
 			}
@@ -58,15 +60,14 @@ class GenericDao {
 		}
 		return result;
 	}
-	
+
 	<E> E get(String sql, Consumer<PreparedStatement> paramSetters, Function<ResultSet, E> getRecordFunc) {
 		E result = null;
-		
 		try {
 			pst = conn.prepareStatement(sql);
 			paramSetters.accept(pst);
 			rs = pst.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				result = getRecordFunc.apply(rs);
 			}
 		} catch (SQLException e) {
@@ -75,5 +76,36 @@ class GenericDao {
 			SqlUtils.close(rs, pst);
 		}
 		return result;
+	}
+
+	<E> void executeUpdate(String sql, Consumer<PreparedStatement> paramSetters) {
+		try {
+			pst = conn.prepareStatement(sql);
+			paramSetters.accept(pst);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			SqlUtils.close(pst);
+		}
+	}
+
+	<E> void executeBatchUpdate(String sql, BiConsumer<PreparedStatement, E> paramSetters, List<E> elements) {
+		try {
+			int counter = 0;
+			pst = conn.prepareStatement(sql);
+			for (E element : elements) {
+				paramSetters.accept(pst, element);
+				pst.addBatch();
+				if (++counter % BATCH_SIZE == 0) {
+					pst.executeBatch();
+				}
+			}
+			pst.executeBatch();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			SqlUtils.close(pst);
+		}
 	}
 }

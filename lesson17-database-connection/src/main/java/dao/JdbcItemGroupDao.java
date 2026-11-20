@@ -48,6 +48,16 @@ public class JdbcItemGroupDao extends GenericDao implements ItemGroupDao {
 			+ "  FROM t02_item_group\n"
 			+ " WHERE C02_ITEM_GROUP_NAME = ?";
 	
+	private static String Q_INSERT_ITEM_GROUP = ""
+			+ "INSERT INTO t02_item_group(C02_ITEM_GROUP_NAME, C02_STATUS)\n"
+			+ "VALUES(?, ?)";
+	
+	private static String Q_UPDATE_ITEM_GROUP = ""
+			+ "UPDATE t02_item_group\n"
+			+ "   SET C02_ITEM_GROUP_NAME = ?,\n"
+			+ "       C02_STATUS = ?\n"
+			+ " WHERE C02_ITEM_GROUP_ID = ?";
+	
 	@Override
 	public List<ItemGroup> getAll() {
 		return getList(Q_GET_ALL, JdbcItemGroupDao::groupTransformer);
@@ -92,12 +102,12 @@ public class JdbcItemGroupDao extends GenericDao implements ItemGroupDao {
 	}
 	
 	@Override
-	public ItemGroup get(int id) {
+	public ItemGroup get(long id) {
 		return get(
 			Q_GET_ITEM_GROUP_BY_ID, 
 			pst -> {
 				try {
-					pst.setInt(1, id);
+					pst.setLong(1, id);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -119,6 +129,45 @@ public class JdbcItemGroupDao extends GenericDao implements ItemGroupDao {
 			},
 			JdbcItemGroupDao::groupTransformer
 		);
+	}
+	
+	@Override
+	public void save(ItemGroup group) {
+		System.out.println(">> Saving new group " + group.getName());
+		executeUpdate(Q_INSERT_ITEM_GROUP, pst -> {
+			try {
+				pst.setString(1, group.getName());
+				pst.setInt(2, group.getStatus().getValue());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		});
+	}
+	
+	@Override
+	public void save(List<ItemGroup> groups) {
+		executeBatchUpdate(Q_INSERT_ITEM_GROUP, (pst, group) -> {
+			try {
+				pst.setString(1, group.getName());
+				pst.setInt(2, group.getStatus().getValue());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}, groups);
+	}
+	
+	@Override
+	public void update(ItemGroup group) {
+		System.out.println(">> Updating the group " + group.getId());
+		executeUpdate(Q_UPDATE_ITEM_GROUP, pst -> {
+			try {
+				pst.setString(1, group.getName());
+				pst.setInt(2, group.getStatus().getValue());
+				pst.setLong(3, group.getId());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 	
 	public static ItemGroup groupTransformer(ResultSet rs) {

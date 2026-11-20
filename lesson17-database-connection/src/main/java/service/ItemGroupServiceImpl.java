@@ -48,7 +48,7 @@ public class ItemGroupServiceImpl implements ItemGroupService {
 	}
 	
 	@Override
-	public ItemGroup get(int id) {
+	public ItemGroup get(long id) {
 		return itemGroupDao.get(id);
 	}
 	
@@ -56,6 +56,40 @@ public class ItemGroupServiceImpl implements ItemGroupService {
 	public ItemGroup get(String name) {
 		Objects.requireNonNull(name, "name must not be null");
 		return itemGroupDao.get(name);
+	}
+	
+	@Override
+	public void save(ItemGroup group) {
+		Objects.requireNonNull(group, "group must not be null");
+		itemGroupDao.save(group);
+	}
+	
+	@Override
+	public void save(List<ItemGroup> groups) {
+		Objects.requireNonNull(groups, "groups must not be null");
+		if (!groups.isEmpty()) {
+			itemGroupDao.save(groups);
+		}
+	}
+	 
+	@Override
+	public void update(ItemGroup group) {
+		Objects.requireNonNull(group, "group must not be null");
+		itemGroupDao.update(group);
+	}
+	
+	@Override
+	public void saveOrUpdate(ItemGroup group) {
+		Long id = group.getId();
+		if (id == null) {
+			save(group);
+			return;
+		}
+		if (get(id) == null) {
+			save(group);
+		} else {
+			update(group);
+		}
 	}
 	
 }
