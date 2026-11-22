@@ -8,7 +8,7 @@ public enum Status {
 
 	private int value;
 	
-	private static Map<Integer, Status> VALUE_ENUM_MAP = Map.of(1, Active, 2, Disabled);
+	private static Map<Integer, Status> VALUE_ENUM_MAP = Map.of(1, Active, 0, Disabled);
 
 	Status(int value) {
 		this.value = value;

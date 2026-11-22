@@ -1,14 +1,9 @@
 package view;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import connection.DbConnection;
-import dao.HibernateItemGroupDao;
-import dao.ItemGroupDao;
-import persistence.ItemGroup;
 
 public class Ex01TestConnection {
 
@@ -33,10 +28,5 @@ public class Ex01TestConnection {
 		// session mới dùng openSession
 		
 		// Lúc học: demo openSession trước
-		
-		System.out.println("\n");
-		ItemGroupDao dao = new HibernateItemGroupDao();
-		List<ItemGroup> groups = dao.getAll();
-		groups.forEach(System.out::println);
 	}
 }
