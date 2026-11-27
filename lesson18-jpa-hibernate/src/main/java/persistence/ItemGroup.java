@@ -1,5 +1,6 @@
 package persistence;
 
+import java.util.List;
 import java.util.Objects;
 
 import converter.StatusConverter;
@@ -7,11 +8,9 @@ import enumeration.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedNativeQueries;
-import jakarta.persistence.NamedNativeQuery;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,6 +27,9 @@ public class ItemGroup {
 	@Column(name = "C02_STATUS", nullable = false)
 	@Convert(converter = StatusConverter.class)
 	private Status status;
+	
+	@OneToMany(mappedBy = "group")
+	private List<Item> items;
 
 	/**
 	 * Required JPA constructor
@@ -77,6 +79,14 @@ public class ItemGroup {
 			return false;
 		}
 		return Objects.equals(getId(), that.getId());
+	}
+	
+	public List<Item> getItems() {
+		return items;
+	}
+	
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
 	@Override
